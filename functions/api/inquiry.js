@@ -11,7 +11,7 @@
 const DEFAULT_STORE_EMAIL = "oneonone01010101@gmail.com";
 const STORE_TEL = "052-957-6646";
 
-const LIMITS = { name: 60, tel: 20, email: 120, date: 10, time: 20, people: 4, budget: 30, purpose: 30, message: 2000, page: 60 };
+const LIMITS = { name: 60, tel: 20, email: 120, date: 10, time: 20, people: 4, budget: 30, purpose: 30, hire: 20, message: 2000, page: 60 };
 
 const json = (status, body) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json; charset=utf-8" } });
@@ -39,7 +39,7 @@ function summary(d) {
   return [
     ["お名前", d.name], ["電話番号", d.tel], ["メール", d.email],
     ["希望日", d.date], ["希望時間", d.time || "未選択"], ["予定人数", `${d.people}名`],
-    ["ご予算", d.budget || "未選択"], ["ご利用目的", d.purpose || "未選択"],
+    ["ご予算", d.budget || "未選択"], ["ご利用目的", d.purpose || "未選択"], ["貸切の希望", d.hire || "未選択"],
     ["ご要望", d.message || "（なし）"], ["送信ページ", d.page || "-"]
   ];
 }
@@ -83,7 +83,7 @@ export async function onRequestPost({ request, env }) {
       from: fromEmail || "ONE on ONE フォーム <onboarding@resend.dev>",
       to: [storeEmail],
       reply_to: d.email,
-      subject: `【貸切・団体相談】${d.date} ${d.people}名 ${d.name}様`,
+      subject: `【${d.hire === "希望する" ? "貸切" : "団体宴会"}相談】${d.date} ${d.people}名 ${d.name}様`,
       text: `ホームページから団体・貸切の相談が届きました。\nこのメールに返信すると、お客様に届きます。\n\n${text}`,
       html: `<p>ホームページから団体・貸切の相談が届きました。<br>このメールに返信すると、お客様に届きます。</p>${html}`
     });

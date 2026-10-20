@@ -147,26 +147,34 @@ function renderBanquet(el, opts) {
   const P = banquetPrices();
   const focusDec = (opts.focus || SITE.season.priceFocus) === "dec";
   const loc = opts.loc || "banquet";
+  const form = opts.formHref || "#reserve";
   el.innerHTML = SITE.banquet.map(b => {
     const isHire = b.kind === "hire";
+    const coursePrice = focusDec ? `<span class="pk">12月の宴会コース</span><strong>¥${yen(P.dec)}〜</strong>` : `<span class="pk">宴会コース</span><strong>¥${yen(P.normal)}〜</strong>`;
     const main = isHire
       ? (focusDec ? `<span class="pk">12月の貸切</span><strong>¥${yen(P.hireDec)}〜</strong>` : `<span class="pk">貸切</span><strong>¥${yen(P.hireAll)}〜</strong>`)
-      : (focusDec ? `<span class="pk">12月の宴会コース</span><strong>¥${yen(P.dec)}〜</strong>` : `<span class="pk">宴会コース</span><strong>¥${yen(P.normal)}〜</strong>`);
+      : coursePrice;
     const sub = isHire
       ? `最低保証・税込／コース料理・飲み放題込み`
       : (focusDec ? `1名・税込／飲み放題${P.decDrink}〜` : `1名・税込／飲み放題付き${P.normalNote ? `（¥${yen(P.normal)}は${P.normalNote}）` : ""}`);
     const other = isHire
-      ? (focusDec ? `1〜11月は ¥${yen(P.hireAll)}〜（月・曜日で変動）` : "")
+      ? `貸切を選んだ場合の料金です。人数が多くても、貸切にせず団体宴会としてご相談いただけます。`
       : (focusDec ? `1〜11月は ¥${yen(P.normal)}〜（${P.normalNote || "通常料金"}）` : "");
-    const cta = isHire
-      ? `<a class="btn solid" href="${opts.hireHref || "party.html#hire"}" data-track="hire_price_click" data-loc="${loc}-${b.id}">日付で貸切料金を見る</a>
-         <a class="textlink" href="${opts.formHref || "#reserve"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">貸切を相談する</a>`
-      : `<button class="btn solid" type="button" data-open-book data-loc="${loc}-${b.id}">空席を確認・予約</button>
-         <a class="textlink" href="${opts.formHref || "#reserve"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">${b.id === "b20" ? "人数・席を相談する" : "電話・フォームで相談"}</a>`;
-    return `<article class="bq" id="${b.id}">
+    let cta;
+    if (isHire) {
+      cta = `<a class="btn solid" href="${opts.hireHref || "party.html#hire"}" data-track="hire_price_click" data-loc="${loc}-${b.id}">貸切料金を調べる</a>
+         <a class="textlink" href="${form}" data-hire="希望する" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">貸切を相談する</a>`;
+    } else if (b.kind === "group") {
+      cta = `<a class="btn solid" href="${form}" data-hire="希望しない" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">団体宴会を相談する</a>
+         <button class="textlink" type="button" data-open-book data-loc="${loc}-${b.id}">ネット予約で空席を確認</button>`;
+    } else {
+      cta = `<button class="btn solid" type="button" data-open-book data-loc="${loc}-${b.id}">空席を確認・予約</button>
+         <a class="textlink" href="${form}" data-hire="希望しない" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">${b.id === "b20" ? "人数・席を相談する" : "電話・フォームで相談"}</a>`;
+    }
+    return `<article class="bq bq-${b.kind}" id="${b.id}">
       <div class="ph" data-photo="${esc(b.photoKey)}"></div>
       <div class="bq-body">
-        <p class="bq-size"><b>${esc(b.range)}</b><small>名</small><span class="chip">${esc(b.chip)}</span></p>
+        <p class="bq-size"><b>${esc(b.range)}</b>${b.unit === "" ? "" : `<small>${esc(b.unit || "名")}</small>`}<span class="chip">${esc(b.chip)}</span></p>
         <h3>${esc(b.title)}</h3>
         <p class="bq-price">${main}</p>
         <p class="bq-sub">${sub}</p>
@@ -232,3 +240,11 @@ function cleanLinks(root) {
   });
 }
 document.addEventListener("DOMContentLoaded", () => cleanLinks());
+
+/* 相談リンクから来たら「貸切の希望」を選んでおく（団体宴会と貸切を分けて受け付ける） */
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-hire]");
+  if (!a) return;
+  const sel = document.getElementById("f-hire");
+  if (sel) sel.value = a.dataset.hire;
+});

@@ -88,8 +88,10 @@ function calc(ev) {
   const total = base + extra;
   const per = people ? Math.round(total / people) : 0;
   const P = banquetPrices();
+  const courseFrom = `飲み放題付きコース ${dt.getMonth() === 11 ? "12月" : ""}¥${yen(dt.getMonth() === 11 ? P.dec : P.normal)}〜／1名`;
   const smallTip = people && people <= 40
-    ? `<p class="tip">${people}名なら、貸切にしなくても<a href="#size">個室・大理石テーブルの宴会</a>でご案内できます（飲み放題付きコース ${dt.getMonth() === 11 ? "12月" : ""}¥${yen(dt.getMonth() === 11 ? P.dec : P.normal)}〜／1名）。</p>` : "";
+    ? `<p class="tip">${people}名なら、貸切にしなくても<a href="#size">個室・大理石テーブルの宴会</a>でご案内できます（${courseFrom}）。</p>`
+    : `<p class="tip">貸切にしない団体宴会なら、最低保証料金はかからず${courseFrom}でご相談いただけます（席の配置・空席状況によります）。<a href="#party-50">団体宴会のご案内</a></p>`;
   out.innerHTML = `${head}
     <p class="total">${fmt(total)}${from}<small>最低保証・税込</small></p>
     <dl>
@@ -117,6 +119,7 @@ out.addEventListener("click", e => {
   document.getElementById("f-date").value = sDate.value;
   document.getElementById("f-people").value = sPeople.value;
   document.getElementById("f-purpose").value = "貸切パーティー";
+  const hireSel = document.getElementById("f-hire"); if (hireSel) hireSel.value = "希望する";
   const room = document.querySelector("input[name=s-room]:checked").value === "yes";
   const msg = document.getElementById("f-msg");
   const line = room ? "完全貸切（個室も含む）を希望します。" : "フロア貸切を希望します。";
