@@ -4,7 +4,6 @@ document.querySelector("[data-ac=items]").textContent = ac.items;
 document.querySelector("[data-ac=drink]").textContent = ac.drink;
 document.getElementById("ac-menu").innerHTML = ["テーブルアートの前菜", "自家製ローストビーフ", "和牛イチボのグリル", "季節のおすすめピザ", "メッセージ付きデザートプレート"]
   .map(x => `<li>${esc(x)}</li>`).join("");
-document.querySelectorAll("[data-tel-text]").forEach(n => n.textContent = SITE.tel);
 
 const options = [
   { en: "Dessert Plate", name: "メッセージ付きデザートプレート", price: SITE.plate.price, priceNote: "税込・アラカルトでも可", desc: "デザートとフルーツのプレートに、お名前やメッセージを添えてお席へ。", when: "当日のお電話でもOK", loc: "opt-plate", photo: "plate" },
@@ -13,7 +12,7 @@ const options = [
 ];
 document.getElementById("options").innerHTML = options.map(o => `
   <article class="option${o.featured ? " featured" : ""}">
-    <div class="ph" data-photo="${esc(o.photo || "")}" role="img" aria-label="${esc(o.name)}（仮画像）"><span class="tag">PHOTO<b>${esc(o.name)}</b></span></div>
+    <div class="ph" data-photo="${esc(o.photo || "")}" role="img" aria-label="${esc(o.name)}"></div>
     <div class="body">
       <span class="k">${esc(o.en)}</span>
       <h3>${esc(o.name)}</h3>

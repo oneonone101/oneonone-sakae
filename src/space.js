@@ -9,7 +9,7 @@ const seatDetail = {
 document.getElementById("seat-list").innerHTML = SITE.spaces.map((s, i) => {
   const d = seatDetail[s.name] || {};
   return `<article class="room">
-    <div class="ph" data-photo="${esc(s.photoKey || "")}" role="img" aria-label="${esc(s.photo)}（仮画像）" style="--lx:${25 + i * 13}%;--ly:${18 + i * 9}%"><span class="tag">PHOTO<b>${esc(s.photo)}</b></span></div>
+    <div class="ph" data-photo="${esc(s.photoKey || "")}" role="img" aria-label="${esc(s.photo)}" style="--lx:${25 + i * 13}%;--ly:${18 + i * 9}%"></div>
     <div style="display:grid;gap:16px">
       <div class="head"><h2 style="font-size:24px">${esc(s.name)}</h2><span class="note">${esc(s.cap)}</span></div>
       <p class="lead">${esc(d.desc || "")}</p>

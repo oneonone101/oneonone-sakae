@@ -6,20 +6,20 @@
     <div class="wrap grid">
       <div>
         <p class="eyebrow">Party &amp; Private Hire</p>
-        <h1 style="margin-top:18px">栄で宴会・貸切パーティーなら、<br>ONE on ONE。</h1>
-        <p class="lead" style="margin-top:16px">8名の個室から、立食130名の貸切まで。忘年会、歓送迎会、結婚式二次会、企業イベントのご相談を承ります。貸切料金は、下の料金表で日付ごとにご確認いただけます。</p>
+        <h1 style="margin-top:18px">栄の宴会・個室宴会・貸切パーティー</h1>
+        <p class="lead" style="margin-top:16px">10名の部署宴会から、20名・30名の会社宴会、50名以上の貸切まで。飲み放題付きのコースで、忘年会・新年会・歓送迎会・結婚式二次会のご予約を承ります。</p>
         <div class="facts">
-          <div><b>106</b><span>着席（貸切時）</span></div>
-          <div><b>130</b><span>立食（貸切時）</span></div>
-          <div><b>8·15</b><span>完全個室（名）</span></div>
-          <div><b>5:00</b><span>月〜土の閉店時刻</span></div>
+          <div><b>8〜16</b><span>個室・半個室（名）</span></div>
+          <div><b>40</b><span>大理石テーブル（名まで）</span></div>
+          <div><b>130</b><span>貸切・立食（名まで）</span></div>
+          <div><b data-bind="partyFrom"></b><span data-bind="partyFromLabel"></span></div>
         </div>
         <div class="hero-actions">
-          <a class="btn solid" href="#hire" data-track="hire_price_click" data-loc="party-hero">貸切料金を調べる</a>
-          <a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="party-hero">団体・貸切を相談する</a>
+          <button class="btn solid" type="button" data-open-book data-loc="party-hero">空席を確認・ネット予約</button>
+          <a class="btn" href="#size" data-loc="party-hero">人数から選ぶ</a>
         </div>
       </div>
-      <div class="ph" data-photo="floor" data-eager role="img" aria-label="貸切パーティーの様子（仮画像）" style="--lx:55%;--ly:15%"><span class="tag">PHOTO<b>貸切時のメインフロア（できれば実際のパーティー中）</b></span></div>
+      <div class="ph" data-photo="floor" data-eager role="img" aria-label="貸切パーティーの様子" style="--lx:55%;--ly:15%"></div>
     </div>
   </section>
 
@@ -28,48 +28,60 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="en big">By Size</span>
-        <h2 id="size-title">人数別のご案内</h2>
-        <p class="lead">ご予定の人数によって、ご案内できるお席と料金の考え方が変わります。</p>
+        <h2 id="size-title">人数から選ぶ</h2>
+        <p class="lead">ご予定の人数で、ご案内するお席が決まります。40名までは飲み放題付きコースの料金だけ、40名以上は貸切の最低保証料金でご案内します。</p>
       </div>
-      <div class="rooms">
-        <article class="room">
-          <div class="ph" data-photo="semi-chandelier" role="img" aria-label="半個室（仮画像）"><span class="tag">PHOTO<b>個室</b></span></div>
-          <div style="display:grid;gap:18px">
-            <div class="head"><span class="size">〜16<small>名</small></span><h3>部署の宴会・接待は個室で</h3></div>
-            <table class="spec">
-              <tr><th scope="row">お席</th><td>扉付きの完全個室（8名・15名）、カーテンで仕切る半個室（12名・16名）</td></tr>
-              <tr><th scope="row">料金の目安</th><td>コース ¥4,000〜¥6,000／名（飲み放題付）<br>＋個室料金 ¥1,100／名（2時間ごと。コースの場合はコースの時間いっぱい）</td></tr>
-              <tr><th scope="row">向いている会</th><td>歓送迎会、部署の忘年会、接待、女子会</td></tr>
-            </table>
-            <div><button class="btn solid" type="button" data-open-book data-loc="size-room">個室を予約する</button></div>
-          </div>
-        </article>
-        <article class="room">
-          <div class="ph" data-photo="marble" role="img" aria-label="ゴールドの大理石テーブル（仮画像）" style="--lx:70%;--ly:30%"><span class="tag">PHOTO<b>大理石ロングテーブル（20名×2卓）</b></span></div>
-          <div style="display:grid;gap:18px">
-            <div class="head"><span class="size">17–40<small>名</small></span><h3>団体宴会は大理石テーブルの半個室で</h3></div>
-            <table class="spec">
-              <tr><th scope="row">お席</th><td>20名掛けの大理石テーブル×2卓。カーテンで仕切って半個室に</td></tr>
-              <tr><th scope="row">料金の目安</th><td>コース ¥4,000〜¥6,000／名（飲み放題付）</td></tr>
-              <tr><th scope="row">向いている会</th><td>部署合同の忘年会、同窓会、サークルの会</td></tr>
-            </table>
-            <div><button class="btn solid" type="button" data-open-book data-loc="size-semi">宴会を予約する</button></div>
-          </div>
-        </article>
-        <article class="room">
-          <div class="ph" data-photo="marble-day" role="img" aria-label="貸切フロア全体（仮画像）" style="--lx:30%;--ly:20%"><span class="tag">PHOTO<b>貸切時のレイアウト（着席／立食）</b></span></div>
-          <div style="display:grid;gap:18px">
-            <div class="head"><span class="size">40–130<small>名</small></span><h3>大人数はお店まるごと貸切で</h3></div>
-            <table class="spec">
-              <tr><th scope="row">お席</th><td>着席106席・立食130名まで</td></tr>
-              <tr><th scope="row">料金</th><td>最低保証料金制 ¥<span data-min-fee></span>〜（コース料理・飲み放題込み。月・曜日で変動）</td></tr>
-              <tr><th scope="row">時間</th><td>受付30分＋コース2時間（L.O.）＋完全撤退30分</td></tr>
-              <tr><th scope="row">向いている会</th><td>会社の忘年会・新年会、結婚式二次会、企業イベント</td></tr>
-            </table>
-            <div><a class="btn solid" href="#hire" data-track="hire_price_click" data-loc="size-hire">貸切料金を見る</a></div>
-          </div>
-        </article>
-      </div>
+      <div class="bq-grid" id="banquet"></div>
+      <p class="small-group">2〜9名様は <a href="space.html">8名の完全個室</a> をご利用いただけます。</p>
+    </div>
+  </section>
+
+  <!-- size details (SEO) -->
+  <section class="blk" id="size-detail" aria-label="人数別の詳しいご案内">
+    <div class="wrap rooms">
+      <article class="room" id="party-10">
+        <div class="ph" data-photo="room-large"></div>
+        <div style="display:grid;gap:18px">
+          <div class="head"><span class="size">10〜20<small>名</small></span></div>
+          <h2 style="font-size:24px">栄で10名・20名の宴会を個室で</h2>
+          <p class="lead">扉付きの15名の完全個室、カーテンで仕切る12名・16名の半個室、20名掛けの大理石テーブルからお選びいただけます。部署の忘年会や歓送迎会、接待に。</p>
+          <table class="spec">
+            <tr><th scope="row">お席</th><td>完全個室（8名・15名）／半個室（12名・16名）／大理石テーブル（20名）</td></tr>
+            <tr><th scope="row">料金</th><td data-bind="courseRange"></td></tr>
+            <tr><th scope="row">個室料金</th><td>完全個室は1名¥1,100（コースの時間いっぱいご利用いただけます）</td></tr>
+          </table>
+          <div class="hero-actions" style="margin-top:0"><button class="btn solid" type="button" data-open-book data-loc="detail-10">空席を確認・予約</button><a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="detail-10">相談する</a></div>
+        </div>
+      </article>
+      <article class="room" id="party-30">
+        <div class="ph" data-photo="marble"></div>
+        <div style="display:grid;gap:18px">
+          <div class="head"><span class="size">20〜40<small>名</small></span></div>
+          <h2 style="font-size:24px">20名・30名・40名の団体宴会は大理石テーブルの半個室で</h2>
+          <p class="lead">店内奥の、ゴールドに光る大理石のロングテーブル（20名掛け×2卓）をカーテンで仕切ってご案内します。部署合同の忘年会、同窓会、サークルの会に。</p>
+          <table class="spec">
+            <tr><th scope="row">お席</th><td>大理石テーブル 20名掛け×2卓（最大40名）</td></tr>
+            <tr><th scope="row">料金</th><td data-bind="courseRange"></td></tr>
+            <tr><th scope="row">ご予約</th><td>ネット予約は99名まで対応。席の配置のご希望は相談フォームから</td></tr>
+          </table>
+          <div class="hero-actions" style="margin-top:0"><button class="btn solid" type="button" data-open-book data-loc="detail-30">空席を確認・予約</button><a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="detail-30">相談する</a></div>
+        </div>
+      </article>
+      <article class="room" id="party-50">
+        <div class="ph" data-photo="floor"></div>
+        <div style="display:grid;gap:18px">
+          <div class="head"><span class="size">40〜130<small>名</small></span></div>
+          <h2 style="font-size:24px">50名以上の貸切パーティー（着席106席・立食130名）</h2>
+          <p class="lead">フロア貸切と、個室も含めた完全貸切の2種類。会社の忘年会・新年会、結婚式二次会、企業イベントに。料金はコース料理・飲み放題込みの最低保証制です。</p>
+          <table class="spec">
+            <tr><th scope="row">人数</th><td>着席106席・立食130名まで</td></tr>
+            <tr><th scope="row">料金</th><td>最低保証 ¥<span data-min-fee></span>〜（税込・コース料理と飲み放題込み。月・曜日で変動）</td></tr>
+            <tr><th scope="row">時間</th><td>受付30分＋コース2時間（L.O.）＋完全撤退30分</td></tr>
+            <tr><th scope="row">機材</th><td>フロア貸切：マイク・プロジェクター（音声なし）／完全貸切：マイク・プロジェクター・音響</td></tr>
+          </table>
+          <div class="hero-actions" style="margin-top:0"><a class="btn solid" href="#hire" data-track="hire_price_click" data-loc="detail-50">日付で貸切料金を見る</a><a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="detail-50">貸切を相談する</a></div>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -186,37 +198,7 @@
         </a>
       </div>
       <div>
-        <form class="inq" id="inq" novalidate>
-          <div>
-            <p class="eyebrow">Group &amp; Private Hire</p>
-            <h3 style="font-size:22px;margin-top:10px">団体・貸切のご相談フォーム</h3>
-            <p class="note" style="margin-top:6px">料金表の金額を見たうえで、ご希望をお書きください。</p>
-          </div>
-          <div class="hp" aria-hidden="true"><label for="f-company">会社名（入力不要）</label><input id="f-company" name="company" tabindex="-1" autocomplete="off"></div>
-          <div class="fgrid">
-            <div class="field"><label for="f-name">お名前<i>必須</i></label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
-            <div class="field"><label for="f-tel">電話番号<i>必須</i></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" id="e-tel"></span></div>
-            <div class="field full"><label for="f-mail">メールアドレス<i>必須</i></label><input id="f-mail" name="email" type="email" autocomplete="email" required><span class="err" id="e-mail"></span></div>
-            <div class="field"><label for="f-date">希望日<i>必須</i></label><input id="f-date" name="date" type="date" required><span class="err" id="e-date"></span></div>
-            <div class="field"><label for="f-time">希望時間</label>
-              <select id="f-time" name="time"><option value="">選択してください</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30以降</option><option>未定</option></select></div>
-            <div class="field"><label for="f-people">予定人数<i>必須</i></label><input id="f-people" name="people" type="number" min="1" max="200" inputmode="numeric" placeholder="例：45" required><span class="err" id="e-people"></span></div>
-            <div class="field"><label for="f-budget">ご予算（1名あたり）</label>
-              <select id="f-budget" name="budget"><option value="">選択してください</option><option>〜4,000円</option><option>4,000〜5,000円</option><option>5,000〜6,000円</option><option>6,000円〜</option><option>相談したい</option></select></div>
-            <div class="field full"><label for="f-purpose">ご利用目的</label>
-              <select id="f-purpose" name="purpose"><option value="">選択してください</option><option>忘年会・新年会</option><option>歓送迎会</option><option>部署・会社の宴会</option><option>貸切パーティー</option><option>結婚式二次会</option><option>企業イベント</option><option>同窓会</option><option>その他</option></select></div>
-            <div class="field full"><label for="f-msg">ご要望・ご相談内容</label><textarea id="f-msg" name="message" placeholder="例：プロジェクターを使いたい／立食希望／個室も含めて貸切にしたい"></textarea></div>
-          </div>
-          <p class="disclaimer">このフォームはご相談の受付です。送信した時点では予約は確定しません。店舗から折り返しご連絡し、日時・人数・料金をご確認いただいた時点で確定となります。</p>
-          <button class="btn solid" type="submit" style="width:100%">相談内容を送信する</button>
-        </form>
-        <div class="done" id="done" hidden tabindex="-1">
-          <span class="en">Thank you</span>
-          <h3>ご相談内容を受け付けました</h3>
-          <p class="note">店舗より折り返しご連絡いたします。この時点ではまだ予約は確定していません。ご入力のメールアドレスに控えが届かない場合は、迷惑メールフォルダもご確認ください。</p>
-          <p class="note" data-preview style="color:var(--flag)">プレビュー版のため、実際には送信されていません。本番サイトではサーバー経由で店舗にメールが届き、お客様に控えメールが送られます。</p>
-          <button class="btn" type="button" id="again">フォームに戻る</button>
-        </div>
+<!--FORM-->
       </div>
     </div>
   </section>

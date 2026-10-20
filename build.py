@@ -8,6 +8,7 @@ SITE_URL = "https://oneonone-sakae.jp"
 SRC = pathlib.Path("src")
 
 NAV = [
+    ("bonenkai", "bonenkai.html", "YEAR-END", "忘年会・新年会"),
     ("party", "party.html", "PARTY", "宴会・貸切"),
     ("anniversary", "anniversary.html", "ANNIVERSARY", "誕生日・記念日"),
     ("course", "course.html", "COURSE", "コース"),
@@ -16,36 +17,34 @@ NAV = [
     ("access", "access.html", "ACCESS", "アクセス・料金"),
 ]
 
-DOCK_BOOK = [("#", "primary", "RESERVE", "ネット予約", 'data-open-book data-loc="dock"'),
-             ("#reserve", "", "GROUP", "団体・貸切相談", 'data-track="group_inquiry_click" data-loc="dock"')]
-DOCK_PARTY = [("#hire", "primary", "PRICE", "貸切料金", 'data-track="hire_price_click" data-loc="dock"'),
-              ("#reserve", "", "CONTACT", "相談フォーム", 'data-track="group_inquiry_click" data-loc="dock"')]
+BOOK = ("#", "primary", "RESERVE", "ネット予約", 'data-open-book data-loc="dock"')
+DOCK_BOOK = [BOOK, ("party.html#reserve", "", "GROUP", "団体・貸切相談", 'data-track="group_inquiry_click" data-loc="dock"')]
+DOCK_PARTY = [BOOK, ("#hire", "", "PRICE", "貸切料金・相談", 'data-track="hire_price_click" data-loc="dock"')]
+DOCK_FORM = [BOOK, ("#reserve", "", "GROUP", "団体・貸切相談", 'data-track="group_inquiry_click" data-loc="dock"')]
 
 PAGES = [
+    dict(slug="bonenkai", crumb="忘年会・新年会", dock=DOCK_FORM, form_purpose="忘年会・新年会",
+         form_intro="忘年会・新年会のご相談はこちらから。人数・日程・ご予算をお書きください。",
+         title="栄の忘年会 2026｜個室・飲み放題付き¥5,000〜・貸切130名 ONE on ONE",
+         desc="名古屋・栄で忘年会・新年会のお店をお探しの幹事様へ。12月の宴会コースは飲み放題付き5,000円〜。15名の完全個室、12名・16名の半個室、40名までの大理石テーブル、130名までの貸切。栄駅徒歩5分。"),
     dict(slug="party", crumb="宴会・貸切", dock=DOCK_PARTY,
-         title="栄の宴会・貸切パーティー｜個室×肉ビストロ ONE on ONE",
-         desc="名古屋・栄で宴会・貸切会場をお探しの幹事様へ。8名・15名の個室、40名までの半個室、着席106席・立食130名の貸切。日付を選ぶだけで貸切料金がわかります。栄駅徒歩5分。",
-         note="写真は仮枠です。貸切料金は2025年の料金表に5万円を加えた暫定値です。"),
+         title="栄の宴会・個室宴会・貸切｜20名・30名・50名以上も ONE on ONE",
+         desc="名古屋・栄で宴会・貸切会場をお探しの幹事様へ。10〜20名は個室・半個室、20〜40名は大理石テーブル、40〜130名は貸切。飲み放題付きコースと、日付で分かる貸切料金。栄駅徒歩5分。"),
     dict(slug="anniversary", crumb="誕生日・記念日", dock=DOCK_BOOK,
-         title="栄の誕生日・記念日ディナー｜バースデープレートと個室 ONE on ONE",
-         desc="名古屋・栄で誕生日や記念日のディナーなら。メッセージ入りバースデープレート、テーブルアートのサプライズ、カップルシートや完全個室。ANNIVERSARYコース7,000円（飲み放題付）。",
-         note="写真は仮枠です。"),
+         title="栄の誕生日ディナー・記念日の個室｜バースデープレート ONE on ONE",
+         desc="名古屋・栄で誕生日や記念日のディナーなら。メッセージ入りバースデープレート2,200円、テーブルアート3,850円、2名から使える個室。ANNIVERSARYコース7,000円（飲み放題付）。"),
     dict(slug="course", crumb="コース", dock=DOCK_BOOK,
-         title="コース・飲み放題プラン｜栄の個室×肉ビストロ ONE on ONE",
-         desc="ONE on ONEの飲み放題付きコース一覧。STANDARD 4,000円から、GRADEUP、PREMIUM、ANNIVERSARY、二次会コースまで。品数・飲み放題時間・12月の内容を比較できます。",
-         note="写真は仮枠です。価格はグルメサイト掲載時点の内容です。"),
+         title="宴会コース・飲み放題｜12月料金あり 栄 ONE on ONE",
+         desc="ONE on ONEの飲み放題付き宴会コース。12月は5,000円〜、1〜11月は4,000円〜（日〜木）。GRADEUP、PREMIUM、ANNIVERSARY、22時からの二次会コースまで比較できます。"),
     dict(slug="space", crumb="店内・個室", dock=DOCK_BOOK,
-         title="店内・個室｜栄の個室イタリアン ONE on ONE",
-         desc="シャンデリアと大理石のヴィンテージモダンな店内。大理石カウンターのカップルシート、8名・15名の完全個室、20名×2卓の大理石テーブル、着席106席・立食130名の貸切フロア。",
-         note="写真は仮枠です。"),
+         title="栄の個室・半個室・貸切スペース｜2〜130名 ONE on ONE",
+         desc="シャンデリアと大理石のヴィンテージモダンな店内。8名・15名の完全個室、12名・16名の半個室、20名×2卓の大理石テーブル、着席106席・立食130名の貸切フロア。"),
     dict(slug="food", crumb="料理・ドリンク", dock=DOCK_BOOK,
-         title="料理・ドリンク｜栄の肉ビストロ ONE on ONE",
-         desc="厳選牛のグリル、サーモンのレアカツ、生ウニのクリームリゾットなど。肉料理を中心にしたイタリアンと、ワイン・シャンパン・カクテル。",
-         note="写真は仮枠です。メニューは一部のみ掲載しています。"),
+         title="料理・ドリンクメニュー｜栄の肉ビストロ ONE on ONE",
+         desc="黒毛和牛イチボのグリル、サーモンレアカツ、生ウニのクリームリゾットなど全68品。肉料理を中心にしたイタリアンと、ワイン・シャンパン・オリジナルカクテル。"),
     dict(slug="access", crumb="アクセス", dock=DOCK_BOOK,
-         title="アクセス・営業時間｜栄駅徒歩5分 ONE on ONE",
-         desc="ONE on ONEへのアクセス。地下鉄栄駅から徒歩5分、名古屋市中区錦3-10-21 プロシーム錦2F。営業時間は月〜土18:00〜翌5:00、日祝18:00〜翌3:00。料金・チャージ・お支払い方法。",
-         note="写真は仮枠です。"),
+         title="アクセス・営業時間｜栄駅徒歩5分 名古屋市中区錦 ONE on ONE",
+         desc="ONE on ONEへのアクセス。地下鉄栄駅から徒歩5分、名古屋市中区錦3-10-21 プロシーム錦2F。月〜土18:00〜翌5:00、日祝18:00〜翌3:00。チャージ・お支払い方法。"),
 ]
 
 FONTS = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap"
@@ -53,6 +52,16 @@ FONTS = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6
 
 def esc(s):
     return s.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+
+
+RESTAURANT_ID = SITE_URL + "/#restaurant"
+
+
+def page_ld(p):
+    """各ページの WebPage（店舗の Restaurant をトップで定義し @id で参照）"""
+    return {"@context": "https://schema.org", "@type": "WebPage", "url": f"{SITE_URL}/{p['slug']}",
+            "name": p["title"], "description": p["desc"], "inLanguage": "ja",
+            "about": {"@id": RESTAURANT_ID}, "isPartOf": {"@type": "WebSite", "url": SITE_URL + "/", "name": "ONE on ONE"}}
 
 
 def build(p):
@@ -65,6 +74,12 @@ def build(p):
     if extra_head and not extra_head.rstrip().endswith("</script>"):
         extra_head += "</script>"
     main = (SRC / f"{slug}.main.html").read_text("utf-8")
+    if "<!--FORM-->" in main:
+        form = (SRC / "_form.html").read_text("utf-8").replace("{FORM_INTRO}", p.get("form_intro", "10名以上の宴会・貸切・二次会のご相談はこちらから。"))
+        purpose = p.get("form_purpose")
+        if purpose:
+            form = form.replace(f"<option>{purpose}</option>", f"<option selected>{purpose}</option>", 1)
+        main = main.replace("<!--FORM-->", form)
     js = (SRC / f"{slug}.js").read_text("utf-8")
     nav = "\n      ".join(
         f'<a href="{href}"' + (' aria-current="page"' if key == slug else "") + f">{en}</a>" for key, href, en, ja in NAV)
@@ -85,18 +100,23 @@ def build(p):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/{slug}">
 <meta property="og:image" content="{SITE_URL}/og.jpg">
+<meta property="og:site_name" content="ONE on ONE">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
 <link rel="stylesheet" href="styles.css">
 <style>:root {{ padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }} body {{ margin: 0; }} img {{ max-width: 100%; }} [hidden] {{ display: none !important; }} nav.global a[aria-current] {{ color: var(--champagne); opacity: 1; }}</style>
 <script type="application/ld+json">{json.dumps(crumbs, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(page_ld(p), ensure_ascii=False)}</script>
 {extra_head}
 </head>
 <body>
 <div class="previewbar" role="note">
   <div class="wrap">
-    <span>PREVIEW — {p["note"]}</span>
+    <span>PREVIEW — 公開版ではこの帯と「要確認」の表示は出ません。</span>
     <label><input type="checkbox" id="toggle-chk"> 要確認の項目をハイライト</label>
   </div>
 </div>
@@ -136,9 +156,9 @@ def build(p):
   <div class="wrap">
     <a class="logo" href="index.html"><span class="en">ONE<i>on</i>ONE</span><span>個室×肉ビストロ · 名古屋 栄</span></a>
     <nav aria-label="フッターナビゲーション">
-      <a href="index.html">HOME</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a>
+      <a href="index.html">HOME</a><a href="bonenkai.html">YEAR-END</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a>
     </nav>
-    <p>愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ 20歳未満の方は禁煙席のみご案内しています。</p>
+    <p>ONE on ONE（ワンオンワン）／ 愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ TEL <span data-tel-text></span> ／ 地下鉄栄駅 徒歩5分<br>月〜土・祝前日 18:00〜翌5:00、日・祝 18:00〜翌3:00 ／ 20歳未満の方は禁煙席のみご案内しています。</p>
     <p>© ONE on ONE</p>
   </div>
 </footer>
@@ -156,6 +176,7 @@ def build(p):
     <p class="note">どちらも空席確認・コース予約ができます（新しいタブで開きます）。</p>
     <a class="btn solid" href="" data-book="hotpepper" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">ホットペッパーで予約</a>
     <a class="btn" href="" data-book="tabelog" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">食べログで予約</a>
+    <p class="note sheet-tel">お電話でも承ります　<a href="" data-tel data-track="tel_click" data-loc="sheet"></a>（17:00〜）</p>
     <button class="close" type="button" id="sheet-close">閉じる</button>
   </div>
 </div>

@@ -1,0 +1,31 @@
+        <form class="inq" id="inq" novalidate>
+          <div>
+            <p class="eyebrow">Group &amp; Private Hire</p>
+            <h3 style="font-size:22px;margin-top:10px">団体・貸切のご相談フォーム</h3>
+            <p class="note" style="margin-top:6px">{FORM_INTRO}</p>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="f-company">会社名（入力不要）</label><input id="f-company" name="company" tabindex="-1" autocomplete="off"></div>
+          <div class="fgrid">
+            <div class="field"><label for="f-name">お名前<i>必須</i></label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
+            <div class="field"><label for="f-tel">電話番号<i>必須</i></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" id="e-tel"></span></div>
+            <div class="field full"><label for="f-mail">メールアドレス<i>必須</i></label><input id="f-mail" name="email" type="email" autocomplete="email" required><span class="err" id="e-mail"></span></div>
+            <div class="field"><label for="f-date">希望日<i>必須</i></label><input id="f-date" name="date" type="date" required><span class="err" id="e-date"></span></div>
+            <div class="field"><label for="f-time">希望時間</label>
+              <select id="f-time" name="time"><option value="">選択してください</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30以降</option><option>未定</option></select></div>
+            <div class="field"><label for="f-people">予定人数<i>必須</i></label><input id="f-people" name="people" type="number" min="1" max="200" inputmode="numeric" placeholder="例：45" required><span class="err" id="e-people"></span></div>
+            <div class="field"><label for="f-budget">ご予算（1名あたり）</label>
+              <select id="f-budget" name="budget"><option value="">選択してください</option><option>〜4,000円</option><option>4,000〜5,000円</option><option>5,000〜6,000円</option><option>6,000円〜</option><option>相談したい</option></select></div>
+            <div class="field full"><label for="f-purpose">ご利用目的</label>
+              <select id="f-purpose" name="purpose"><option value="">選択してください</option><option>忘年会・新年会</option><option>歓送迎会</option><option>部署・会社の宴会</option><option>貸切パーティー</option><option>結婚式二次会</option><option>企業イベント</option><option>同窓会</option><option>その他</option></select></div>
+            <div class="field full"><label for="f-msg">ご要望・ご相談内容</label><textarea id="f-msg" name="message" placeholder="例：プロジェクターを使いたい／立食希望／個室も含めて貸切にしたい"></textarea></div>
+          </div>
+          <p class="disclaimer">このフォームはご相談の受付です。送信した時点では予約は確定しません。店舗から折り返しご連絡し、日時・人数・料金をご確認いただいた時点で確定となります。</p>
+          <button class="btn solid" type="submit" style="width:100%">相談内容を送信する</button>
+        </form>
+        <div class="done" id="done" hidden tabindex="-1">
+          <span class="en">Thank you</span>
+          <h3>ご相談内容を受け付けました</h3>
+          <p class="note">店舗より折り返しご連絡いたします。この時点ではまだ予約は確定していません。お急ぎの場合はお電話でもご相談いただけます。</p>
+          <p class="note" data-preview style="color:var(--flag)">プレビュー版のため、実際には送信されていません。本番サイトではサーバー経由で店舗にメールが届き、お客様に控えメールが送られます。</p>
+          <button class="btn" type="button" id="again">フォームに戻る</button>
+        </div>

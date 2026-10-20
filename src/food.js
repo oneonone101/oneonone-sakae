@@ -1,6 +1,6 @@
 document.getElementById("signature").innerHTML = SITE.dishes.map((d, i) => `
   <article class="dish">
-    <div class="ph" data-photo="${esc(d.photoKey || "")}" role="img" aria-label="${esc(d.name)}（仮画像）" style="--lx:${i % 2 ? 32 : 68}%;--ly:40%;--rx:50%;--ry:85%"><span class="tag">PHOTO<b>${esc(d.name)}</b></span></div>
+    <div class="ph" data-photo="${esc(d.photoKey || "")}" role="img" aria-label="${esc(d.name)}" style="--lx:${i % 2 ? 32 : 68}%;--ly:40%;--rx:50%;--ry:85%"></div>
     <h3>${esc(d.name)}${d.price ? `<span class="note">　${priceText(d)}</span>` : flag("価格 要確認")}</h3>
     ${d.desc ? `<p>${esc(d.desc)}</p>` : ""}
   </article>`).join("");

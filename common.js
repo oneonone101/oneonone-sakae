@@ -25,6 +25,7 @@ document.querySelectorAll("[data-bind=hoursShort]").forEach(n => n.textContent =
 document.querySelectorAll("[data-book]").forEach(a => a.href = SITE.booking[a.dataset.book]);
 document.querySelectorAll("[data-tel]").forEach(a => { a.href = telHref; a.textContent = SITE.tel; });
 document.querySelectorAll("[data-tel-link]").forEach(a => a.href = telHref);
+document.querySelectorAll("[data-tel-text]").forEach(n => n.textContent = SITE.tel);
 
 if (SITE.season.active) {
   $("#season").innerHTML = `<a href="${esc(SITE.season.link)}" class="wrap"><span class="en">${esc(SITE.season.en)}</span><span>${esc(SITE.season.text)}</span><u>DETAIL</u></a>`;
@@ -114,3 +115,103 @@ function fillPhotos() {
   });
 }
 document.addEventListener("DOMContentLoaded", fillPhotos);
+
+/* ---------- 宴会の料金（コース・貸切料金表から計算） ---------- */
+const BANQUET_IDS = ["standard", "recommended", "gradeup", "premium"];
+function banquetPrices() {
+  const list = SITE.courses.filter(c => BANQUET_IDS.includes(c.id));
+  const dec = list.filter(c => c.dec);
+  const minBy = (arr, f) => arr.reduce((m, c) => (f(c) < f(m) ? c : m));
+  const decMin = minBy(dec, c => c.dec.price);
+  const normalMin = minBy(list, c => c.price);
+  const normalAnyDay = minBy(list.filter(c => !c.note), c => c.price);
+  const decDrink = Math.min(...dec.map(c => parseInt(c.dec.drink, 10)));
+  const hireRows = p => SITE.hire.periods.filter(p).flatMap(x => x.rows.map(r => r.noRoom));
+  return {
+    dec: decMin.dec.price, decDrink: decDrink + "分",
+    normal: normalMin.price, normalNote: normalMin.note || "", normalAnyDay: normalAnyDay.price,
+    hireDec: Math.min(...hireRows(x => x.id === "dec" || x.id === "xmas" || x.id === "yearend")),
+    hireAll: Math.min(...hireRows(() => true))
+  };
+}
+function renderBanquet(el, opts) {
+  if (!el) return;
+  opts = opts || {};
+  const P = banquetPrices();
+  const focusDec = (opts.focus || SITE.season.priceFocus) === "dec";
+  const loc = opts.loc || "banquet";
+  el.innerHTML = SITE.banquet.map(b => {
+    const isHire = b.kind === "hire";
+    const main = isHire
+      ? (focusDec ? `<span class="pk">12月の貸切</span><strong>¥${yen(P.hireDec)}〜</strong>` : `<span class="pk">貸切</span><strong>¥${yen(P.hireAll)}〜</strong>`)
+      : (focusDec ? `<span class="pk">12月の宴会コース</span><strong>¥${yen(P.dec)}〜</strong>` : `<span class="pk">宴会コース</span><strong>¥${yen(P.normal)}〜</strong>`);
+    const sub = isHire
+      ? `最低保証・税込／コース料理・飲み放題込み`
+      : (focusDec ? `1名・税込／飲み放題${P.decDrink}〜` : `1名・税込／飲み放題付き${P.normalNote ? `（¥${yen(P.normal)}は${P.normalNote}）` : ""}`);
+    const other = isHire
+      ? (focusDec ? `1〜11月は ¥${yen(P.hireAll)}〜（月・曜日で変動）` : "")
+      : (focusDec ? `1〜11月は ¥${yen(P.normal)}〜（${P.normalNote || "通常料金"}）` : "");
+    const cta = isHire
+      ? `<a class="btn solid" href="${opts.hireHref || "party.html#hire"}" data-track="hire_price_click" data-loc="${loc}-${b.id}">日付で貸切料金を見る</a>
+         <a class="textlink" href="${opts.formHref || "#reserve"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">貸切を相談する</a>`
+      : `<button class="btn solid" type="button" data-open-book data-loc="${loc}-${b.id}">空席を確認・予約</button>
+         <a class="textlink" href="${opts.formHref || "#reserve"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">${b.id === "b20" ? "人数・席を相談する" : "電話・フォームで相談"}</a>`;
+    return `<article class="bq" id="${b.id}">
+      <div class="ph" data-photo="${esc(b.photoKey)}"></div>
+      <div class="bq-body">
+        <p class="bq-size"><b>${esc(b.range)}</b><small>名</small><span class="chip">${esc(b.chip)}</span></p>
+        <h3>${esc(b.title)}</h3>
+        <p class="bq-price">${main}</p>
+        <p class="bq-sub">${sub}</p>
+        ${other ? `<p class="bq-other">${other}</p>` : ""}
+        <ul>${b.seats.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="bq-cta">${cta}</div>
+      </div>
+    </article>`;
+  }).join("");
+  if (typeof fillPhotos === "function") fillPhotos();
+}
+
+/* ---------- コース一覧（通常／12月の切り替え） ---------- */
+function coursesFor(period) {
+  const dec = period === "dec";
+  return SITE.courses.filter(c => dec ? (c.dec || c.decOnly) : !c.decOnly).map(c => {
+    if (!dec || c.decOnly) return { ...c, period };
+    return { ...c, period, price: c.dec.price, drink: c.dec.drink, was: null, normalPrice: c.price, normalDrink: c.drink };
+  });
+}
+function periodNote(period) {
+  const off = SITE.courses.filter(c => !c.dec && !c.decOnly).map(c => c.ja);
+  return period === "dec"
+    ? `12月（忘年会シーズン）の料金です。${off.length ? off.join("・") + "は12月の販売はありません。" : ""}`
+    : "1月〜11月の料金です。12月は料金と飲み放題時間が変わります。";
+}
+function courseCard(c, opts) {
+  opts = opts || {};
+  const H = opts.h || "h3";
+  const dec = c.period === "dec";
+  const drink = c.drink === "なし" ? "飲み放題なし（ドリンクは別注文）" : `飲み放題 ${esc(c.drink)}`;
+  const otherLine = dec && c.normalPrice
+    ? (c.normalPrice !== c.price || c.normalDrink !== c.drink ? `1〜11月は ¥${yen(c.normalPrice)}・飲み放題${esc(c.normalDrink)}` : "1〜11月も同じ内容")
+    : (!dec && decText(c) ? decText(c) : "");
+  return `<article class="course${c.featured ? " featured" : ""}" id="${esc(c.id)}">
+    ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
+    <${H} class="name">${esc(c.en)}<small>${esc(c.ja)}${c.note ? `（${esc(c.note)}）` : ""}</small></${H}>
+    <p class="price">${dec ? `<span class="pk-dec">12月料金</span>` : ""}<strong>¥${yen(c.price)}</strong>${c.was ? `<s>¥${yen(c.was)}</s>` : ""}<span>税込／1名</span></p>
+    <dl>
+      <div><dt>ITEMS</dt><dd>全${c.items}品</dd></div>
+      <div><dt>DRINK</dt><dd>${drink}</dd></div>
+      <div><dt>MENU</dt><dd>${esc(c.menu)}</dd></div>
+      <div><dt>GUESTS</dt><dd>${esc(c.people)}</dd></div>
+      ${opts.showTime ? `<div><dt>START</dt><dd>${esc(c.time)} のご入店</dd></div>` : ""}
+      ${otherLine ? `<div><dt>${dec ? "OTHER" : "DEC"}</dt><dd>${otherLine}</dd></div>` : ""}
+    </dl>
+    <button class="btn${c.featured ? " solid" : ""}" type="button" data-open-book data-loc="${opts.loc || "course"}-${esc(c.id)}">このコースで予約</button>
+  </article>`;
+}
+function bindPeriodToggle(name, render) {
+  const radios = document.querySelectorAll(`input[name=${name}]`);
+  const initial = location.hash === "#december" ? "dec" : (SITE.season.priceFocus || "normal");
+  radios.forEach(r => { r.checked = r.value === initial; r.addEventListener("change", e => { render(e.target.value); track("course_period_view", { period: e.target.value }); }); });
+  render(initial);
+}

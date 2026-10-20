@@ -449,3 +449,50 @@ button[disabled] { opacity: .6; cursor: wait; }
 
 .mnote { font-style: normal; font-size: 10px; color: var(--ink); background: var(--gold); padding: 1px 6px; margin-left: 8px; vertical-align: 2px; white-space: nowrap; }
 @media (min-width: 860px) { .organizer#drinks { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+/* ---------- 人数別の宴会カード ---------- */
+.bq-grid { display: grid; gap: 16px; }
+@media (min-width: 900px) { .bq-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+.bq { border: 1px solid var(--line); background: var(--ink); display: grid; grid-template-rows: auto 1fr; scroll-margin-top: 90px; }
+.bq .ph { aspect-ratio: 16 / 9; max-width: 100%; }
+.bq-body { padding: 22px 22px 24px; display: grid; gap: 10px; align-content: start; grid-template-rows: auto auto auto auto auto 1fr auto; }
+.bq-size { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; line-height: 1; }
+.bq-size b { font-family: var(--f-display); font-weight: 400; font-size: 46px; color: var(--champagne); font-variant-numeric: tabular-nums; }
+.bq-size small { font-family: var(--f-mincho); font-size: 16px; }
+.chip { margin-left: auto; font-size: 11px; letter-spacing: .08em; color: var(--ink); background: var(--gold); padding: 4px 10px; align-self: center; white-space: nowrap; }
+.bq h3 { font-size: 17px; }
+.bq-price { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid var(--line); }
+.bq-price .pk { font-size: 12px; color: var(--gold); letter-spacing: .06em; }
+.bq-price strong { font-family: var(--f-display); font-weight: 400; font-size: 34px; color: var(--fg); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.bq-sub { font-size: 12px; color: var(--muted); margin-top: -6px; }
+.bq-other { font-size: 12px; color: #cdbf9f; background: rgba(200,167,106,.08); border-left: 2px solid var(--gold); padding: 6px 10px; }
+.bq ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; font-size: 13px; color: #d4cab9; }
+.bq li { padding-left: 16px; position: relative; }
+.bq li::before { content: ""; position: absolute; left: 0; top: .9em; width: 7px; height: 1px; background: var(--gold); }
+.bq-cta { display: grid; gap: 12px; justify-items: center; margin-top: 6px; }
+.bq-cta .btn { width: 100%; }
+.small-group { margin-top: 18px; font-size: 13px; color: var(--muted); }
+.small-group a { color: var(--gold); }
+
+/* 12月料金の注意帯 */
+.decnote { border: 1px solid var(--gold); background: rgba(200,167,106,.07); padding: 18px 20px; display: grid; gap: 8px; font-size: 14px; }
+.decnote b { color: var(--champagne); font-weight: 500; }
+.decnote ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; color: #d6ccbc; }
+.price-table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; min-width: 560px; }
+.price-table th, .price-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.price-table thead th { font-family: var(--f-label); font-weight: 400; font-size: 10px; letter-spacing: .14em; color: var(--gold); background: var(--ink); }
+.price-table td.num { font-family: var(--f-display); font-size: 20px; color: var(--champagne); white-space: nowrap; }
+.price-table td small { display: block; color: var(--muted); font-size: 12px; }
+.price-table tr.off td, .price-table tr.off th { color: var(--muted); }
+.hero .lede-h1 { font-family: var(--f-body); font-size: 14px; font-weight: 500; letter-spacing: .08em; color: #e7dcc8; margin: 18px 0 0; line-height: 1.7; }
+.hero .catch { font-family: var(--f-mincho); font-weight: 500; font-size: clamp(34px, 6.4vw, 70px); line-height: 1.35; letter-spacing: .06em; margin: 10px 0 14px; text-wrap: balance; }
+.hero .catch em { font-style: normal; color: var(--champagne); }
+.pk-dec { font-family: var(--f-body); font-size: 11px; letter-spacing: .08em; color: var(--ink); background: var(--gold); padding: 3px 8px; align-self: center; }
+.sim-out .tip { font-size: 12px; color: #d6ccbc; border-left: 2px solid var(--gold); padding-left: 10px; }
+.sim-out .tip a { color: var(--gold); }
+.minicourses .off b, .minicourses .off .yen { color: var(--muted); }
+.spec td small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.sheet-tel { text-align: center; }
+.sheet-tel a { color: var(--champagne); font-variant-numeric: tabular-nums; }
+.h1-sub { display: block; font-family: var(--f-label); font-size: 14px; letter-spacing: .2em; color: var(--gold); margin-top: 8px; }
+.price-table th small { color: var(--gold); font-size: 11px; margin-left: 4px; }
