@@ -12,7 +12,7 @@ document.getElementById("dec-points").innerHTML = [
 ].filter(Boolean).map(x => `<li>${x}</li>`).join("");
 
 /* 人数別 */
-renderBanquet(document.getElementById("banquet"), { loc: "bonenkai", focus: "dec", formHref: "#reserve" });
+renderBanquet(document.getElementById("banquet"), { loc: "bonenkai", focus: "dec", formHref: "#reserve", showNormal: false });
 
 /* 12月のコース */
 const decList = coursesFor("dec").filter(c => !c.decOnly && !["afterparty", "anniversary"].includes(c.id));

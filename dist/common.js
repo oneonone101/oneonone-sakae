@@ -141,6 +141,20 @@ function banquetPrices() {
     hireAll: Math.min(...hireRows(() => true))
   };
 }
+/* 貸切料金の内訳（料金表から作る。例：12月1日〜22日 日曜35万円〜／月〜木55万円〜／金・土・祝前日75万円〜） */
+const man = n => (n / 10000).toLocaleString("ja-JP") + "万円";
+function hireBreakdown(focusDec) {
+  const H = SITE.hire;
+  const label = { sun: "日曜", weekday: "月〜木", peak: "金・土・祝前日" };
+  if (focusDec) {
+    const dec = H.periods.find(p => p.id === "dec");
+    const late = H.periods.filter(p => p.id === "xmas" || p.id === "yearend");
+    const lateMin = Math.min(...late.flatMap(p => p.rows.map(r => r.noRoom)));
+    const parts = ["sun", "weekday", "peak"].map(k => { const r = dec.rows.find(x => x.kinds.includes(k)); return `${label[k]}${man(r.noRoom)}〜`; });
+    return `※12月1日〜22日は${parts.join("／")}。12月23日〜30日は${man(lateMin)}〜。日付により変動します。`;
+  }
+  return "※月・曜日により変動します。";
+}
 function renderBanquet(el, opts) {
   if (!el) return;
   opts = opts || {};
@@ -151,12 +165,13 @@ function renderBanquet(el, opts) {
   el.innerHTML = SITE.banquet.map(b => {
     const isHire = b.kind === "hire";
     const main = isHire
-      ? `<span class="pk">日付別の最低保証料金制</span><strong>¥${yen(focusDec ? P.hireDec : P.hireAll)}〜</strong>`
+      ? `<span class="pk">${focusDec ? "12月の貸切" : "貸切"}</span><strong>¥${yen(focusDec ? P.hireDec : P.hireAll)}〜</strong>`
       : (focusDec ? `<span class="pk">飲み放題付きコース（12月）</span><strong>¥${yen(P.dec)}〜</strong>` : `<span class="pk">飲み放題付きコース</span><strong>¥${yen(P.normal)}〜</strong>`);
     const sub = isHire
-      ? `${focusDec ? "12月・" : ""}税込／コース料理・飲み放題込み`
+      ? `日付別の最低保証料金制・税込／コース料理・飲み放題込み`
       : (focusDec ? `1名・税込／飲み放題${P.decDrink}〜` : `1名・税込${P.normalNote ? `（¥${yen(P.normal)}は${P.normalNote}）` : ""}`);
-    const other = (!isHire && focusDec) ? `1〜11月は ¥${yen(P.normal)}〜（${P.normalNote || "通常料金"}）` : "";
+    const other = isHire ? hireBreakdown(focusDec)
+      : (focusDec && opts.showNormal !== false) ? `1〜11月は ¥${yen(P.normal)}〜（${P.normalNote || "通常料金"}）` : "";
     const book = text => `<button class="btn solid" type="button" data-open-book data-loc="${loc}-${b.id}">${esc(text)}</button>`;
     const bookLink = `<button class="textlink" type="button" data-open-book data-loc="${loc}-${b.id}">ネット予約で空席を確認</button>`;
     const talk = (text, solid) => `<a class="${solid ? "btn solid" : "textlink"}" href="${form}" data-hire="${isHire ? "希望する" : "希望しない"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">${esc(text)}</a>`;
@@ -211,7 +226,7 @@ function courseCard(c, opts) {
       <div><dt>ITEMS</dt><dd>全${c.items}品</dd></div>
       <div><dt>DRINK</dt><dd>${drink}</dd></div>
       <div><dt>MENU</dt><dd>${esc(c.menu)}</dd></div>
-      <div><dt>GUESTS</dt><dd>${esc(c.people)}</dd></div>
+      <div><dt>WEB</dt><dd>ネット予約 ${esc(c.people)}</dd></div>
       ${opts.showTime ? `<div><dt>START</dt><dd>${esc(c.time)} のご入店</dd></div>` : ""}
       ${otherLine ? `<div><dt>${dec ? "OTHER" : "DEC"}</dt><dd>${otherLine}</dd></div>` : ""}
     </dl>

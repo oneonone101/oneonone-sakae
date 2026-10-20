@@ -508,3 +508,4 @@ button.textlink { background: none; border: 0; border-bottom: 1px solid currentC
 .bq-body { grid-template-rows: none; }
 .bq-cta { margin-top: auto; padding-top: 6px; }
 .bq-body { display: flex; flex-direction: column; }
+@media (min-width: 760px) { .eq.eq3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
