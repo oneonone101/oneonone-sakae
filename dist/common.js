@@ -25,6 +25,7 @@ document.querySelectorAll("[data-bind=hoursShort]").forEach(n => n.textContent =
 document.querySelectorAll("[data-book]").forEach(a => a.href = SITE.booking[a.dataset.book]);
 document.querySelectorAll("[data-tel]").forEach(a => { a.href = telHref; a.textContent = SITE.tel; });
 document.querySelectorAll("[data-tel-link]").forEach(a => a.href = telHref);
+document.querySelectorAll("[data-tel-text]").forEach(n => n.textContent = SITE.tel);
 
 if (SITE.season.active) {
   $("#season").innerHTML = `<a href="${esc(SITE.season.link)}" class="wrap"><span class="en">${esc(SITE.season.en)}</span><span>${esc(SITE.season.text)}</span><u>DETAIL</u></a>`;
@@ -58,12 +59,13 @@ if ($("#inq")) {
   $("#f-date").min = today.toISOString().slice(0, 10);
   const rules = [
     ["f-name", "e-name", v => v.trim() ? "" : "お名前を入力してください"],
-    ["f-tel", "e-tel", v => /^[0-9\-+() ]{10,}$/.test(v.trim()) ? "" : "電話番号を数字で入力してください（例：090-1234-5678）"],
+    ["f-tel", "e-tel", v => /^[0-9\-+() ]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 10 ? "" : "電話番号を数字で入力してください（例：090-1234-5678）"],
     ["f-mail", "e-mail", v => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim()) ? "" : "メールアドレスの形式を確認してください"],
-    ["f-date", "e-date", v => v ? "" : "希望日を選択してください"],
+    ["f-date", "e-date", v => !v ? "希望日を選択してください" : v < today.toISOString().slice(0, 10) ? "今日以降の日付を選んでください" : ""],
     ["f-people", "e-people", v => Number(v) >= 1 ? "" : "予定人数を入力してください"]
   ];
   const IS_PREVIEW = PREVIEW;
+  const openedAt = Date.now(); // 迷惑送信対策：開いてすぐの機械的な送信を見分ける
   const submitBtn = form.querySelector("button[type=submit]");
   const formErr = document.createElement("p");
   formErr.className = "err"; formErr.setAttribute("role", "alert");
@@ -81,14 +83,20 @@ if ($("#inq")) {
     if (first) { first.focus(); return; }
     const payload = Object.fromEntries(new FormData(form));
     payload.page = location.pathname;
+    payload.elapsed = Math.round((Date.now() - openedAt) / 1000);
     if (!IS_PREVIEW) {
       submitBtn.disabled = true; submitBtn.textContent = "送信しています…";
+      let errMsg = "";
       try {
         const res = await fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data.error || "送信できませんでした。");
+        if (!res.ok) errMsg = data.error || "送信できませんでした。";
       } catch (err) {
-        formErr.textContent = `${err.message} お手数ですが、お電話（${SITE.tel}）でもご相談いただけます。`;
+        errMsg = "通信エラーで送信できませんでした。電波の良い場所でもう一度お試しください。";
+      }
+      if (errMsg) {
+        formErr.textContent = `${errMsg} お手数ですが、お電話（${SITE.tel}・17:00〜）でもご相談いただけます。`;
+        track("group_inquiry_error", { message: errMsg });
         submitBtn.disabled = false; submitBtn.textContent = "相談内容を送信する";
         return;
       }
@@ -114,3 +122,113 @@ function fillPhotos() {
   });
 }
 document.addEventListener("DOMContentLoaded", fillPhotos);
+
+/* ---------- 宴会の料金（コース・貸切料金表から計算） ---------- */
+const BANQUET_IDS = ["standard", "recommended", "gradeup", "premium"];
+function banquetPrices() {
+  const list = SITE.courses.filter(c => BANQUET_IDS.includes(c.id));
+  const dec = list.filter(c => c.dec);
+  const minBy = (arr, f) => arr.reduce((m, c) => (f(c) < f(m) ? c : m));
+  const decMin = minBy(dec, c => c.dec.price);
+  const normalMin = minBy(list, c => c.price);
+  const normalAnyDay = minBy(list.filter(c => !c.note), c => c.price);
+  const decDrink = Math.min(...dec.map(c => parseInt(c.dec.drink, 10)));
+  const hireRows = p => SITE.hire.periods.filter(p).flatMap(x => x.rows.map(r => r.noRoom));
+  return {
+    dec: decMin.dec.price, decDrink: decDrink + "分",
+    normal: normalMin.price, normalNote: normalMin.note || "", normalAnyDay: normalAnyDay.price,
+    hireDec: Math.min(...hireRows(x => x.id === "dec" || x.id === "xmas" || x.id === "yearend")),
+    hireAll: Math.min(...hireRows(() => true))
+  };
+}
+function renderBanquet(el, opts) {
+  if (!el) return;
+  opts = opts || {};
+  const P = banquetPrices();
+  const focusDec = (opts.focus || SITE.season.priceFocus) === "dec";
+  const loc = opts.loc || "banquet";
+  el.innerHTML = SITE.banquet.map(b => {
+    const isHire = b.kind === "hire";
+    const main = isHire
+      ? (focusDec ? `<span class="pk">12月の貸切</span><strong>¥${yen(P.hireDec)}〜</strong>` : `<span class="pk">貸切</span><strong>¥${yen(P.hireAll)}〜</strong>`)
+      : (focusDec ? `<span class="pk">12月の宴会コース</span><strong>¥${yen(P.dec)}〜</strong>` : `<span class="pk">宴会コース</span><strong>¥${yen(P.normal)}〜</strong>`);
+    const sub = isHire
+      ? `最低保証・税込／コース料理・飲み放題込み`
+      : (focusDec ? `1名・税込／飲み放題${P.decDrink}〜` : `1名・税込／飲み放題付き${P.normalNote ? `（¥${yen(P.normal)}は${P.normalNote}）` : ""}`);
+    const other = isHire
+      ? (focusDec ? `1〜11月は ¥${yen(P.hireAll)}〜（月・曜日で変動）` : "")
+      : (focusDec ? `1〜11月は ¥${yen(P.normal)}〜（${P.normalNote || "通常料金"}）` : "");
+    const cta = isHire
+      ? `<a class="btn solid" href="${opts.hireHref || "party.html#hire"}" data-track="hire_price_click" data-loc="${loc}-${b.id}">日付で貸切料金を見る</a>
+         <a class="textlink" href="${opts.formHref || "#reserve"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">貸切を相談する</a>`
+      : `<button class="btn solid" type="button" data-open-book data-loc="${loc}-${b.id}">空席を確認・予約</button>
+         <a class="textlink" href="${opts.formHref || "#reserve"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">${b.id === "b20" ? "人数・席を相談する" : "電話・フォームで相談"}</a>`;
+    return `<article class="bq" id="${b.id}">
+      <div class="ph" data-photo="${esc(b.photoKey)}"></div>
+      <div class="bq-body">
+        <p class="bq-size"><b>${esc(b.range)}</b><small>名</small><span class="chip">${esc(b.chip)}</span></p>
+        <h3>${esc(b.title)}</h3>
+        <p class="bq-price">${main}</p>
+        <p class="bq-sub">${sub}</p>
+        ${other ? `<p class="bq-other">${other}</p>` : ""}
+        <ul>${b.seats.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+        <div class="bq-cta">${cta}</div>
+      </div>
+    </article>`;
+  }).join("");
+  if (typeof fillPhotos === "function") fillPhotos();
+}
+
+/* ---------- コース一覧（通常／12月の切り替え） ---------- */
+function coursesFor(period) {
+  const dec = period === "dec";
+  return SITE.courses.filter(c => dec ? (c.dec || c.decOnly) : !c.decOnly).map(c => {
+    if (!dec || c.decOnly) return { ...c, period };
+    return { ...c, period, price: c.dec.price, drink: c.dec.drink, was: null, normalPrice: c.price, normalDrink: c.drink };
+  });
+}
+function periodNote(period) {
+  const off = SITE.courses.filter(c => !c.dec && !c.decOnly).map(c => c.ja);
+  return period === "dec"
+    ? `12月（忘年会シーズン）の料金です。${off.length ? off.join("・") + "は12月の販売はありません。" : ""}`
+    : "1月〜11月の料金です。12月は料金と飲み放題時間が変わります。";
+}
+function courseCard(c, opts) {
+  opts = opts || {};
+  const H = opts.h || "h3";
+  const dec = c.period === "dec";
+  const drink = c.drink === "なし" ? "飲み放題なし（ドリンクは別注文）" : `飲み放題 ${esc(c.drink)}`;
+  const otherLine = dec && c.normalPrice
+    ? (c.normalPrice !== c.price || c.normalDrink !== c.drink ? `1〜11月は ¥${yen(c.normalPrice)}・飲み放題${esc(c.normalDrink)}` : "1〜11月も同じ内容")
+    : (!dec && decText(c) ? decText(c) : "");
+  return `<article class="course${c.featured ? " featured" : ""}" id="${esc(c.id)}">
+    ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
+    <${H} class="name">${esc(c.en)}<small>${esc(c.ja)}${c.note ? `（${esc(c.note)}）` : ""}</small></${H}>
+    <p class="price">${dec ? `<span class="pk-dec">12月料金</span>` : ""}<strong>¥${yen(c.price)}</strong>${c.was ? `<s>¥${yen(c.was)}</s>` : ""}<span>税込／1名</span></p>
+    <dl>
+      <div><dt>ITEMS</dt><dd>全${c.items}品</dd></div>
+      <div><dt>DRINK</dt><dd>${drink}</dd></div>
+      <div><dt>MENU</dt><dd>${esc(c.menu)}</dd></div>
+      <div><dt>GUESTS</dt><dd>${esc(c.people)}</dd></div>
+      ${opts.showTime ? `<div><dt>START</dt><dd>${esc(c.time)} のご入店</dd></div>` : ""}
+      ${otherLine ? `<div><dt>${dec ? "OTHER" : "DEC"}</dt><dd>${otherLine}</dd></div>` : ""}
+    </dl>
+    <button class="btn${c.featured ? " solid" : ""}" type="button" data-open-book data-loc="${opts.loc || "course"}-${esc(c.id)}">このコースで予約</button>
+  </article>`;
+}
+function bindPeriodToggle(name, render) {
+  const radios = document.querySelectorAll(`input[name=${name}]`);
+  const initial = location.hash === "#december" ? "dec" : (SITE.season.priceFocus || "normal");
+  radios.forEach(r => { r.checked = r.value === initial; r.addEventListener("change", e => { render(e.target.value); track("course_period_view", { period: e.target.value }); }); });
+  render(initial);
+}
+
+/* ---------- 本番では JS で作ったリンクもきれいな URL に（/party.html → /party） ---------- */
+function cleanLinks(root) {
+  if (PREVIEW) return;
+  (root || document).querySelectorAll("a[href]").forEach(a => {
+    const m = a.getAttribute("href").match(/^([a-z]+)\.html(#.*)?$/);
+    if (m) a.setAttribute("href", (m[1] === "index" ? "/" : "/" + m[1]) + (m[2] || ""));
+  });
+}
+document.addEventListener("DOMContentLoaded", () => cleanLinks());

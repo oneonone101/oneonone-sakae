@@ -14,17 +14,11 @@ document.getElementById("dec-points").innerHTML = [
 /* 人数別 */
 renderBanquet(document.getElementById("banquet"), { loc: "bonenkai", focus: "dec", formHref: "#reserve" });
 
-/* 12月のコース表 */
-const decList = coursesFor("dec").filter(c => !c.decOnly && c.id !== "afterparty");
-document.getElementById("dec-table").innerHTML = `
-  <caption class="note" style="text-align:left;padding:10px 14px">12月の料金（税込・1名）</caption>
-  <thead><tr><th scope="col">コース</th><th scope="col">12月の料金</th><th scope="col">飲み放題</th><th scope="col">品数</th><th scope="col">主な料理</th></tr></thead>
-  <tbody>${decList.map(c => `<tr><th scope="row">${esc(c.ja)}${c.featured ? " <small>人気</small>" : ""}</th>
-    <td class="num">${fmt(c.price)}<small>1〜11月は${fmt(c.normalPrice)}</small></td>
-    <td>${esc(c.drink)}${c.normalDrink !== c.drink ? `<small>1〜11月は${esc(c.normalDrink)}</small>` : ""}</td>
-    <td>${c.items}品</td><td>${esc(c.menu)}</td></tr>`).join("")}
-  ${SITE.courses.filter(c => !c.dec && !c.decOnly).map(c => `<tr class="off"><th scope="row">${esc(c.ja)}</th><td>12月は販売なし</td><td>—</td><td>${c.items}品</td><td>1〜11月の${esc(c.note || "")}のみ ${fmt(c.price)}</td></tr>`).join("")}
-  </tbody>`;
+/* 12月のコース */
+const decList = coursesFor("dec").filter(c => !c.decOnly && !["afterparty", "anniversary"].includes(c.id));
+document.getElementById("dec-cards").innerHTML = decList.map(c => courseCard(c, { loc: "bonenkai-course" })).join("");
+const offList = SITE.courses.filter(c => !c.dec && !c.decOnly);
+document.getElementById("dec-off").textContent = offList.length ? `${offList.map(c => c.ja).join("・")}は12月の販売はありません（1〜11月の${offList.map(c => c.note).filter(Boolean).join("・")}のみ）。` : "";
 
 /* 12月の貸切料金 */
 document.getElementById("dec-hire-tables").innerHTML = SITE.hire.periods.filter(p => ["dec", "xmas", "yearend"].includes(p.id)).map(p => `

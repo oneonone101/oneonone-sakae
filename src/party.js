@@ -74,7 +74,9 @@ function calc(ev) {
   if (!r) { out.innerHTML = `<p class="k">RESULT</p><p>この日程の貸切は個別にご相談ください。</p><a class="btn" href="#reserve">相談フォームへ</a>`; return; }
   const base = room ? r.row.room : r.row.noRoom;
   const from = r.row.from ? "〜" : "";
-  const head = `<p class="k">ESTIMATE · ${m}月${d}日（${kindLabel[r.kind]}）</p>`;
+  const nextDay = new Date(dt); nextDay.setDate(dt.getDate() + 1);
+  const dayTags = ["日月火水木金土"[dt.getDay()], isHoliday(dt) ? "祝" : "", isHoliday(nextDay) ? "祝前日" : ""].filter(Boolean).join("・");
+  const head = `<p class="k">ESTIMATE · ${m}月${d}日（${dayTags}）· ${esc(r.row.days)}の料金</p>`;
   if (people > 130) {
     out.innerHTML = `${head}<p class="total" style="font-size:28px">ご相談ください</p>
       <p class="warn">貸切でご案内できるのは立食130名までです。130名を超える場合は、相談フォームかお電話でご相談ください。</p>

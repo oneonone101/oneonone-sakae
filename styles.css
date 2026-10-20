@@ -496,3 +496,5 @@ button[disabled] { opacity: .6; cursor: wait; }
 .sheet-tel a { color: var(--champagne); font-variant-numeric: tabular-nums; }
 .h1-sub { display: block; font-family: var(--f-label); font-size: 14px; letter-spacing: .2em; color: var(--gold); margin-top: 8px; }
 .price-table th small { color: var(--gold); font-size: 11px; margin-left: 4px; }
+
+@media (max-width: 759px) { .bq .ph { aspect-ratio: 21 / 9; } }

@@ -59,6 +59,8 @@ export async function onRequestPost({ request, env }) {
 
   // 迷惑送信対策：隠し項目に入力があれば、成功したふりをして何もしない
   if (body?.company) return json(200, { ok: true });
+  // 開いてから2秒未満の送信は機械的な送信とみなし、送らずに成功を返す
+  if (body?.elapsed !== undefined && Number(body.elapsed) < 2) return json(200, { ok: true });
 
   const d = clean(body);
   const problem = validate(d);

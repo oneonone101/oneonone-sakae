@@ -59,12 +59,13 @@ if ($("#inq")) {
   $("#f-date").min = today.toISOString().slice(0, 10);
   const rules = [
     ["f-name", "e-name", v => v.trim() ? "" : "お名前を入力してください"],
-    ["f-tel", "e-tel", v => /^[0-9\-+() ]{10,}$/.test(v.trim()) ? "" : "電話番号を数字で入力してください（例：090-1234-5678）"],
+    ["f-tel", "e-tel", v => /^[0-9\-+() ]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 10 ? "" : "電話番号を数字で入力してください（例：090-1234-5678）"],
     ["f-mail", "e-mail", v => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim()) ? "" : "メールアドレスの形式を確認してください"],
-    ["f-date", "e-date", v => v ? "" : "希望日を選択してください"],
+    ["f-date", "e-date", v => !v ? "希望日を選択してください" : v < today.toISOString().slice(0, 10) ? "今日以降の日付を選んでください" : ""],
     ["f-people", "e-people", v => Number(v) >= 1 ? "" : "予定人数を入力してください"]
   ];
   const IS_PREVIEW = PREVIEW;
+  const openedAt = Date.now(); // 迷惑送信対策：開いてすぐの機械的な送信を見分ける
   const submitBtn = form.querySelector("button[type=submit]");
   const formErr = document.createElement("p");
   formErr.className = "err"; formErr.setAttribute("role", "alert");
@@ -82,14 +83,20 @@ if ($("#inq")) {
     if (first) { first.focus(); return; }
     const payload = Object.fromEntries(new FormData(form));
     payload.page = location.pathname;
+    payload.elapsed = Math.round((Date.now() - openedAt) / 1000);
     if (!IS_PREVIEW) {
       submitBtn.disabled = true; submitBtn.textContent = "送信しています…";
+      let errMsg = "";
       try {
         const res = await fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data.error || "送信できませんでした。");
+        if (!res.ok) errMsg = data.error || "送信できませんでした。";
       } catch (err) {
-        formErr.textContent = `${err.message} お手数ですが、お電話（${SITE.tel}）でもご相談いただけます。`;
+        errMsg = "通信エラーで送信できませんでした。電波の良い場所でもう一度お試しください。";
+      }
+      if (errMsg) {
+        formErr.textContent = `${errMsg} お手数ですが、お電話（${SITE.tel}・17:00〜）でもご相談いただけます。`;
+        track("group_inquiry_error", { message: errMsg });
         submitBtn.disabled = false; submitBtn.textContent = "相談内容を送信する";
         return;
       }
@@ -215,3 +222,13 @@ function bindPeriodToggle(name, render) {
   radios.forEach(r => { r.checked = r.value === initial; r.addEventListener("change", e => { render(e.target.value); track("course_period_view", { period: e.target.value }); }); });
   render(initial);
 }
+
+/* ---------- 本番では JS で作ったリンクもきれいな URL に（/party.html → /party） ---------- */
+function cleanLinks(root) {
+  if (PREVIEW) return;
+  (root || document).querySelectorAll("a[href]").forEach(a => {
+    const m = a.getAttribute("href").match(/^([a-z]+)\.html(#.*)?$/);
+    if (m) a.setAttribute("href", (m[1] === "index" ? "/" : "/" + m[1]) + (m[2] || ""));
+  });
+}
+document.addEventListener("DOMContentLoaded", () => cleanLinks());

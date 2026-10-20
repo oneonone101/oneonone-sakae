@@ -12,15 +12,19 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 SITE_URL = "https://oneonone-sakae.jp"
 GA_ID = ""  # 例 "G-XXXXXXXXXX"。Google アナリティクス作成後に入れる
-PAGES = ["index", "party", "anniversary", "course", "space", "food", "access"]
-PRIORITY = {"index": "1.0", "party": "0.9", "anniversary": "0.8", "course": "0.8"}
+PAGES = ["index", "bonenkai", "party", "anniversary", "course", "space", "food", "access"]
+PRIORITY = {"index": "1.0", "bonenkai": "0.9", "party": "0.9", "anniversary": "0.8", "course": "0.8"}
+HOME_TITLE = "栄の宴会・個室・貸切・誕生日ディナー｜肉ビストロ ONE on ONE（名古屋・錦）"
 
 HOME_HEAD = f"""<link rel="canonical" href="{SITE_URL}/">
-<meta property="og:title" content="ONE on ONE｜栄の個室×肉ビストロ 宴会・貸切・記念日">
-<meta property="og:description" content="名古屋・栄の個室×肉ビストロ。忘年会などの宴会、立食130名の貸切、誕生日・記念日のサプライズまで。栄駅徒歩5分、深夜まで営業。">
+<meta property="og:title" content="{HOME_TITLE}">
+<meta property="og:description" content="名古屋・栄の個室×肉ビストロ。10〜40名の宴会は個室・半個室で飲み放題付きコース、40〜130名は貸切。誕生日・記念日のバースデープレートも。栄駅徒歩5分、翌5時まで営業。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/">
-<meta property="og:image" content="{SITE_URL}/og.jpg">"""
+<meta property="og:image" content="{SITE_URL}/og.jpg">
+<meta property="og:site_name" content="ONE on ONE">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">"""
 
 GA_SNIPPET = f"""<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>"""
@@ -29,7 +33,7 @@ GA_SNIPPET = f"""<script async src="https://www.googletagmanager.com/gtag/js?id=
 def wrap_home(src: str) -> str:
     """index.html はプレビュー用に head/body を省いているので、本番用に包む"""
     head, body = src.split('<div class="previewbar"', 1)
-    head = head.replace("<title>ONE on ONE 栄</title>", "<title>ONE on ONE｜栄の個室×肉ビストロ 宴会・貸切・記念日</title>")
+    head = head.replace("<title>ONE on ONE 栄</title>", f"<title>{HOME_TITLE}</title>")
     head = head.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', "")
     return ('<!doctype html>\n<html lang="ja">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
@@ -54,6 +58,33 @@ CLEANUP_JS = """() => {
     if (m) a.setAttribute('href', (m[1] === 'index' ? '/' : '/' + m[1]) + (m[2] || ''));
   });
 }"""
+
+
+def make_og(path):
+    """SNS 共有用の画像（1200×630）を店内写真から作る"""
+    from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+    im = Image.open(ROOT / "photos" / "floor.jpg").convert("RGB")
+    w, h = im.size
+    target = 1200 / 630
+    if w / h > target:
+        nw = int(h * target); im = im.crop(((w - nw) // 2, 0, (w - nw) // 2 + nw, h))
+    else:
+        nh = int(w / target); im = im.crop((0, (h - nh) // 2, w, (h - nh) // 2 + nh))
+    im = im.resize((1200, 630), Image.LANCZOS)
+    im = ImageEnhance.Brightness(im).enhance(0.62)
+    d = ImageDraw.Draw(im)
+    def font(names, size):
+        for n in names:
+            try:
+                return ImageFont.truetype(n, size)
+            except OSError:
+                continue
+        return ImageFont.load_default()
+    serif = font(["/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"], 76)
+    small = font(["/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"], 24)
+    d.text((70, 430), "ONE on ONE", font=serif, fill=(231, 214, 174))
+    d.text((74, 530), "MEAT BISTRO & BAR  ·  SAKAE, NAGOYA", font=small, fill=(200, 167, 106))
+    im.save(path, quality=85, optimize=True)
 
 
 def main():
@@ -97,7 +128,14 @@ def main():
         for p in PAGES)
     (DIST / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n', "utf-8")
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {SITE_URL}/sitemap.xml\n", "utf-8")
-    (DIST / "_headers").write_text("/*.css\n  Cache-Control: public, max-age=3600\n/*.js\n  Cache-Control: public, max-age=3600\n/photos/*\n  Cache-Control: public, max-age=86400\n", "utf-8")
+    make_og(DIST / "og.jpg")
+    shutil.copy(ROOT / "favicon.svg", DIST / "favicon.svg")
+    (DIST / "_headers").write_text(
+        "# pages.dev は公開用ドメインの複製なので検索に出さない\n"
+        "https://oneonone-sakae.pages.dev/*\n  X-Robots-Tag: noindex\n"
+        "https://:version.oneonone-sakae.pages.dev/*\n  X-Robots-Tag: noindex\n"
+        "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n" +
+        "/*.css\n  Cache-Control: public, max-age=3600\n/*.js\n  Cache-Control: public, max-age=3600\n/photos/*\n  Cache-Control: public, max-age=86400\n", "utf-8")
     print("dist ready")
 
 
