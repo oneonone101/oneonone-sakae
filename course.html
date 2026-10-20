@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>コース・飲み放題プラン｜栄の個室×肉ビストロ ONE on ONE</title>
+<meta name="description" content="ONE on ONEの飲み放題付きコース一覧。STANDARD 4,000円から、GRADEUP、PREMIUM、ANNIVERSARY、二次会コースまで。品数・飲み放題時間・12月の内容を比較できます。">
+<link rel="canonical" href="https://oneonone-sakae.jp/course">
+<meta property="og:title" content="コース・飲み放題プラン｜栄の個室×肉ビストロ ONE on ONE">
+<meta property="og:description" content="ONE on ONEの飲み放題付きコース一覧。STANDARD 4,000円から、GRADEUP、PREMIUM、ANNIVERSARY、二次会コースまで。品数・飲み放題時間・12月の内容を比較できます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://oneonone-sakae.jp/course">
+<meta property="og:image" content="https://oneonone-sakae.jp/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); } body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; } nav.global a[aria-current] { color: var(--champagne); opacity: 1; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HOME", "item": "https://oneonone-sakae.jp/"}, {"@type": "ListItem", "position": 2, "name": "コース", "item": "https://oneonone-sakae.jp/course"}]}</script>
+
+</head>
+<body>
+<div class="previewbar" role="note">
+  <div class="wrap">
+    <span>PREVIEW — 写真は仮枠です。価格はグルメサイト掲載時点の内容です。</span>
+    <label><input type="checkbox" id="toggle-chk"> 要確認の項目をハイライト</label>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="ONE on ONE ホーム">
+      <span class="en">ONE<i>on</i>ONE</span>
+      <span>NISHIKI · SAKAE · NAGOYA</span>
+    </a>
+    <nav class="global" aria-label="グローバルナビゲーション">
+      <a href="party.html">PARTY</a>
+      <a href="anniversary.html">ANNIVERSARY</a>
+      <a href="course.html" aria-current="page">COURSE</a>
+      <a href="space.html">SPACE</a>
+      <a href="food.html">FOOD</a>
+      <a href="access.html">ACCESS</a>
+    </nav>
+    <div class="head-cta">
+      <a class="btn" href="party.html#reserve" data-track="group_inquiry_click" data-loc="header">団体・貸切相談</a>
+      <button class="btn solid" type="button" data-open-book data-loc="header">ネット予約</button>
+    </div>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">MENU</button>
+  </div>
+  <div class="drawer" id="drawer" hidden>
+    <div class="wrap">
+      <a href="party.html"><span>PARTY</span><small>宴会・貸切</small></a>
+      <a href="anniversary.html"><span>ANNIVERSARY</span><small>誕生日・記念日</small></a>
+      <a href="course.html"><span>COURSE</span><small>コース</small></a>
+      <a href="space.html"><span>SPACE</span><small>店内・個室</small></a>
+      <a href="food.html"><span>FOOD</span><small>料理</small></a>
+      <a href="access.html"><span>ACCESS</span><small>アクセス・料金</small></a>
+    </div>
+  </div>
+</header>
+
+<div class="season" id="season"></div>
+
+<main>
+  <nav class="crumbs wrap" aria-label="パンくずリスト">
+    <ol><li><a href="index.html">HOME</a></li><li aria-current="page">コース</li></ol>
+  </nav>
+  <section class="p-hero">
+    <div class="wrap" style="padding-block:36px 8px;display:grid;gap:18px">
+      <p class="eyebrow">Course &amp; Free Flow</p>
+      <h1>コース・飲み放題プラン</h1>
+      <p class="lead">すべてのコースに、生ビールやワイン、カクテルを含む飲み放題が付いています。人数やご予算、時間帯に合わせてお選びください。コース利用時はテーブルチャージがかかりません。</p>
+      <div class="seg season-seg" role="radiogroup" aria-label="表示する時期">
+        <input type="radio" name="period" id="p-normal" value="normal" checked><label for="p-normal">通常（1〜11月）</label>
+        <input type="radio" name="period" id="p-dec" value="dec"><label for="p-dec">12月の内容</label>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" style="padding-top:40px" aria-label="コース一覧">
+    <div class="wrap">
+      <p class="note" id="period-note" style="margin-bottom:20px"></p>
+      <div class="courses" id="courses"></div>
+    </div>
+  </section>
+
+  <section class="blk alt" id="compare" aria-labelledby="cmp-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="en big">Compare</span>
+        <h2 id="cmp-title">コースを比較する</h2>
+      </div>
+      <div class="cmp-scroll"><table class="cmp" id="cmp"></table></div>
+      <p class="note" style="margin-top:14px">価格はすべて税込です。表示価格はグルメサイト掲載時点の内容で、時期により変わります。</p>
+    </div>
+  </section>
+
+  <section class="blk" aria-labelledby="scene-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="en big">By Scene</span>
+        <h2 id="scene-title">シーン別のおすすめ</h2>
+      </div>
+      <div class="organizer" style="margin-top:0">
+        <div><span class="k">PARTY</span><h3>会社の宴会・忘年会</h3><p>迷ったらGRADEUPコース。日〜木ならSTANDARDコースで予算を抑えられます。40名を超える場合は<a href="party.html">貸切</a>がおすすめです。</p></div>
+        <div><span class="k">ANNIVERSARY</span><h3>誕生日・記念日</h3><p>テーブルアートとメッセージプレート付きのANNIVERSARYコース。<a href="anniversary.html">演出の詳細</a></p></div>
+        <div><span class="k">AFTER PARTY</span><h3>二次会</h3><p>22時からの二次会コース。全4品・飲み放題120分で¥3,300。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk alt" aria-labelledby="cnote-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="en big">Notes</span>
+        <h2 id="cnote-title">ご予約の前に</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>コース利用時のチャージは？</summary><p>テーブルチャージはかかりません。個室をご利用の場合は、個室料金1名¥1,100がコースの時間いっぱいかかります。</p></details>
+        <details><summary>キャンセルや人数変更は？</summary><p>コースでのご予約は、当日のキャンセルや人数の減少にキャンセル料がかかります。</p></details>
+        <details><summary>アレルギーや苦手な食材の対応は？</summary><p>ご予約時にお知らせください。<span class="chk">対応範囲 要確認</span></p></details>
+      </div>
+      <div class="sec-foot">
+        <button class="btn solid" type="button" data-open-book data-loc="course-bottom">空席を確認して予約</button>
+        <a class="btn" href="party.html#reserve" data-track="group_inquiry_click" data-loc="course-bottom">団体・貸切を相談する</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="index.html"><span class="en">ONE<i>on</i>ONE</span><span>個室×肉ビストロ · 名古屋 栄</span></a>
+    <nav aria-label="フッターナビゲーション">
+      <a href="index.html">HOME</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a>
+    </nav>
+    <p>愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ 20歳未満の方は禁煙席のみご案内しています。</p>
+    <p>© ONE on ONE</p>
+  </div>
+</footer>
+
+<div class="dock" aria-label="予約メニュー">
+  <div class="row">
+    <a href="#" class="primary" data-open-book data-loc="dock"><span>RESERVE</span>ネット予約</a>
+    <a href="#reserve" data-track="group_inquiry_click" data-loc="dock"><span>GROUP</span>団体・貸切相談</a>
+    <a href="" data-tel-link data-track="tel_click" data-loc="dock"><span>TEL</span>電話</a>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet-in">
+    <h3 id="sheet-title">予約サイトを選んでください</h3>
+    <p class="note">どちらも空席確認・コース予約ができます（新しいタブで開きます）。</p>
+    <a class="btn solid" href="" data-book="hotpepper" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">ホットペッパーで予約</a>
+    <a class="btn" href="" data-book="tabelog" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">食べログで予約</a>
+    <button class="close" type="button" id="sheet-close">閉じる</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+/* COURSE page */
+function view(period) {
+  const dec = period === "dec";
+  const list = SITE.courses.filter(c => dec ? (c.dec || c.decOnly) : !c.decOnly).map(c => {
+    if (!dec || c.decOnly) return { ...c };
+    return { ...c, price: c.dec.price, drink: c.dec.drink, was: null };
+  });
+  document.getElementById("period-note").textContent = dec
+    ? "12月は一部のコースの価格と飲み放題時間が変わります。STANDARDコースは12月の販売はありません。"
+    : "1月〜11月の内容です。";
+  document.getElementById("courses").innerHTML = list.map((c, i) => `
+    <article class="course${c.featured ? " featured" : ""}"${c.verified === false ? " data-unverified" : ""} id="${esc(c.id)}">
+      ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
+      <h2 class="name">${esc(c.en)}<small>${esc(c.ja)}${c.note ? `（${esc(c.note)}）` : ""}${chk(c)}</small></h2>
+      <p class="price"><strong>¥${yen(c.price)}</strong>${c.was ? `<s>¥${yen(c.was)}</s>` : ""}<span>税込／1名</span></p>
+      <dl>
+        <div><dt>ITEMS</dt><dd>全${c.items}品</dd></div>
+        <div><dt>DRINK</dt><dd>${c.drink === "なし" ? "飲み放題なし（ドリンクは別注文）" : `飲み放題 ${esc(c.drink)}`}</dd></div>
+        <div><dt>MENU</dt><dd>${esc(c.menu)}</dd></div>
+        <div><dt>GUESTS</dt><dd>${esc(c.people)}</dd></div>
+        <div><dt>START</dt><dd>${esc(c.time)} のご入店</dd></div>
+      </dl>
+      <button class="btn${c.featured ? " solid" : ""}" type="button" data-open-book data-loc="course-${esc(c.id)}">このコースで予約</button>
+    </article>`).join("");
+  document.getElementById("cmp").innerHTML = `
+    <thead><tr><th scope="col">コース</th><th scope="col">価格</th><th scope="col">品数</th><th scope="col">飲み放題</th><th scope="col">人数</th><th scope="col">ご入店</th></tr></thead>
+    <tbody>${list.map(c => `<tr><th scope="row"><a href="#${esc(c.id)}">${esc(c.ja)}</a>${c.note ? `<small>${esc(c.note)}</small>` : ""}</th><td>¥${yen(c.price)}</td><td>${c.items}品</td><td>${esc(c.drink)}</td><td>${esc(c.people)}</td><td>${esc(c.time)}</td></tr>`).join("")}</tbody>`;
+  track("course_period_view", { period });
+}
+document.querySelectorAll("input[name=period]").forEach(r => r.addEventListener("change", e => view(e.target.value)));
+const startDec = location.hash === "#december";
+if (startDec) document.getElementById("p-dec").checked = true;
+view(startDec ? "dec" : "normal");
+</script>
+</body>
+</html>

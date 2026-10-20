@@ -1,0 +1,3 @@
+document.getElementById("info").innerHTML = SITE.info.map(r => `<tr${r.verified === false ? " data-unverified" : ""}><th scope="row">${esc(r.k)}</th><td>${esc(r.v)}${chk(r)}${r.s ? `<small>${esc(r.s)}</small>` : ""}</td></tr>`).join("");
+document.getElementById("charges").innerHTML = SITE.charges.map(c => `<div${c.verified === false ? " data-unverified" : ""}><b>${esc(c.name)}${chk(c)}</b><span class="yen">${esc(c.yen)}</span><p>${esc(c.note)}</p></div>`).join("");
+document.getElementById("hours").innerHTML = SITE.hours.map(h => `<tr><th scope="row">${esc(h.day)}</th><td>${esc(h.time)}<small>${esc(h.note)}</small></td></tr>`).join("");
