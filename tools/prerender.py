@@ -2,7 +2,7 @@
 1. build.py で下層ページを組み立て
 2. ヘッドレスブラウザで各ページを開き、JavaScript で描画された状態の HTML を保存（検索エンジン向け）
 3. プレビュー専用の表示（PREVIEWバー・要確認ラベル）を除去し、リンクを /party などのきれいなURLに変える
-4. sitemap.xml / robots.txt / vercel.json を書き出す
+4. sitemap.xml / robots.txt / _headers（Cloudflare Pages 用）を書き出す
 使い方: python3 tools/prerender.py
 """
 import datetime, pathlib, re, shutil, subprocess, sys
@@ -97,6 +97,7 @@ def main():
         for p in PAGES)
     (DIST / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n', "utf-8")
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: {SITE_URL}/sitemap.xml\n", "utf-8")
+    (DIST / "_headers").write_text("/*.css\n  Cache-Control: public, max-age=3600\n/*.js\n  Cache-Control: public, max-age=3600\n/photos/*\n  Cache-Control: public, max-age=86400\n", "utf-8")
     print("dist ready")
 
 

@@ -1,6 +1,6 @@
 # ONE on ONE 公式サイト（oneonone-sakae.jp）
 
-名古屋・栄の個室×肉ビストロ「ONE on ONE」の公式サイト。静的HTML（`dist/`）＋フォーム送信API（`api/inquiry.js`）を Vercel で公開する構成。
+名古屋・栄の個室×肉ビストロ「ONE on ONE」の公式サイト。静的HTML（`dist/`）＋フォーム送信API（`functions/api/inquiry.js`）を Cloudflare Pages で公開する構成。
 
 ## フォルダ構成
 
@@ -13,19 +13,25 @@
 | `build.py` | 下層ページを共通レイアウトで組み立てる（ページのタイトル・説明文もここ） |
 | `tools/prerender.py` | 本番用 `dist/` を作る（描画済みHTML化、プレビュー表示の除去、sitemap/robots） |
 | `dist/` | **公開されるファイル**。直接編集しない |
-| `api/inquiry.js` | 団体・貸切フォームのメール送信（Resend） |
+| `functions/api/inquiry.js` | 団体・貸切フォームのメール送信（Resend）。Cloudflare Pages Functions |
 
 ## 更新の流れ
 
 1. `data.js`（または `src/` の本文）を編集
 2. `python3 tools/prerender.py`（Playwright が必要）
-3. `dist/` を含めて GitHub に push → Vercel が自動で公開
+3. `dist/` を含めて GitHub に push → Cloudflare Pages が自動で公開
 
-## 環境変数（Vercel → Settings → Environment Variables）
+## Cloudflare Pages の設定
+
+- ビルドコマンド：なし（空欄）
+- ビルド出力ディレクトリ：`dist`
+- ルートディレクトリ：空欄（リポジトリ直下。`functions/` を読み込むため）
+
+## 環境変数（Cloudflare → Workers & Pages → プロジェクト → 設定 → 変数とシークレット）
 
 | 名前 | 値 |
 | --- | --- |
-| `RESEND_API_KEY` | Resend の API キー（必須） |
+| `RESEND_API_KEY` | Resend の API キー（必須・「暗号化」で登録） |
 | `STORE_EMAIL` | 通知の受信先（省略時 oneonone01010101@gmail.com） |
 | `FROM_EMAIL` | Resend でドメイン認証後に `ONE on ONE <info@oneonone-sakae.jp>`。設定するとお客様に控えメールが届く |
 

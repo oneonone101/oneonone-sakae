@@ -2,6 +2,6 @@
   "name": "oneonone-sakae",
   "private": true,
   "version": "1.0.0",
-  "description": "ONE on ONE 公式サイト（栄の個室×肉ビストロ）。dist/ が公開物、api/ がフォーム送信",
+  "description": "ONE on ONE 公式サイト（栄の個室×肉ビストロ）。dist/ が公開物、functions/ がフォーム送信（Cloudflare Pages）",
   "engines": { "node": ">=18" }
 }
