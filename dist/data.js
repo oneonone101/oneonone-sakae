@@ -203,7 +203,7 @@ const SITE = {
   charges: [
     { name: "テーブルチャージ", yen: "550円", note: "アラカルト利用時のみ。コース利用時はかかりません。", verified: true },
     { name: "深夜チャージ", yen: "1,100円", note: "24:00以降のご入店はテーブルチャージが1,100円になります。", verified: true },
-    { name: "個室料金", yen: "1,100円/名", note: "2時間ごとに1名1,100円。コースの場合はコースの時間いっぱいご利用いただけます。", verified: true }
+    { name: "個室料金（完全個室）", yen: "1,100円/名", note: "2時間ごとに1名1,100円。コースの場合はコースの時間いっぱいご利用いただけます。", verified: true }
   ],
   tableArt: { price: 3850, deadline: "前日まで" },
   plate: { price: 2200, note: "当日のお電話でも可・アラカルト利用でも可" },

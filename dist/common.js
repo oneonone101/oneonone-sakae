@@ -148,10 +148,8 @@ function hireBreakdown(focusDec) {
   const label = { sun: "日曜", weekday: "月〜木", peak: "金・土・祝前日" };
   if (focusDec) {
     const dec = H.periods.find(p => p.id === "dec");
-    const late = H.periods.filter(p => p.id === "xmas" || p.id === "yearend");
-    const lateMin = Math.min(...late.flatMap(p => p.rows.map(r => r.noRoom)));
     const parts = ["sun", "weekday", "peak"].map(k => { const r = dec.rows.find(x => x.kinds.includes(k)); return `${label[k]}${man(r.noRoom)}〜`; });
-    return `※12月1日〜22日は${parts.join("／")}。12月23日〜30日は${man(lateMin)}〜。日付により変動します。`;
+    return `※12月1日〜22日は${parts.join("／")}。12月23日〜30日は別料金です。日付ごとの金額は料金シミュレーターでご確認ください。`;
   }
   return "※月・曜日により変動します。";
 }
