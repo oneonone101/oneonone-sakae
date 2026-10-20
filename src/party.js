@@ -88,10 +88,8 @@ function calc(ev) {
   const total = base + extra;
   const per = people ? Math.round(total / people) : 0;
   const P = banquetPrices();
-  const courseFrom = `飲み放題付きコース ${dt.getMonth() === 11 ? "12月" : ""}¥${yen(dt.getMonth() === 11 ? P.dec : P.normal)}〜／1名`;
-  const smallTip = people && people <= 40
-    ? `<p class="tip">${people}名なら、貸切にしなくても<a href="#size">個室・大理石テーブルの宴会</a>でご案内できます（${courseFrom}）。</p>`
-    : `<p class="tip">貸切にしない団体宴会なら、最低保証料金はかからず${courseFrom}でご相談いただけます（席の配置・空席状況によります）。<a href="#party-50">団体宴会のご案内</a></p>`;
+  const courseFrom = `${dt.getMonth() === 11 ? "12月 " : ""}¥${yen(dt.getMonth() === 11 ? P.dec : P.normal)}〜／1名`;
+  const smallTip = `<p class="tip">通常の宴会は飲み放題付きコース（${courseFrom}）でご相談いただけます。<a href="#size">人数別のご案内</a></p>`;
   out.innerHTML = `${head}
     <p class="total">${fmt(total)}${from}<small>最低保証・税込</small></p>
     <dl>
@@ -105,8 +103,8 @@ function calc(ev) {
     ${people > 106 ? `<p class="warn">106名を超える場合は立食でのご案内になります。</p>` : ""}
     ${r.period.note ? `<p class="warn">${esc(r.period.note)}</p>` : ""}
     ${!HOLIDAY_YEARS.has(String(y)) ? `<p class="warn">${y}年の祝日はまだ反映していません。祝日・祝前日の料金はご相談時にご確認ください。</p>` : ""}
-    ${smallTip}
-    <a class="btn solid" href="#reserve" data-track="group_inquiry_click" data-loc="simulator">この条件で相談する</a>`;
+    <a class="btn solid" href="#reserve" data-track="group_inquiry_click" data-loc="simulator">この条件で貸切を相談する</a>
+    ${smallTip}`;
   out.dataset.date = sDate.value;
 }
 [sDate, sPeople].forEach(el => el.addEventListener("input", calc));

@@ -501,6 +501,10 @@ button[disabled] { opacity: .6; cursor: wait; }
 @media (max-width: 759px) { .bq .ph { aspect-ratio: 21 / 9; } }
 
 .bq-size b { word-break: keep-all; }
-.bq-hire { border-style: dashed; }
+.bq-hire { border-color: var(--gold); }
 .bq-hire .bq-price strong { font-size: 30px; }
 button.textlink { background: none; border: 0; border-bottom: 1px solid currentColor; cursor: pointer; font: inherit; font-family: var(--f-label); font-size: 12px; letter-spacing: .2em; color: var(--gold); padding: 0 0 3px; }
+.bq-note { font-size: 11px; color: var(--muted); line-height: 1.7; }
+.bq-body { grid-template-rows: none; }
+.bq-cta { margin-top: auto; padding-top: 6px; }
+.bq-body { display: flex; flex-direction: column; }

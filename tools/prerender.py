@@ -18,7 +18,7 @@ HOME_TITLE = "栄の宴会・個室・貸切・誕生日ディナー｜肉ビス
 
 HOME_HEAD = f"""<link rel="canonical" href="{SITE_URL}/">
 <meta property="og:title" content="{HOME_TITLE}">
-<meta property="og:description" content="名古屋・栄の個室×肉ビストロ。10〜40名の宴会は個室・半個室、40名以上の団体宴会も貸切なしで飲み放題付きコースで相談可。貸切は130名まで。誕生日・記念日のバースデープレートも。栄駅徒歩5分、翌5時まで営業。">
+<meta property="og:description" content="名古屋・栄の個室×肉ビストロ。10名の部署宴会から100名を超える貸切パーティーまで、飲み放題付きコースで宴会スタイルをご提案。誕生日・記念日のバースデープレートも。栄駅徒歩5分、翌5時まで営業。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE_URL}/">
 <meta property="og:image" content="{SITE_URL}/og.jpg">
