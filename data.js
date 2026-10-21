@@ -41,7 +41,7 @@ const SITE = {
      note: カード下部の小さな補足 */
   banquet: [
     { id: "b10", range: "10〜20", unit: "名", title: "個室・大理石テーブルでの宴会", chip: "個室・大理石テーブル",
-      seats: ["完全個室：8名・15名（個室料金 1名¥1,100）", "半個室：12名・16名", "大理石テーブル：20名×2卓"],
+      seats: ["完全個室：8名・15名（両室カラオケ完備）", "完全個室の個室料金：1名¥1,100", "半個室：12名・16名", "大理石テーブル：20名×2卓"],
       photoKey: "room-large", kind: "course", cta: "空席を確認・予約" },
     { id: "b20", range: "20〜40", unit: "名", title: "会社宴会・部署合同の集まり", chip: "半個室",
       seats: ["20名掛けの大理石テーブル×2卓", "カーテンで仕切って半個室に", "30名前後の宴会にも"],
@@ -178,8 +178,8 @@ const SITE = {
     { name: "メインフロア", cap: "着席106席・立食130名", photo: "ヴィンテージモダンのメインフロア", photoKey: "floor", verified: true },
     { name: "大理石ロングテーブル", cap: "20名×2卓", photo: "ゴールドの大理石テーブル", photoKey: "marble-day", verified: true },
     { name: "半個室", cap: "12名・16名", photo: "グリーンの壁の半個室", photoKey: "semi-green", verified: true },
-    { name: "完全個室", cap: "8名・15名", photo: "扉付き個室", photoKey: "room-large", verified: true },
-    { name: "カップルシート（カウンター）", cap: "7席", photo: "光る大理石のバーカウンター", photoKey: "counter", verified: true }
+    { name: "完全個室", cap: "8名・15名（両室カラオケ完備）", photo: "扉付き個室", photoKey: "room-large", verified: true },
+    { name: "カップルシート（カウンター）", cap: "6席", photo: "光る大理石のバーカウンター", photoKey: "counter", verified: true }
   ],
   dishes: [
     { name: "自家製タルタルのサーモンレアカツ", desc: "衣はさっくり、中はとろりとしたレアの仕上がり。自家製のタルタルソースで。", price: 2880, photoKey: "salmon" },
