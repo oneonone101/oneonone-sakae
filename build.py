@@ -47,7 +47,7 @@ PAGES = [
          desc="ONE on ONEへのアクセス。地下鉄栄駅から徒歩5分、名古屋市中区錦3-10-21 プロシーム錦2F。月〜土18:00〜翌5:00、日祝18:00〜翌3:00。チャージ・お支払い方法。"),
 ]
 
-FONTS = "https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+FONTS = "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
 
 
 def esc(s):

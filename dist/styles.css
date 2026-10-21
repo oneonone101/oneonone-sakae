@@ -527,7 +527,7 @@ button.textlink { background: none; border: 0; border-bottom: 1px solid currentC
   --card: #FFFFFF;
   --body2: #4A3D35;
   --r: 20px;
-  --f-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --f-display: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
   --f-mincho: var(--f-display);
   --f-body: var(--f-display);
   --f-label: var(--f-display);
