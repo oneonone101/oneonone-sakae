@@ -509,3 +509,9 @@ button.textlink { background: none; border: 0; border-bottom: 1px solid currentC
 .bq-cta { margin-top: auto; padding-top: 6px; }
 .bq-body { display: flex; flex-direction: column; }
 @media (min-width: 760px) { .eq.eq3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+/* ロゴ（正式ロゴをなぞったSVG） */
+.logo .logo-mark { display: block; width: auto; height: 26px; }
+@media (min-width: 760px) { header.site .logo .logo-mark { height: 30px; } }
+footer .logo .logo-mark { height: 34px; margin-bottom: 6px; }
+.logo { gap: 4px; align-items: flex-start; }

@@ -96,7 +96,7 @@ def main():
     if tmp.exists():
         shutil.rmtree(tmp)
     tmp.mkdir()
-    for f in ["styles.css", "data.js", "common.js"]:
+    for f in ["styles.css", "data.js", "common.js", "logo.svg"]:
         shutil.copy(ROOT / f, tmp / f)
         shutil.copy(ROOT / f, DIST / f)
     (DIST / "photos").mkdir()
