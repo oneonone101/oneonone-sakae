@@ -11,7 +11,7 @@ from playwright.sync_api import sync_playwright
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 SITE_URL = "https://oneonone-sakae.jp"
-GA_ID = ""  # 例 "G-XXXXXXXXXX"。Google アナリティクス作成後に入れる
+GA_ID = "G-KW46DR5678"  # 例 "G-XXXXXXXXXX"。Google アナリティクス作成後に入れる
 PAGES = ["index", "bonenkai", "party", "anniversary", "course", "space", "food", "access", "privacy"]
 PRIORITY = {"index": "1.0", "bonenkai": "0.9", "party": "0.9", "anniversary": "0.8", "course": "0.8", "privacy": "0.3"}
 HOME_TITLE = "栄の宴会・個室・貸切・誕生日ディナー｜肉ビストロ ONE on ONE（名古屋・錦）"
