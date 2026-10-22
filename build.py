@@ -45,6 +45,9 @@ PAGES = [
     dict(slug="access", crumb="アクセス", dock=DOCK_BOOK,
          title="アクセス・営業時間｜栄駅徒歩5分 名古屋市中区錦 ONE on ONE",
          desc="ONE on ONEへのアクセス。地下鉄栄駅から徒歩5分、名古屋市中区錦3-10-21 プロシーム錦2F。月〜土18:00〜翌5:00、日祝18:00〜翌3:00。チャージ・お支払い方法。"),
+    dict(slug="privacy", crumb="プライバシーポリシー", dock=DOCK_BOOK,
+         title="プライバシーポリシー｜ONE on ONE 栄",
+         desc="ONE on ONE（名古屋・栄）の個人情報の取り扱いについて。団体・貸切相談フォームでお預かりする情報の利用目的、外部サービス、アクセス解析、お問い合わせ窓口。"),
 ]
 
 FONTS = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap"
@@ -156,7 +159,7 @@ def build(p):
   <div class="wrap">
     <a class="logo" href="index.html"><img class="logo-mark" src="logo.svg" alt="ONE on ONE" width="150" height="30"><span>個室×肉ビストロ · 名古屋 栄</span></a>
     <nav aria-label="フッターナビゲーション">
-      <a href="index.html">HOME</a><a href="bonenkai.html">YEAR-END</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a>
+      <a href="index.html">HOME</a><a href="bonenkai.html">YEAR-END</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a><a href="privacy.html">PRIVACY</a>
     </nav>
     <p>ONE on ONE（ワンオンワン）／ 愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ TEL <span data-tel-text></span> ／ 地下鉄栄駅 徒歩5分<br>月〜土・祝前日 18:00〜翌5:00、日・祝 18:00〜翌3:00 ／ 20歳未満の方は禁煙席のみご案内しています。</p>
     <p>© ONE on ONE</p>

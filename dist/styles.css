@@ -515,3 +515,12 @@ button.textlink { background: none; border: 0; border-bottom: 1px solid currentC
 @media (min-width: 760px) { header.site .logo .logo-mark { height: 30px; } }
 footer .logo .logo-mark { height: 34px; margin-bottom: 6px; }
 .logo { gap: 4px; align-items: flex-start; }
+
+/* プライバシーポリシー */
+.policy { max-width: 760px; }
+.policy h2 { font-size: 19px; color: var(--champagne); margin: 40px 0 10px; padding-top: 24px; border-top: 1px solid var(--line); }
+.policy h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.policy p, .policy li { color: var(--fg); }
+.policy ul { padding-left: 1.2em; margin: 8px 0; }
+.policy a { color: var(--gold); }
+.disclaimer a { color: var(--gold); }
