@@ -47,7 +47,7 @@ PAGES = [
          desc="ONE on ONEへのアクセス。地下鉄栄駅から徒歩5分、名古屋市中区錦3-10-21 プロシーム錦2F。月〜土18:00〜翌5:00、日祝18:00〜翌3:00。チャージ・お支払い方法。"),
     dict(slug="privacy", crumb="プライバシーポリシー", dock=DOCK_BOOK,
          title="プライバシーポリシー｜ONE on ONE 栄",
-         desc="ONE on ONE（名古屋・栄）の個人情報の取り扱いについて。団体・貸切相談フォームでお預かりする情報の利用目的、外部サービス、アクセス解析、お問い合わせ窓口。"),
+         desc="株式会社LCが運営するONE on ONE（名古屋・栄）の個人情報の取り扱いについて。団体・貸切相談フォームでお預かりする情報の利用目的、外部サービス、アクセス解析、お問い合わせ窓口。"),
 ]
 
 FONTS = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap"
