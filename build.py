@@ -29,7 +29,7 @@ PAGES = [
          desc="名古屋・栄で忘年会・新年会のお店をお探しの幹事様へ。12月の宴会コースは飲み放題付き5,000円〜。15名の完全個室、12名・16名の半個室、40名までの大理石テーブル、40名以上の大型忘年会、130名までの貸切。栄駅徒歩5分。"),
     dict(slug="party", crumb="宴会・貸切", dock=DOCK_PARTY,
          title="栄の宴会・個室宴会・貸切｜20名・30名・50名以上も ONE on ONE",
-         desc="名古屋・栄で宴会会場をお探しの幹事様へ。10〜20名は個室・半個室、20〜40名は大理石テーブル、40名以上の大型宴会も飲み放題付きコースで。貸切は着席106・立食130名の最低保証料金制。栄駅徒歩5分。"),
+         desc="名古屋・栄で宴会会場をお探しの幹事様へ。10〜20名は個室・半個室、20〜40名は大理石テーブル、40名以上の大型宴会も飲み放題付きコースで。貸切は着席106席・立食最大130名の最低保証料金制。栄駅徒歩5分。"),
     dict(slug="anniversary", crumb="誕生日・記念日", dock=DOCK_BOOK,
          title="栄の誕生日ディナー・記念日の個室｜バースデープレート ONE on ONE",
          desc="名古屋・栄で誕生日や記念日のディナーなら。メッセージ入りバースデープレート2,200円、テーブルアート3,850円、2名から使える個室。ANNIVERSARYコース7,000円（飲み放題付）。"),
@@ -38,7 +38,7 @@ PAGES = [
          desc="ONE on ONEの飲み放題付き宴会コース。12月は5,000円〜、1〜11月は4,000円〜（日〜木）。GRADEUP、PREMIUM、ANNIVERSARY、22時からの二次会コースまで比較できます。"),
     dict(slug="space", crumb="店内・個室", dock=DOCK_BOOK,
          title="栄の個室・半個室・貸切スペース｜2〜130名 ONE on ONE",
-         desc="シャンデリアと大理石のヴィンテージモダンな店内。8名・15名の完全個室、12名・16名の半個室、20名×2卓の大理石テーブル、着席106席・立食130名の貸切フロア。"),
+         desc="シャンデリアと大理石のヴィンテージモダンな店内。8名・15名の完全個室、12名・16名の半個室、20名×2卓の大理石テーブル、着席106席・立食最大130名の貸切フロア。"),
     dict(slug="food", crumb="料理・ドリンク", dock=DOCK_BOOK,
          title="料理・ドリンクメニュー｜栄の肉ビストロ ONE on ONE",
          desc="黒毛和牛イチボのグリル、サーモンレアカツ、生ウニのクリームリゾットなど全68品。肉料理を中心にしたイタリアンと、ワイン・シャンパン・オリジナルカクテル。"),
@@ -179,7 +179,9 @@ def build(p):
     <p class="note">どちらも空席確認・コース予約ができます（新しいタブで開きます）。受け付けられる人数は各サイトの表示をご確認ください。大人数のご相談はフォームかお電話でも承ります。</p>
     <a class="btn solid" href="" data-book="hotpepper" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">ホットペッパーで予約</a>
     <a class="btn" href="" data-book="tabelog" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">食べログで予約</a>
+    <p class="sheet-month" id="sheet-month" hidden>予約サイトの日付カレンダーで<b>12月</b>を選んでください。12月の金・土は早めに埋まります。満席の日は、お電話かフォームでご相談ください。</p>
     <p class="note sheet-tel">お電話でも承ります　<a href="" data-tel data-track="tel_click" data-loc="sheet"></a>（17:00〜）</p>
+    <a class="textlink sheet-form" id="sheet-form" href="party.html#reserve" data-track="group_inquiry_click" data-loc="sheet">40名以上の団体宴会・貸切はフォームでご相談</a>
     <button class="close" type="button" id="sheet-close">閉じる</button>
   </div>
 </div>

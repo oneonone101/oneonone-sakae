@@ -28,7 +28,7 @@ document.querySelectorAll("[data-tel-link]").forEach(a => a.href = telHref);
 document.querySelectorAll("[data-tel-text]").forEach(n => n.textContent = SITE.tel);
 
 if (SITE.season.active) {
-  $("#season").innerHTML = `<a href="${esc(SITE.season.link)}" class="wrap"><span class="en">${esc(SITE.season.en)}</span><span>${esc(SITE.season.text)}</span><u>DETAIL</u></a>`;
+  $("#season").innerHTML = `<a href="${esc(SITE.season.link)}" class="wrap"><span class="en">${esc(SITE.season.en)}</span><span>${SITE.season.text.split(/(?<=。)/).map(t => `<span class="nw">${esc(t)}</span>`).join("")}</span><u>DETAIL</u></a>`;
 } else $("#season").hidden = true;
 
 /* ---------- UI ---------- */
@@ -44,6 +44,9 @@ document.addEventListener("click", e => {
   if (!b) return;
   e.preventDefault();
   track("reserve_open", { location: b.dataset.loc || "" });
+  const month = b.dataset.month || window.BOOK_MONTH;
+  const sm = $("#sheet-month"); if (sm) sm.hidden = String(month) !== "12";
+  const sf = $("#sheet-form"); if (sf && document.querySelector("form.inq")) sf.setAttribute("href", "#reserve");
   sheet.hidden = false;
   sheet.querySelector("a").focus();
 });

@@ -305,9 +305,11 @@ footer nav a { text-decoration: none; font-family: var(--f-label); letter-spacin
 @media (min-width: 960px) { .p-hero .grid { grid-template-columns: 6fr 5fr; align-items: center; gap: 64px; } .p-hero .ph { aspect-ratio: 4/5; } }
 .facts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 28px; }
 .facts div { background: var(--ink); padding: 16px; display: grid; gap: 2px; }
-.facts b { font-family: var(--f-display); font-weight: 400; font-size: 28px; color: var(--champagne); line-height: 1.1; font-variant-numeric: tabular-nums; }
-.facts span { font-size: 12px; color: var(--muted); }
-@media (min-width: 640px) { .facts { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.facts b { font-family: var(--f-display); font-weight: 400; font-size: clamp(26px, 7vw, 30px); color: var(--champagne); line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap; display: flex; align-items: baseline; flex-wrap: nowrap; }
+.facts b small { font-family: var(--f-mincho); font-size: .5em; font-weight: 500; color: var(--champagne); margin-left: 1px; letter-spacing: 0; }
+.facts b small.pre { margin: 0 4px 0 0; color: var(--gold); }
+.facts span { font-size: 12.5px; color: var(--fg); opacity: .8; line-height: 1.5; }
+@media (min-width: 640px) { .facts { grid-template-columns: repeat(4, minmax(0,1fr)); } .facts b { font-size: clamp(22px, 2.2vw, 28px); } }
 
 .rooms { display: grid; gap: 56px; }
 .room { display: grid; gap: 24px; }
@@ -524,3 +526,42 @@ footer .logo .logo-mark { height: 34px; margin-bottom: 6px; }
 .policy ul { padding-left: 1.2em; margin: 8px 0; }
 .policy a { color: var(--gold); }
 .disclaimer a { color: var(--gold); }
+
+/* 予約シート：12月の案内・団体フォームへの導線 */
+.sheet-month { font-size: 13px; line-height: 1.7; color: var(--fg); background: rgba(200,167,106,.1); border-left: 2px solid var(--gold); padding: 10px 12px; }
+.sheet-month b { color: var(--champagne); font-weight: 500; }
+.sheet-in .sheet-form { justify-self: center; margin-top: 4px; }
+
+/* 見出し・アンカーが固定ヘッダーに隠れないように */
+[id] { scroll-margin-top: 84px; }
+
+/* 本文のコントラストを少し上げる（黒×ゴールドは維持） */
+:root { --muted: #bdb2a1; }
+.lead { color: #cfc5b5; }
+.note { font-size: 12.5px; }
+
+/* 貸切料金表の下の注記（支払い） */
+.ptable-note { font-size: 12px; line-height: 1.7; color: var(--muted); padding: 10px 14px 12px; border-top: 1px solid var(--line); }
+
+/* スマホ：主要ボタンを横幅いっぱいに */
+@media (max-width: 559px) {
+  .hero-actions { display: grid; }
+  .hero-actions .btn { width: 100%; }
+  .sec-foot .btn { width: 100%; }
+}
+/* 改行させたくない語句のまとまり */
+.nw { display: inline-block; }
+.bq-size { gap: 2px; }
+@media (max-width: 759px) { .p-hero h1 { font-size: clamp(23px, 7.4vw, 32px); } }
+/* スマホ：貸切料金表を画面内に収める／比較表は横スクロールを案内 */
+@media (max-width: 480px) {
+  .ptable th, .ptable td { padding: 9px 6px; font-size: 12px; }
+  .ptable thead th { font-size: 10px; letter-spacing: .06em; }
+  .ptable th[scope=row], .ptable thead th:first-child { padding-left: 12px; }
+  .ptable td:last-child, .ptable thead th:last-child { padding-right: 12px; }
+}
+@media (max-width: 759px) {
+  .cmp-scroll::before { content: "表は横にスクロールできます →"; display: block; font-size: 11px; letter-spacing: .06em; color: var(--muted); padding: 8px 14px 0; }
+}
+h1, h2, h3 { word-break: auto-phrase; overflow-wrap: anywhere; }
+.course .price .pk-dec { color: var(--ink); font-size: 11px; }

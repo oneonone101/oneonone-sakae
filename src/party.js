@@ -28,8 +28,8 @@ renderBanquet(document.getElementById("banquet"), { loc: "party", hireHref: "#hi
     ? `12月：飲み放題付きコース ¥${yen(P.dec)}〜（1名・税込・飲み放題${P.decDrink}〜）<small>1〜11月は ¥${yen(P.normal)}〜（${P.normalNote || "通常料金"}）</small>`
     : `飲み放題付きコース ¥${yen(P.normal)}〜（1名・税込）<small>12月は ¥${yen(P.dec)}〜</small>`;
   document.querySelectorAll("[data-bind=courseRange]").forEach(n => n.innerHTML = range);
-  document.querySelectorAll("[data-bind=partyFrom]").forEach(n => n.textContent = "¥" + yen(dec ? P.dec : P.normal) + "〜");
-  document.querySelectorAll("[data-bind=partyFromLabel]").forEach(n => n.textContent = dec ? "12月の宴会コース（1名）" : "宴会コース（1名）");
+  document.querySelectorAll("[data-bind=partyFrom]").forEach(n => n.innerHTML = "¥" + yen(dec ? P.dec : P.normal) + "<small>〜／名</small>");
+  document.querySelectorAll("[data-bind=partyFromLabel]").forEach(n => n.innerHTML = dec ? "12月の飲み放題付き<br>宴会コース" : "飲み放題付き<br>宴会コース");
 })();
 
 /* min fee for summary */
@@ -40,12 +40,13 @@ document.querySelectorAll("[data-min-fee]").forEach(n => n.textContent = Math.mi
 function renderTables(hit) {
   document.getElementById("ptables").innerHTML = H.periods.map(p => `
     <div class="ptable">
-      <h3>${esc(p.label)}${p.note ? `<small>${esc(p.note)}</small>` : ""}</h3>
+      <h3>${esc(p.label)}</h3>
       <div class="scroll"><table>
         <thead><tr><th scope="col">曜日</th><th scope="col">フロア貸切</th><th scope="col">完全貸切</th><th scope="col">上限</th></tr></thead>
         <tbody>${p.rows.map(r => `<tr class="${hit && hit.period === p && hit.row === r ? "hit" : ""}"><th scope="row">${esc(r.days)}</th>
           <td>${fmt(r.noRoom)}${r.from ? "〜" : ""}</td><td>${fmt(r.room)}${r.from ? "〜" : ""}</td><td>${r.cap}名</td></tr>`).join("")}</tbody>
       </table></div>
+      ${p.note ? `<p class="ptable-note">${esc(p.note)}</p>` : ""}
     </div>`).join("");
 }
 
@@ -101,7 +102,7 @@ function calc(ev) {
       <div><dt>使える機材</dt><dd>${esc(H.types[room ? "room" : "noRoom"].equipment.join("・"))}</dd></div>
     </dl>
     ${people > 106 ? `<p class="warn">106名を超える場合は立食でのご案内になります。</p>` : ""}
-    ${r.period.note ? `<p class="warn">${esc(r.period.note)}</p>` : ""}
+    ${r.period.note ? `<p class="tip">12月1日〜22日の貸切は、${esc(r.period.note)}</p>` : ""}
     ${!HOLIDAY_YEARS.has(String(y)) ? `<p class="warn">${y}年の祝日はまだ反映していません。祝日・祝前日の料金はご相談時にご確認ください。</p>` : ""}
     <a class="btn solid" href="#reserve" data-track="group_inquiry_click" data-loc="simulator">この条件で貸切を相談する</a>
     ${smallTip}`;

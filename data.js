@@ -64,7 +64,7 @@ const SITE = {
     { size: "2", unit: "名", title: "カップルシート", photo: "大理石カウンターのカップルシート", photoKey: "counter", items: ["光る大理石カウンターのソファーチェア", "ふたり並んで座れる席", "誕生日・記念日・デートに"], cta: "カップルシートを予約", book: true, verified: true },
     { size: "8·15", unit: "名", title: "完全個室", photo: "個室（扉付き）", photoKey: "room-small", items: ["8名様・15名様の扉付き個室", "部署の宴会・接待・女子会に", "個室料金あり（下記参照）"], cta: "個室を予約", book: true, verified: true },
     { size: "〜40", unit: "名", title: "半個室・大理石テーブル", photo: "大理石ロングテーブル", photoKey: "marble", items: ["20名掛けの大理石テーブル×2", "カーテンで仕切って半個室に", "歓送迎会・団体宴会に"], cta: "宴会を予約", book: true, verified: true },
-    { size: "130", unit: "名まで", title: "貸切パーティー", photo: "貸切パーティー", photoKey: "floor", items: ["着席106席・立食130名まで", "最低保証料金制（月・曜日で変動）", "マイク・プロジェクター利用可"], cta: "貸切料金を見る", href: "party.html#hire", book: false, verified: true }
+    { size: "130", unit: "名まで", title: "貸切パーティー", photo: "貸切パーティー", photoKey: "floor", items: ["着席106席・立食最大130名", "最低保証料金制（月・曜日で変動）", "マイク・プロジェクター利用可"], cta: "貸切料金を見る", href: "party.html#hire", book: false, verified: true }
   ],
   /* dec: 12月の内容（null = 12月の販売は要確認）／ decOnly: 12月だけ表示 */
   courses: [
@@ -175,7 +175,7 @@ const SITE = {
     { name: "ビール・カクテル・ソフトドリンク", price: "¥600〜", desc: "ギネス、ヒューガルデン、コロナなどの瓶ビール、定番カクテル、ノンアルコールのドリンク。" }
   ],
   spaces: [
-    { name: "メインフロア", cap: "着席106席・立食130名", photo: "ヴィンテージモダンのメインフロア", photoKey: "floor", verified: true },
+    { name: "メインフロア", cap: "着席106席・立食最大130名", photo: "ヴィンテージモダンのメインフロア", photoKey: "floor", verified: true },
     { name: "大理石ロングテーブル", cap: "20名×2卓", photo: "ゴールドの大理石テーブル", photoKey: "marble-day", verified: true },
     { name: "半個室", cap: "12名・16名", photo: "グリーンの壁の半個室", photoKey: "semi-green", verified: true },
     { name: "完全個室", cap: "8名・15名（両室カラオケ完備）", photo: "扉付き個室", photoKey: "room-large", verified: true },
@@ -195,7 +195,7 @@ const SITE = {
     { k: "定休日", v: "なし", s: "12月31日〜1月4日は休業" },
     { k: "アクセス", v: "地下鉄「栄駅」徒歩5分", s: "久屋大通駅・伏見駅からも徒歩圏" },
     { k: "電話", v: "052-957-6646", s: "17:00から受付" },
-    { k: "座席数", v: "106席（立食130名）", s: "完全個室 8名・15名" },
+    { k: "座席数", v: "着席106席（貸切時は立食最大130名）", s: "完全個室 8名・15名" },
     { k: "お支払い", v: "現金・クレジットカード（VISA / Master / AMEX）", s: "電子マネー・QRコード決済は不可" },
     { k: "喫煙", v: "分煙", s: "20歳未満の方は禁煙席のみ" },
     { k: "キャンセル", v: "コース予約の当日キャンセル・減員は、キャンセル料がかかります" }
@@ -245,7 +245,7 @@ const SITE = {
           { kinds: ["sun", "weekday"], days: "日〜木・祝日", noRoom: 300000, room: 350000, cap: 50 },
           { kinds: ["peak"], days: "金・土・祝前", noRoom: 500000, room: 550000, cap: 80 }
         ] },
-      { id: "dec", label: "12月1日〜22日", note: "可能であれば1か月前までに全額お支払い", match: d => d.m === 12 && d.d <= 22,
+      { id: "dec", label: "12月1日〜22日", note: "お支払いは、可能であればご利用の1か月前までにお願いしています（時期はご予約時にご相談ください）。", match: d => d.m === 12 && d.d <= 22,
         rows: [
           { kinds: ["sun"], days: "日", noRoom: 350000, room: 400000, cap: 60 },
           { kinds: ["weekday"], days: "月〜木・祝日", noRoom: 550000, room: 650000, cap: 90 },

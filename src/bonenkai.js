@@ -1,13 +1,13 @@
 const P = banquetPrices();
+window.BOOK_MONTH = 12; // 予約シートに「12月を選んでください」を出す
 const fmt = n => "¥" + n.toLocaleString("ja-JP");
-document.querySelectorAll("[data-bind=decFrom]").forEach(n => n.textContent = fmt(P.dec) + "〜");
+document.querySelectorAll("[data-bind=decFrom]").forEach(n => n.innerHTML = fmt(P.dec) + "<small>〜／名</small>");
 
 /* 12月の注意点 */
 const offDec = SITE.courses.filter(c => !c.dec && !c.decOnly).map(c => c.ja);
 document.getElementById("dec-points").innerHTML = [
   `宴会コースは飲み放題付き <b>${fmt(P.dec)}〜</b>（1名・税込）。飲み放題は${P.decDrink}〜です。`,
   offDec.length ? `${offDec.join("・")}は12月の販売はありません。` : "",
-  "12月1日〜22日の貸切は、可能であれば1か月前までに全額のお支払いをお願いしています。",
   "12月31日〜1月4日は休業します。"
 ].filter(Boolean).map(x => `<li>${x}</li>`).join("");
 
@@ -23,11 +23,12 @@ document.getElementById("dec-off").textContent = offList.length ? `${offList.map
 /* 12月の貸切料金 */
 document.getElementById("dec-hire-tables").innerHTML = SITE.hire.periods.filter(p => ["dec", "xmas", "yearend"].includes(p.id)).map(p => `
   <div class="ptable">
-    <h3>${esc(p.label)}${p.note ? `<small>${esc(p.note)}</small>` : ""}</h3>
+    <h3>${esc(p.label)}</h3>
     <div class="scroll"><table>
       <thead><tr><th scope="col">曜日</th><th scope="col">フロア貸切</th><th scope="col">完全貸切</th><th scope="col">上限</th></tr></thead>
       <tbody>${p.rows.map(r => `<tr><th scope="row">${esc(r.days)}</th><td>${fmt(r.noRoom)}${r.from ? "〜" : ""}</td><td>${fmt(r.room)}${r.from ? "〜" : ""}</td><td>${r.cap}名</td></tr>`).join("")}</tbody>
     </table></div>
+    ${p.note ? `<p class="ptable-note">${esc(p.note)}</p>` : ""}
   </div>`).join("");
 
 /* 二次会 */
