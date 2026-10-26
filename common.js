@@ -107,8 +107,23 @@ if ($("#inq")) {
     }
     track("group_inquiry_submit", { people: Number(payload.people), purpose: payload.purpose || "" });
     form.hidden = true; done.hidden = false; done.focus();
+    try { sessionStorage.removeItem("oo_inq_draft"); } catch (e) {}
   });
   $("#again").addEventListener("click", () => { form.reset(); done.hidden = true; form.hidden = false; });
+
+  /* 入力途中で詳細ページを見に行っても内容が消えないよう、同じタブの間だけ一時保存する */
+  const DKEY = "oo_inq_draft";
+  const fields = [...form.querySelectorAll("input[name], select[name], textarea[name]")].filter(el => el.name !== "company");
+  const saveDraft = () => {
+    try { sessionStorage.setItem(DKEY, JSON.stringify(Object.fromEntries(fields.filter(el => el.value).map(el => [el.name, el.value])))); } catch (e) {}
+  };
+  try {
+    const d = JSON.parse(sessionStorage.getItem(DKEY) || "{}");
+    fields.forEach(el => { if (d[el.name] && (!el.value || el.tagName === "SELECT")) el.value = d[el.name]; });
+  } catch (e) {}
+  form.addEventListener("input", saveDraft);
+  form.addEventListener("change", saveDraft);
+  window.addEventListener("pagehide", () => { if (!form.hidden) saveDraft(); });
 }
 
 /* ---------- 写真：data-photo="キー" の枠に実写真を入れる ---------- */

@@ -18,16 +18,16 @@ NAV = [
 ]
 
 BOOK = ("#", "primary", "RESERVE", "ネット予約", 'data-open-book data-loc="dock"')
-DOCK_BOOK = [BOOK, ("party.html#reserve", "", "GROUP", "団体・貸切相談", 'data-track="group_inquiry_click" data-loc="dock"')]
-DOCK_PARTY = [BOOK, ("#hire", "", "PRICE", "貸切料金・相談", 'data-track="hire_price_click" data-loc="dock"')]
+DOCK_BOOK = [BOOK, ("party.html#guide", "", "GROUP", "団体・貸切相談", 'data-track="group_guide_click" data-loc="dock"')]
+DOCK_PARTY = [BOOK, ("#reserve", "", "FORM", "相談フォーム", 'data-track="group_inquiry_click" data-loc="dock"')]
 DOCK_FORM = [BOOK, ("#reserve", "", "GROUP", "団体・貸切相談", 'data-track="group_inquiry_click" data-loc="dock"')]
 
 PAGES = [
-    dict(slug="bonenkai", crumb="忘年会・新年会", dock=DOCK_FORM, form_purpose="忘年会・新年会",
+    dict(slug="bonenkai", crumb="忘年会・新年会", dock=DOCK_BOOK, form_purpose="忘年会・新年会",
          form_intro="忘年会・新年会のご相談はこちらから。人数・日程・ご予算をお書きください。",
          title="栄の忘年会 2026｜個室・飲み放題付き¥5,000〜・貸切130名 ONE on ONE",
          desc="名古屋・栄で忘年会・新年会のお店をお探しの幹事様へ。12月の宴会コースは飲み放題付き5,000円〜。15名の完全個室、12名・16名の半個室、40名までの大理石テーブル、40名以上の大型忘年会、130名までの貸切。栄駅徒歩5分。"),
-    dict(slug="party", crumb="宴会・貸切", dock=DOCK_FORM,
+    dict(slug="party", crumb="宴会・貸切", dock=DOCK_PARTY,
          title="栄の宴会・個室宴会・貸切｜20名・30名・50名以上も ONE on ONE",
          desc="名古屋・栄で宴会会場をお探しの幹事様へ。10〜20名は個室・半個室、20〜40名は大理石テーブル、40名以上の大型宴会も飲み放題付きコースで。貸切は着席最大104名・立食最大130名の最低保証料金制。栄駅徒歩5分。"),
     dict(slug="anniversary", crumb="誕生日・記念日", dock=DOCK_BOOK,
@@ -78,7 +78,14 @@ def build(p):
         extra_head += "</script>"
     main = (SRC / f"{slug}.main.html").read_text("utf-8")
     if "<!--FORM-->" in main:
-        form = (SRC / "_form.html").read_text("utf-8").replace("{FORM_INTRO}", p.get("form_intro", "10名以上の宴会・貸切・二次会のご相談はこちらから。"))
+        base = "" if p["slug"] == "party" else "party.html"
+        precheck = f"""        <nav class="precheck" aria-label="ご相談前にプランを確認する">
+          <p>ご相談前にプランを確認する<small>入力した内容は保存されます</small></p>
+          <a href="{base}#party-30">団体宴会の座席・コース料金</a>
+          <a href="{base}#party-hire">貸切の条件・設備</a>
+          <a href="{base}#hire">貸切料金シミュレーター</a>
+        </nav>"""
+        form = (SRC / "_form.html").read_text("utf-8").replace("{FORM_INTRO}", p.get("form_intro", "10名以上の宴会・貸切・二次会のご相談はこちらから。")).replace("<!--PRECHECK-->", precheck)
         purpose = p.get("form_purpose")
         if purpose:
             form = form.replace(f"<option>{purpose}</option>", f"<option selected>{purpose}</option>", 1)
@@ -134,7 +141,7 @@ def build(p):
       {nav}
     </nav>
     <div class="head-cta">
-      <a class="btn" href="party.html#reserve" data-track="group_inquiry_click" data-loc="header">団体・貸切相談</a>
+      <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="header">団体・貸切相談</a>
       <button class="btn solid" type="button" data-open-book data-loc="header">ネット予約</button>
     </div>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">MENU</button>

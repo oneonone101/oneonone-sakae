@@ -662,3 +662,29 @@ body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 .after-strip li span { font-size: 12.5px; color: var(--muted); }
 .after-cta { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
 @media (min-width: 900px) { .after-strip .wrap { grid-template-columns: 1fr 1.4fr auto; gap: 40px; } .after-strip ul { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+/* 宴会ページ冒頭：団体・貸切の4つの選択肢 */
+.guide { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); scroll-margin-top: 84px; }
+.guide .guide-k { grid-column: 1 / -1; background: var(--ink); padding: 10px 14px; font-size: 12px; letter-spacing: .14em; color: var(--gold); }
+.guide a { background: var(--ink); padding: 14px; text-decoration: none; display: grid; gap: 2px; min-height: 64px; align-content: center; transition: background .2s; }
+.guide a:hover { background: var(--char); }
+.guide a b { font-weight: 500; font-size: 14px; color: var(--champagne); display: flex; align-items: center; gap: 6px; }
+.guide a b::after { content: "→"; color: var(--gold); font-weight: 400; }
+.guide a span { font-size: 11.5px; color: var(--muted); }
+.guide a.g-hire { box-shadow: inset 3px 0 0 var(--gold); }
+.guide a.g-form { background: var(--gold); }
+.guide a.g-form b, .guide a.g-form b::after, .guide a.g-form span { color: var(--ink); }
+.guide a.g-form:hover { background: var(--champagne); }
+@media (min-width: 960px) { .guide { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+
+/* フォーム直前：プラン確認リンク */
+.precheck { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 12px 14px; margin-bottom: 14px; border: 1px dashed var(--line); font-size: 13px; }
+.precheck p { flex-basis: 100%; font-size: 12px; letter-spacing: .08em; color: var(--gold); }
+.precheck p small { margin-left: 10px; color: var(--muted); letter-spacing: 0; }
+.precheck a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.precheck a:hover { color: var(--champagne); border-color: var(--gold); }
+@media (max-width: 559px) {
+  .guide a { padding: 12px 10px; }
+  .guide a b { font-size: 13px; letter-spacing: 0; white-space: nowrap; gap: 4px; }
+  .guide a span { font-size: 11px; }
+}
