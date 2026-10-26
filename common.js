@@ -171,15 +171,15 @@ function renderBanquet(el, opts) {
         ? `<span class="pk">${focusDec ? "12月の貸切（最低保証）" : "貸切（最低保証）"}</span><strong>¥${yen(focusDec ? P.hireDec : P.hireAll)}〜</strong>`
         : `<span class="pk">${focusDec ? "飲み放題付きコース（12月）" : "飲み放題付きコース"}</span><strong>¥${yen(focusDec ? P.dec : P.normal)}〜</strong><small>／名</small>`;
       return `<article class="bq bq-compact bq-${b.kind}" id="${b.id}">
-        <a class="bq-link" href="${esc(b.detail || "party.html")}" data-loc="${loc}-${b.id}">
+        <a class="bq-link" href="${esc(opts.inPage ? (b.anchor || "#size-detail") : (b.detail || "party.html"))}" data-loc="${loc}-${b.id}">
           <div class="ph" data-photo="${esc(b.photoKey)}"></div>
           <div class="bq-body">
-            <p class="bq-size"><b>${esc(b.range)}</b>${b.unit === "" ? "" : `<small>${esc(b.unit || "名")}</small>`}</p>
+            <p class="bq-size"><b>${esc(b.range)}</b>${b.unit === "" ? "" : `<small>${esc(b.unit || "名")}</small>`}<span class="kind-tag${isHire ? " hire" : ""}">${isHire ? "貸切" : "通常の宴会"}</span></p>
             <h3>${esc(b.title)}</h3>
             <p class="bq-price">${price}</p>
             ${isHire ? `<p class="bq-sub">日付ごとの最低保証料金制（コース料理・飲み放題込み）</p>` : ""}
             <ul>${(b.points || b.seats.slice(0, 2)).map(x => `<li>${esc(x)}</li>`).join("")}</ul>
-            <span class="bq-more">${isHire ? "貸切料金・座席配置を見る" : "詳しく見る"}</span>
+            <span class="bq-more">${opts.inPage ? "席・条件を見る" : (isHire ? "貸切料金・座席配置を見る" : "詳しく見る")}</span>
           </div>
         </a>
       </article>`;

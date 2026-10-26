@@ -198,9 +198,13 @@
       <div class="sec-head">
         <span class="en big">By Size</span>
         <h2 id="size-title">人数から選ぶ</h2>
-        <p class="lead">ご予定の人数とご希望に合わせて、お席と宴会スタイルをご提案します。通常の宴会は飲み放題付きコース料金、貸切は日付別の最低保証料金制です。</p>
+        <p class="lead">ご予定の人数とご希望に合わせて、お席と宴会スタイルをご提案します。通常の宴会は飲み放題付きコース料金、貸切は日付別の最低保証料金制です。カードを押すと、席・条件の詳しいご案内へ移動します。</p>
       </div>
       <div class="bq-grid" id="banquet"></div>
+      <div class="cta-row">
+        <button class="btn solid" type="button" data-open-book data-loc="party-size">ネット予約</button>
+        <a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="party-size">団体・貸切相談</a>
+      </div>
       <p class="small-group">2〜8名様は <a href="space.html">8名の完全個室</a> をご利用いただけます。</p>
     </div>
   </section>
@@ -211,7 +215,7 @@
       <article class="room" id="party-10">
         <div class="ph" data-photo="room-large"></div>
         <div style="display:grid;gap:18px">
-          <div class="head"><span class="size">10〜20<small>名</small></span></div>
+          <div class="head"><span class="size">10〜20<small>名</small></span><span class="kind-tag">通常の宴会</span></div>
           <h2 style="font-size:24px"><span class="nw">栄で10名・20名の宴会を、</span><span class="nw">個室・大理石テーブルで</span></h2>
           <p class="lead">15名までは扉付きの完全個室、16名まではカーテンで仕切る半個室、17〜20名は20名掛けの大理石テーブルでご案内します。部署の忘年会や歓送迎会、接待に。</p>
           <table class="spec">
@@ -219,51 +223,51 @@
             <tr><th scope="row">料金</th><td data-bind="courseRange"></td></tr>
             <tr><th scope="row">個室料金</th><td>完全個室は1名¥1,100（コースの時間いっぱいご利用いただけます）</td></tr>
           </table>
-          <div class="hero-actions" style="margin-top:0"><button class="btn solid" type="button" data-open-book data-loc="detail-10">空席を確認・予約</button><a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="detail-10">相談する</a></div>
+          <div class="hero-actions" style="margin-top:0"><button class="btn solid" type="button" data-open-book data-loc="detail-10">ネット予約</button><a class="btn" href="#reserve" data-hire="希望しない" data-track="group_inquiry_click" data-loc="detail-10">団体・貸切相談</a></div>
         </div>
       </article>
       <article class="room" id="party-30">
         <div class="ph" data-photo="marble"></div>
         <div style="display:grid;gap:18px">
-          <div class="head"><span class="size">20〜40<small>名</small></span></div>
+          <div class="head"><span class="size">20〜40<small>名</small></span><span class="kind-tag">通常の宴会</span></div>
           <h2 style="font-size:24px"><span class="nw">20名・30名・40名の</span><span class="nw">団体宴会は</span><span class="nw">大理石テーブルの半個室で</span></h2>
           <p class="lead">店内奥の、ゴールドに光る大理石のロングテーブル（20名掛け×2卓）をカーテンで仕切ってご案内します。部署合同の忘年会、同窓会、サークルの会に。</p>
           <table class="spec">
             <tr><th scope="row">お席</th><td>大理石テーブル 20名掛け×2卓（最大40名）</td></tr>
-            <tr><th scope="row">料金</th><td data-bind="courseRange"></td></tr>
+            <tr><th scope="row">料金</th><td>10〜20名と同じ飲み放題付き宴会コース</td></tr>
             <tr><th scope="row">ご予約</th><td>ネット予約で空席を確認できます。席の配置のご希望は相談フォームから</td></tr>
           </table>
-          <div class="hero-actions" style="margin-top:0"><button class="btn solid" type="button" data-open-book data-loc="detail-30">空席を確認・予約</button><a class="btn" href="#reserve" data-track="group_inquiry_click" data-loc="detail-30">相談する</a></div>
+          <div class="hero-actions" style="margin-top:0"><button class="btn solid" type="button" data-open-book data-loc="detail-30">ネット予約</button><a class="btn" href="#reserve" data-hire="希望しない" data-track="group_inquiry_click" data-loc="detail-30">団体・貸切相談</a></div>
         </div>
       </article>
       <article class="room" id="party-50">
         <div class="ph" data-photo="floor"></div>
         <div style="display:grid;gap:18px">
-          <div class="head"><span class="size">40<small>名以上</small></span></div>
+          <div class="head"><span class="size">40<small>名以上</small></span><span class="kind-tag">通常の宴会・貸切不要</span></div>
           <h2 style="font-size:24px"><span class="nw">40名・50名以上の</span><span class="nw">大型宴会・</span><span class="nw">会社の忘年会</span></h2>
           <p class="lead">同じフロア内に複数のテーブルをご用意。大人数の会社宴会や忘年会にも対応しています。飲み放題付きの宴会コースで、全員がそろう会をお手伝いします。</p>
           <table class="spec">
-            <tr><th scope="row">料金</th><td data-bind="courseRange"></td></tr>
+            <tr><th scope="row">料金</th><td>10〜20名と同じ飲み放題付き宴会コース（貸切料金は不要です）</td></tr>
             <tr><th scope="row">お席</th><td>同じフロア内の複数テーブル<small>※人数・席配置・空席状況によりご案内が異なります。</small></td></tr>
             <tr><th scope="row">機材</th><td>マイク・プロジェクターのご利用はご相談ください</td></tr>
             <tr><th scope="row">ご相談</th><td>人数・日程・ご希望の席の配置をお知らせください。店舗から折り返しご連絡します。</td></tr>
           </table>
-          <div class="hero-actions" style="margin-top:0"><a class="btn solid" href="#reserve" data-hire="希望しない" data-track="group_inquiry_click" data-loc="detail-50">団体宴会を相談する</a></div>
+          <div class="hero-actions" style="margin-top:0"><a class="btn solid" href="#reserve" data-hire="希望しない" data-track="group_inquiry_click" data-loc="detail-50">団体・貸切相談</a></div>
         </div>
       </article>
       <article class="room" id="party-hire">
         <div class="ph" data-photo="marble-day"></div>
         <div style="display:grid;gap:18px">
-          <div class="head"><span class="size">貸切</span></div>
+          <div class="head"><span class="size">貸切</span><span class="kind-tag hire">最低保証料金制</span></div>
           <h2 style="font-size:24px"><span class="nw">フロア・店舗貸切で、</span><span class="nw">会社イベント・</span><span class="nw">大型パーティーを</span></h2>
-          <p class="lead">他のお客様を気にせず、ONE on ONEの空間をまるごと使ってイベントを開催できます。着席最大104名・立食最大130名。フロア貸切はマイク・プロジェクター（音声なし）、完全貸切はマイク・プロジェクター・音響がお使いいただけます。会社の忘年会・新年会、表彰式、結婚式二次会、大型パーティーに。料金はコース料理・飲み放題込みの最低保証料金制です。</p>
+          <p class="lead">他のお客様を気にせず、ONE on ONEの空間をまるごと使ってイベントを開催できます。会社の忘年会・新年会、表彰式、結婚式二次会、大型パーティーに。40名以上の通常の宴会とは別のサービスで、料金はコース料理・飲み放題込みの最低保証料金制です。</p>
           <table class="spec">
             <tr><th scope="row">人数</th><td>着席最大104名・立食最大130名</td></tr>
             <tr><th scope="row">料金</th><td>最低保証 ¥<span data-min-fee></span>〜（税込・コース料理と飲み放題込み。月・曜日で変動）</td></tr>
             <tr><th scope="row">時間</th><td>受付30分＋コース2時間（L.O.）＋完全撤退30分</td></tr>
             <tr><th scope="row">機材</th><td>フロア貸切：マイク・プロジェクター（音声なし）／完全貸切：マイク・プロジェクター・音響</td></tr>
           </table>
-          <div class="hero-actions" style="margin-top:0"><a class="btn solid" href="#hire" data-track="hire_price_click" data-loc="detail-hire">貸切料金を確認</a></div>
+          <div class="hero-actions" style="margin-top:0"><a class="btn solid" href="#hire" data-track="hire_price_click" data-loc="detail-hire">貸切料金・座席配置を確認</a><a class="btn" href="#reserve" data-hire="希望する" data-track="group_inquiry_click" data-loc="detail-hire">貸切を相談する</a></div>
         </div>
       </article>
     </div>
@@ -502,7 +506,7 @@
 <div class="dock" aria-label="予約メニュー">
   <div class="row">
     <a href="#" class="primary" data-open-book data-loc="dock"><span>RESERVE</span>ネット予約</a>
-    <a href="#hire" data-track="hire_price_click" data-loc="dock"><span>PRICE</span>貸切料金・相談</a>
+    <a href="#reserve" data-track="group_inquiry_click" data-loc="dock"><span>GROUP</span>団体・貸切相談</a>
     <a href="" data-tel-link data-track="tel_click" data-loc="dock"><span>TEL</span>電話</a>
   </div>
 </div>
@@ -546,7 +550,7 @@ function lookup(dt) {
 }
 
 /* 人数別カード・料金の表示 */
-renderBanquet(document.getElementById("banquet"), { loc: "party", hireHref: "#hire", formHref: "#reserve" });
+renderBanquet(document.getElementById("banquet"), { loc: "party", compact: true, inPage: true });
 (() => {
   const P = banquetPrices();
   const dec = SITE.season.priceFocus === "dec";

@@ -645,3 +645,20 @@ body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 @media (max-width: 759px) {
   .hero::after { background: linear-gradient(180deg, rgba(15,13,11,.15) 0%, rgba(15,13,11,.35) 25%, rgba(15,13,11,.82) 48%, rgba(15,13,11,.95) 70%); }
 }
+
+/* 通常の宴会／貸切の区別ラベル */
+.kind-tag { margin-left: auto; align-self: center; font-family: var(--f-body); font-size: 11px; letter-spacing: .08em; color: var(--champagne); border: 1px solid var(--line); padding: 3px 9px; white-space: nowrap; }
+.kind-tag.hire { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+.room .head { align-items: center; }
+.room .head .kind-tag { margin-left: 12px; }
+
+/* トップ：二次会の短い案内 */
+.after-strip { background: var(--umber); border-block: 1px solid var(--line); padding-block: 40px; }
+.after-strip .wrap { display: grid; gap: 20px; align-items: center; }
+.after-strip h2 { font-size: clamp(22px, 2.6vw, 28px); margin-top: 10px; }
+.after-strip ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.after-strip li { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--gold); }
+.after-strip li b { font-weight: 500; font-size: 15px; color: var(--champagne); }
+.after-strip li span { font-size: 12.5px; color: var(--muted); }
+.after-cta { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; }
+@media (min-width: 900px) { .after-strip .wrap { grid-template-columns: 1fr 1.4fr auto; gap: 40px; } .after-strip ul { grid-template-columns: repeat(3, minmax(0,1fr)); } }

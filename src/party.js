@@ -20,7 +20,7 @@ function lookup(dt) {
 }
 
 /* 人数別カード・料金の表示 */
-renderBanquet(document.getElementById("banquet"), { loc: "party", hireHref: "#hire", formHref: "#reserve" });
+renderBanquet(document.getElementById("banquet"), { loc: "party", compact: true, inPage: true });
 (() => {
   const P = banquetPrices();
   const dec = SITE.season.priceFocus === "dec";
