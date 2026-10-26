@@ -101,7 +101,7 @@ function calc(ev) {
       ${people ? `<div><dt>1名あたり（目安）</dt><dd>約${fmt(per)}${from}</dd></div>` : ""}
       <div><dt>使える機材</dt><dd>${esc(H.types[room ? "room" : "noRoom"].equipment.join("・"))}</dd></div>
     </dl>
-    ${people > 106 ? `<p class="warn">106名を超える場合は立食でのご案内になります。</p>` : ""}
+    ${people > 104 ? `<p class="warn">104名を超える場合は立食でのご案内になります。</p>` : ""}
     ${r.period.note ? `<p class="tip">12月1日〜22日の貸切は、${esc(r.period.note)}</p>` : ""}
     ${!HOLIDAY_YEARS.has(String(y)) ? `<p class="warn">${y}年の祝日はまだ反映していません。祝日・祝前日の料金はご相談時にご確認ください。</p>` : ""}
     <a class="btn solid" href="#reserve" data-track="group_inquiry_click" data-loc="simulator">この条件で貸切を相談する</a>
