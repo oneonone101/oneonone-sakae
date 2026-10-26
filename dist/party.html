@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&amp;family=Shippori+Mincho:wght@500;600&amp;family=Zen+Kaku+Gothic+New:wght@400;500&amp;family=Jost:wght@400;500&amp;display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/styles.css?v=c0ac9ea4">
 <style>:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); } body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; } nav.global a[aria-current] { color: var(--champagne); opacity: 1; }</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HOME", "item": "https://oneonone-sakae.jp/"}, {"@type": "ListItem", "position": 2, "name": "宴会・貸切", "item": "https://oneonone-sakae.jp/party"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://oneonone-sakae.jp/party", "name": "栄の宴会・個室宴会・貸切｜20名・30名・50名以上も ONE on ONE", "description": "名古屋・栄で宴会会場をお探しの幹事様へ。10〜20名は個室・半個室、20〜40名は大理石テーブル、40名以上の大型宴会も飲み放題付きコースで。貸切は着席最大104名・立食最大130名の最低保証料金制。栄駅徒歩5分。", "inLanguage": "ja", "about": {"@id": "https://oneonone-sakae.jp/#restaurant"}, "isPartOf": {"@type": "WebSite", "url": "https://oneonone-sakae.jp/", "name": "ONE on ONE"}}</script>
@@ -126,7 +126,7 @@
 <header class="site">
   <div class="wrap">
     <a class="logo" href="/" aria-label="ONE on ONE ホーム">
-      <img class="logo-mark" src="logo.svg" alt="ONE on ONE" width="150" height="30">
+      <img class="logo-mark" src="/logo.svg?v=c089b501" alt="ONE on ONE" width="150" height="30">
       <span>NISHIKI · SAKAE · NAGOYA</span>
     </a>
     <nav class="global" aria-label="グローバルナビゲーション">
@@ -181,10 +181,10 @@
         </div>
         <nav class="guide" id="guide" aria-label="団体・貸切のご案内">
           <p class="guide-k">団体・貸切のご相談</p>
-          <a href="#party-50"><b>団体宴会の詳細</b><span>通常の宴会コース・席</span></a>
-          <a href="#party-hire" class="g-hire"><b>貸切パーティーの詳細</b><span>最低保証料金制・設備</span></a>
-          <a href="#hire"><b>貸切料金を試算する</b><span>日付と人数で計算</span></a>
-          <a href="#reserve" class="g-form" data-track="group_inquiry_click" data-loc="guide"><b>すぐに問い合わせる</b><span>相談フォームへ</span></a>
+          <a href="#size"><b>団体宴会の詳細を見る</b><span>人数別の座席案内・宴会コース・料金</span></a>
+          <a href="#party-hire" class="g-hire"><b>貸切パーティーの詳細を見る</b><span>貸切可能人数・最低保証料金・設備</span></a>
+          <a href="#hire"><b>貸切料金をシミュレーション</b><span>希望日・人数から料金を確認</span></a>
+          <a href="#reserve" class="g-form" data-track="group_inquiry_click" data-loc="guide"><b>お問い合わせフォームへ</b><span>具体的なご相談・仮予約のお問い合わせ</span></a>
         </nav>
       </div>
       <div class="ph has-img" data-photo="floor" data-eager="" style="--lx:55%;--ly:15%"><img src="photos/floor.jpg" alt="シャンデリアと吊り下げのグリーンが彩るONE on ONEの店内全体。テーブル席と奥に光る大理石のテーブル" width="1206" height="791" decoding="async" fetchpriority="high"></div>
@@ -594,7 +594,7 @@
           <div class="fgrid">
             <div class="field"><label for="f-name">お名前<i>必須</i></label><input id="f-name" name="name" autocomplete="name" required=""><span class="err" id="e-name"></span></div>
             <div class="field"><label for="f-tel">電話番号<i>必須</i></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required=""><span class="err" id="e-tel"></span></div>
-            <div class="field full"><label for="f-mail">メールアドレス<i>必須</i></label><input id="f-mail" name="email" type="email" autocomplete="email" required=""><span class="err" id="e-mail"></span></div>
+            <div class="field full"><label for="f-mail">メールアドレス<i class="opt">任意</i></label><input id="f-mail" name="email" type="email" autocomplete="email" inputmode="email"><span class="err" id="e-mail"></span></div>
             <div class="field"><label for="f-date">希望日<i>必須</i></label><input id="f-date" name="date" type="date" required="" min="2026-10-26"><span class="err" id="e-date"></span></div>
             <div class="field"><label for="f-time">希望時間</label>
               <select id="f-time" name="time"><option value="">選択してください</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30以降</option><option>未定</option></select></div>
@@ -626,7 +626,7 @@
 
 <footer>
   <div class="wrap">
-    <a class="logo" href="/"><img class="logo-mark" src="logo.svg" alt="ONE on ONE" width="150" height="30"><span>個室×肉ビストロ · 名古屋 栄</span></a>
+    <a class="logo" href="/"><img class="logo-mark" src="/logo.svg?v=c089b501" alt="ONE on ONE" width="150" height="30"><span>個室×肉ビストロ · 名古屋 栄</span></a>
     <nav aria-label="フッターナビゲーション">
       <a href="/">HOME</a><a href="/bonenkai">YEAR-END</a><a href="/party">PARTY</a><a href="/anniversary">ANNIVERSARY</a><a href="/course">COURSE</a><a href="/space">SPACE</a><a href="/food">FOOD</a><a href="/access">ACCESS</a><a href="/privacy">PRIVACY</a>
     </nav>
@@ -656,8 +656,8 @@
   </div>
 </div>
 
-<script src="data.js"></script>
-<script src="common.js"></script>
+<script src="/data.js?v=4057d150"></script>
+<script src="/common.js?v=0376aecd"></script>
 <script>
 /* PARTY page */
 const H = SITE.hire;

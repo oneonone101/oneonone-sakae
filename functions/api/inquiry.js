@@ -27,7 +27,7 @@ function clean(body) {
 function validate(d) {
   if (!d.name) return "お名前を入力してください。";
   if (!/^[0-9\-+() ]{10,}$/.test(d.tel)) return "電話番号を確認してください。";
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return "メールアドレスを確認してください。";
+  if (d.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return "メールアドレスを確認してください。";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(d.date)) return "希望日を選択してください。";
   if (!(Number(d.people) >= 1)) return "予定人数を入力してください。";
   return "";
@@ -37,7 +37,7 @@ const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&
 
 function summary(d) {
   return [
-    ["お名前", d.name], ["電話番号", d.tel], ["メール", d.email],
+    ["お名前", d.name], ["電話番号", d.tel], ["メール", d.email || "（未入力）"],
     ["希望日", d.date], ["希望時間", d.time || "未選択"], ["予定人数", `${d.people}名`],
     ["ご予算", d.budget || "未選択"], ["ご利用目的", d.purpose || "未選択"], ["貸切の希望", d.hire || "未選択"],
     ["ご要望", d.message || "（なし）"], ["送信ページ", d.page || "-"]
@@ -82,14 +82,14 @@ export async function onRequestPost({ request, env }) {
     await send(env.RESEND_API_KEY, {
       from: fromEmail || "ONE on ONE フォーム <onboarding@resend.dev>",
       to: [storeEmail],
-      reply_to: d.email,
+      ...(d.email ? { reply_to: d.email } : {}),
       subject: `【${d.hire === "希望する" ? "貸切" : "団体宴会"}相談】${d.date} ${d.people}名 ${d.name}様`,
-      text: `ホームページから団体・貸切の相談が届きました。\nこのメールに返信すると、お客様に届きます。\n\n${text}`,
-      html: `<p>ホームページから団体・貸切の相談が届きました。<br>このメールに返信すると、お客様に届きます。</p>${html}`
+      text: `ホームページから団体・貸切の相談が届きました。\n${d.email ? "このメールに返信すると、お客様に届きます。" : "メールアドレスの入力がないため、お電話でご連絡ください。"}\n\n${text}`,
+      html: `<p>ホームページから団体・貸切の相談が届きました。<br>${d.email ? "このメールに返信すると、お客様に届きます。" : "メールアドレスの入力がないため、お電話でご連絡ください。"}</p>${html}`
     });
 
     // 2) お客様への控え（送信元ドメインの認証後のみ）
-    if (fromEmail) {
+    if (fromEmail && d.email) {
       await send(env.RESEND_API_KEY, {
         from: fromEmail,
         to: [d.email],

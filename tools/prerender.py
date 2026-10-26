@@ -107,6 +107,8 @@ def main():
         src = (ROOT / f"{p}.html").read_text("utf-8")
         (tmp / f"{p}.html").write_text(wrap_home(src) if p == "index" else src, "utf-8")
 
+    import hashlib
+    VERSIONS = {f: hashlib.sha1((ROOT / f).read_bytes()).hexdigest()[:8] for f in ["styles.css", "data.js", "common.js", "logo.svg"]}
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
         page = browser.new_page()
@@ -117,6 +119,9 @@ def main():
             html = "<!doctype html>\n" + page.content()
             if GA_ID:
                 html = html.replace("</head>", GA_SNIPPET + "\n</head>", 1)
+            # CSS・JSを更新したら必ず新しいファイルを読ませる（古いCSSのまま新しいHTMLが表示されて崩れるのを防ぐ）
+            for f, v in VERSIONS.items():
+                html = re.sub(r'(href|src)="/?' + re.escape(f) + r'"', lambda m: f'{m.group(1)}="/{f}?v={v}"', html)
             (DIST / f"{p}.html").write_text(html, "utf-8")
             print("rendered", p)
         browser.close()

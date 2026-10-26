@@ -63,7 +63,7 @@ if ($("#inq")) {
   const rules = [
     ["f-name", "e-name", v => v.trim() ? "" : "お名前を入力してください"],
     ["f-tel", "e-tel", v => /^[0-9\-+() ]+$/.test(v.trim()) && v.replace(/\D/g, "").length >= 10 ? "" : "電話番号を数字で入力してください（例：090-1234-5678）"],
-    ["f-mail", "e-mail", v => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim()) ? "" : "メールアドレスの形式を確認してください"],
+    ["f-mail", "e-mail", v => !v.trim() || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v.trim()) ? "" : "メールアドレスの形式を確認してください"],
     ["f-date", "e-date", v => !v ? "希望日を選択してください" : v < today.toISOString().slice(0, 10) ? "今日以降の日付を選んでください" : ""],
     ["f-people", "e-people", v => Number(v) >= 1 ? "" : "予定人数を入力してください"]
   ];

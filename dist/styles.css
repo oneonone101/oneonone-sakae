@@ -683,8 +683,20 @@ body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 .precheck p small { margin-left: 10px; color: var(--muted); letter-spacing: 0; }
 .precheck a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
 .precheck a:hover { color: var(--champagne); border-color: var(--gold); }
-@media (max-width: 559px) {
-  .guide a { padding: 12px 10px; }
-  .guide a b { font-size: 13px; letter-spacing: 0; white-space: nowrap; gap: 4px; }
-  .guide a span { font-size: 11px; }
-}
+
+
+/* 団体・貸切の選択肢：スマホは1列のカード、タイトルと補足を分けて余白をとる */
+.guide { grid-template-columns: 1fr; gap: 8px; background: none; border: 0; }
+.guide .guide-k { background: none; padding: 0 0 2px; }
+.guide a { position: relative; border: 1px solid var(--line); background: var(--char); padding: 16px 44px 16px 18px; gap: 6px; min-height: 0; }
+.guide a b { font-size: 15px; letter-spacing: .04em; display: block; }
+.guide a b::after { content: none; }
+.guide a::after { content: "→"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 16px; }
+.guide a span { font-size: 12.5px; line-height: 1.6; color: #cfc5b5; }
+.guide a.g-hire { box-shadow: none; border-left: 3px solid var(--gold); }
+.guide a.g-form { border-color: var(--gold); }
+.guide a.g-form::after { color: var(--ink); }
+.guide a:active { transform: translateY(1px); }
+@media (min-width: 760px) { .guide { grid-template-columns: repeat(2, minmax(0,1fr)); } .guide .guide-k { grid-column: 1 / -1; } }
+.field label i.opt { color: var(--muted); }
+.guide a span { word-break: auto-phrase; }
