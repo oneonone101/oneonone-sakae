@@ -163,6 +163,30 @@ function renderBanquet(el, opts) {
   const focusDec = (opts.focus || SITE.season.priceFocus) === "dec";
   const loc = opts.loc || "banquet";
   const form = opts.formHref || "#reserve";
+  if (opts.compact) {
+    /* トップ用：写真・人数・料金目安・特徴2つ・詳細リンクだけの短いカード */
+    el.innerHTML = SITE.banquet.map(b => {
+      const isHire = b.kind === "hire";
+      const price = isHire
+        ? `<span class="pk">${focusDec ? "12月の貸切（最低保証）" : "貸切（最低保証）"}</span><strong>¥${yen(focusDec ? P.hireDec : P.hireAll)}〜</strong>`
+        : `<span class="pk">${focusDec ? "飲み放題付きコース（12月）" : "飲み放題付きコース"}</span><strong>¥${yen(focusDec ? P.dec : P.normal)}〜</strong><small>／名</small>`;
+      return `<article class="bq bq-compact bq-${b.kind}" id="${b.id}">
+        <a class="bq-link" href="${esc(b.detail || "party.html")}" data-loc="${loc}-${b.id}">
+          <div class="ph" data-photo="${esc(b.photoKey)}"></div>
+          <div class="bq-body">
+            <p class="bq-size"><b>${esc(b.range)}</b>${b.unit === "" ? "" : `<small>${esc(b.unit || "名")}</small>`}</p>
+            <h3>${esc(b.title)}</h3>
+            <p class="bq-price">${price}</p>
+            ${isHire ? `<p class="bq-sub">日付ごとの最低保証料金制（コース料理・飲み放題込み）</p>` : ""}
+            <ul>${(b.points || b.seats.slice(0, 2)).map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+            <span class="bq-more">${isHire ? "貸切料金・座席配置を見る" : "詳しく見る"}</span>
+          </div>
+        </a>
+      </article>`;
+    }).join("");
+    if (typeof fillPhotos === "function") fillPhotos();
+    return;
+  }
   el.innerHTML = SITE.banquet.map(b => {
     const isHire = b.kind === "hire";
     const main = isHire
@@ -223,14 +247,14 @@ function courseCard(c, opts) {
     ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
     <${H} class="name">${esc(c.en)}<small>${esc(c.ja)}${c.note ? `（${esc(c.note)}）` : ""}</small></${H}>
     <p class="price">${dec ? `<span class="pk-dec">12月料金</span>` : ""}<strong>¥${yen(c.price)}</strong>${c.was ? `<s>¥${yen(c.was)}</s>` : ""}<span>税込／1名</span></p>
-    <dl>
+    ${opts.compact ? `<p class="course-spec">全${c.items}品<span>／</span>${drink}</p><p class="course-menu">${esc(c.menu)}</p>` : `<dl>
       <div><dt>ITEMS</dt><dd>全${c.items}品</dd></div>
       <div><dt>DRINK</dt><dd>${drink}</dd></div>
       <div><dt>MENU</dt><dd>${esc(c.menu)}</dd></div>
       <div><dt>WEB</dt><dd>ネット予約 ${esc(c.people)}</dd></div>
       ${opts.showTime ? `<div><dt>START</dt><dd>${esc(c.time)} のご入店</dd></div>` : ""}
       ${otherLine ? `<div><dt>${dec ? "OTHER" : "DEC"}</dt><dd>${otherLine}</dd></div>` : ""}
-    </dl>
+    </dl>`}
     <button class="btn${c.featured ? " solid" : ""}" type="button" data-open-book data-loc="${opts.loc || "course"}-${esc(c.id)}">このコースで予約</button>
   </article>`;
 }
