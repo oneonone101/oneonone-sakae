@@ -17,14 +17,14 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Jost:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
-<style>:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); } body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; } nav.global a[aria-current] { color: var(--champagne); opacity: 1; }</style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HOME", "item": "https://oneonone-sakae.jp/"}, {"@type": "ListItem", "position": 2, "name": "店内・個室", "item": "https://oneonone-sakae.jp/space"}]}</script>
+<style>:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); } body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; }</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HOME", "item": "https://oneonone-sakae.jp/"}, {"@type": "ListItem", "position": 2, "name": "お席・店内", "item": "https://oneonone-sakae.jp/space"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://oneonone-sakae.jp/space", "name": "栄の個室・半個室・貸切スペース｜2〜130名 ONE on ONE", "description": "シャンデリアと大理石のヴィンテージモダンな店内。8名・15名の完全個室、12名・16名の半個室、20名×2卓の大理石テーブル、着席最大104名・立食最大130名の貸切フロア。", "inLanguage": "ja", "about": {"@id": "https://oneonone-sakae.jp/#restaurant"}, "isPartOf": {"@type": "WebSite", "url": "https://oneonone-sakae.jp/", "name": "ONE on ONE"}}</script>
 
 </head>
-<body>
+<body class="pg-space">
 <div class="previewbar" role="note">
   <div class="wrap">
     <span>PREVIEW — 公開版ではこの帯と「要確認」の表示は出ません。</span>
@@ -39,38 +39,55 @@
       <span>NISHIKI · SAKAE · NAGOYA</span>
     </a>
     <nav class="global" aria-label="グローバルナビゲーション">
-      <a href="bonenkai.html">YEAR-END</a>
-      <a href="party.html">PARTY</a>
-      <a href="anniversary.html">ANNIVERSARY</a>
-      <a href="course.html">COURSE</a>
-      <a href="space.html" aria-current="page">SPACE</a>
-      <a href="food.html">FOOD</a>
-      <a href="access.html">ACCESS</a>
+      <a href="course.html">コース</a>
+      <a href="party.html">宴会・貸切</a>
+      <a href="space.html" aria-current="page">お席</a>
+      <a href="anniversary.html">記念日</a>
+      <a href="access.html">店舗情報</a>
+      <a href="bonenkai.html">忘年会・新年会</a>
+      <a href="food.html">料理・ドリンク</a>
     </nav>
     <div class="head-cta">
-      <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="header">団体・貸切相談</a>
+      <a class="btn" href="hire.html" data-track="group_guide_click" data-loc="header">貸切のご案内</a>
       <button class="btn solid" type="button" data-open-book data-loc="header">ネット予約</button>
     </div>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">MENU</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn"><span class="bars" aria-hidden="true"></span><span class="lbl">MENU</span></button>
   </div>
   <div class="drawer" id="drawer" hidden>
     <div class="wrap">
-      <a href="bonenkai.html"><span>YEAR-END</span><small>忘年会・新年会</small></a>
-      <a href="party.html"><span>PARTY</span><small>宴会・貸切</small></a>
-      <a href="anniversary.html"><span>ANNIVERSARY</span><small>誕生日・記念日</small></a>
-      <a href="course.html"><span>COURSE</span><small>コース</small></a>
-      <a href="space.html"><span>SPACE</span><small>店内・個室</small></a>
-      <a href="food.html"><span>FOOD</span><small>料理</small></a>
-      <a href="access.html"><span>ACCESS</span><small>アクセス・料金</small></a>
+      <nav class="drawer-main" aria-label="主要メニュー">
+        <a href="course.html">コース</a>
+        <a href="party.html">宴会・貸切</a>
+        <a href="space.html" aria-current="page">お席</a>
+        <a href="anniversary.html">記念日</a>
+        <a href="access.html">店舗情報</a>
+      </nav>
+      <nav class="drawer-more" aria-label="その他のページ">
+        <a href="bonenkai.html">忘年会・新年会</a>
+        <a href="hire.html">貸切パーティー</a>
+        <a href="afterparty.html">二次会</a>
+        <a href="food.html">料理・ドリンク</a>
+        <a href="index.html">ホーム</a>
+      </nav>
+      <p class="drawer-tel">お電話 <a href="" data-tel data-track="tel_click" data-loc="drawer"></a><small>17:00から受付</small></p>
     </div>
   </div>
 </header>
+<nav class="pnav" aria-label="主要メニュー">
+  <div class="wrap">
+    <a href="course.html">コース</a>
+    <a href="party.html">宴会・貸切</a>
+    <a href="space.html" aria-current="page">お席</a>
+    <a href="anniversary.html">記念日</a>
+    <a href="access.html">店舗情報</a>
+  </div>
+</nav>
 
 <div class="season" id="season"></div>
 
 <main>
   <nav class="crumbs wrap" aria-label="パンくずリスト">
-    <ol><li><a href="index.html">HOME</a></li><li aria-current="page">店内・個室</li></ol>
+    <ol><li><a href="index.html">HOME</a></li><li aria-current="page">お席・店内</li></ol>
   </nav>
   <section class="p-hero">
     <div class="wrap grid">
@@ -113,8 +130,8 @@
           <tr><th scope="row">3〜8名</th><td>ソファー席、8名個室</td><td>完全個室のみ個室料金</td></tr>
           <tr><th scope="row">9〜16名</th><td>15名個室、半個室（12名・16名）</td><td>完全個室は個室料金 ¥1,100／名</td></tr>
           <tr><th scope="row">17〜40名</th><td>大理石テーブルの半個室</td><td>飲み放題付きコース</td></tr>
-          <tr><th scope="row">40名以上</th><td><a href="party.html#party-50" style="color:var(--gold)">同じ空間での大人数の宴会</a>（複数テーブル。席配置・空席状況により対応可能人数が異なります）</td><td>飲み放題付きコース</td></tr>
-          <tr><th scope="row">貸切希望</th><td><a href="party.html#hire" style="color:var(--gold)">フロア貸切・完全貸切</a>（着席最大104名・立食最大130名）</td><td>最低保証料金制</td></tr>
+          <tr><th scope="row">40名以上</th><td><a href="party.html#party-50">同じ空間での大人数の宴会</a>（複数テーブル。席配置・空席状況により対応可能人数が異なります）</td><td>飲み放題付きコース</td></tr>
+          <tr><th scope="row">貸切希望</th><td><a href="hire.html">フロア貸切・完全貸切</a>（着席最大104名・立食最大130名）</td><td>最低保証料金制</td></tr>
         </tbody>
       </table></div>
       <p class="note" style="margin-top:14px">完全個室の個室料金は2時間ごとに1名¥1,100。コースの場合はコースの時間いっぱいご利用いただけます。</p>
@@ -137,7 +154,7 @@
       </table>
       <div class="sec-foot">
         <button class="btn solid" type="button" data-open-book data-loc="space-bottom">空席を確認して予約</button>
-        <a class="btn" href="party.html" data-loc="space-bottom">宴会・貸切の案内</a>
+        <a class="btn" href="party.html" data-loc="space-bottom">宴会・団体のご案内</a><a class="textlink" href="hire.html#layout">貸切時の座席配置図</a>
       </div>
     </div>
   </section>
@@ -148,7 +165,7 @@
   <div class="wrap">
     <a class="logo" href="index.html"><img class="logo-mark" src="logo.svg" alt="ONE on ONE" width="150" height="30"><span>個室×肉ビストロ · 名古屋 栄</span></a>
     <nav aria-label="フッターナビゲーション">
-      <a href="index.html">HOME</a><a href="bonenkai.html">YEAR-END</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a><a href="privacy.html">PRIVACY</a>
+      <a href="index.html">ホーム</a><a href="course.html">コース</a><a href="party.html">宴会・団体</a><a href="hire.html">貸切パーティー</a><a href="bonenkai.html">忘年会・新年会</a><a href="anniversary.html">誕生日・記念日</a><a href="afterparty.html">二次会</a><a href="space.html">お席・店内</a><a href="food.html">料理・ドリンク</a><a href="access.html">店舗情報・アクセス</a><a href="privacy.html">プライバシーポリシー</a>
     </nav>
     <p>ONE on ONE（ワンオンワン）／ 愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ TEL <span data-tel-text></span> ／ 地下鉄栄駅 徒歩5分<br>月〜土・祝前日 18:00〜翌5:00、日・祝 18:00〜翌3:00 ／ 20歳未満の方は禁煙席のみご案内しています。</p>
     <p>© ONE on ONE</p>
@@ -157,21 +174,21 @@
 
 <div class="dock" aria-label="予約メニュー">
   <div class="row">
-    <a href="#" class="primary" data-open-book data-loc="dock"><span>RESERVE</span>ネット予約</a>
-    <a href="party.html#guide" data-track="group_guide_click" data-loc="dock"><span>GROUP</span>団体・貸切相談</a>
-    <a href="" data-tel-link data-track="tel_click" data-loc="dock"><span>TEL</span>電話</a>
+    <a href="#" class="primary" data-open-book data-loc="dock">ネット予約</a>
+    <a href="hire.html" data-track="group_guide_click" data-loc="dock">貸切相談</a>
+    <a href="" data-tel-link data-track="tel_click" data-loc="dock">電話</a>
   </div>
 </div>
 
 <div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
   <div class="sheet-in">
     <h3 id="sheet-title">予約サイトを選んでください</h3>
-    <p class="note">どちらも空席確認・コース予約ができます（新しいタブで開きます）。受け付けられる人数は各サイトの表示をご確認ください。大人数のご相談はフォームかお電話でも承ります。</p>
+    <p class="note">どちらも空席確認・コース予約ができます（新しいタブで開きます）。受け付けられる人数は各サイトの表示をご確認ください。</p>
     <a class="btn solid" href="" data-book="hotpepper" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">ホットペッパーで予約</a>
     <a class="btn" href="" data-book="tabelog" target="_blank" rel="noopener" data-track="reserve_click" data-loc="sheet">食べログで予約</a>
-    <p class="sheet-month" id="sheet-month" hidden>予約サイトの日付カレンダーで<b>12月</b>を選んでください。12月の金・土は早めに埋まります。満席の日は、お電話かフォームでご相談ください。</p>
+    <p class="sheet-month" id="sheet-month" hidden>予約サイトの日付カレンダーで<b>12月</b>を選んでください。12月の金・土は早めに埋まります。満席の日は、お電話でご相談ください。</p>
     <p class="note sheet-tel">お電話でも承ります　<a href="" data-tel data-track="tel_click" data-loc="sheet"></a>（17:00〜）</p>
-    <a class="textlink sheet-form" id="sheet-form" href="party.html#reserve" data-track="group_inquiry_click" data-loc="sheet">40名以上の団体宴会・貸切はフォームでご相談</a>
+    <a class="textlink sheet-form" id="sheet-form" href="party.html#size" data-loc="sheet">40名以上の団体宴会・貸切のご案内</a>
     <button class="close" type="button" id="sheet-close">閉じる</button>
   </div>
 </div>
@@ -188,11 +205,12 @@ const seatDetail = {
   "カップルシート（カウンター）": { desc: "光る大理石のバーカウンターに、ゆったりしたソファーチェアを並べたお席です。ふたり並んで座れるので、カップルシートとしてご案内しています。", use: "デート、誕生日、記念日、食後の一杯" },
   "カップルシート": { desc: "重厚なソファーに並んで座る2名席。", use: "デート、誕生日、記念日" }
 };
+const seatId = { "メインフロア": "seat-floor", "大理石ロングテーブル": "seat-marble", "半個室": "seat-semi", "完全個室": "seat-room", "カップルシート（カウンター）": "seat-counter" };
 document.getElementById("seat-list").innerHTML = SITE.spaces.map((s, i) => {
   const d = seatDetail[s.name] || {};
-  return `<article class="room">
+  return `<article class="room"${seatId[s.name] ? ` id="${seatId[s.name]}"` : ""}>
     <div class="ph" data-photo="${esc(s.photoKey || "")}" role="img" aria-label="${esc(s.photo)}" style="--lx:${25 + i * 13}%;--ly:${18 + i * 9}%"></div>
-    <div style="display:grid;gap:16px">
+    <div class="room-body">
       <div class="head"><h2 style="font-size:24px">${esc(s.name)}</h2><span class="note">${esc(s.cap)}</span></div>
       <p class="lead">${esc(d.desc || "")}</p>
       <table class="spec">

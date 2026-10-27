@@ -1,0 +1,60 @@
+  <article class="cd" data-course="{ID}">
+    <section class="cd-hero">
+      <div class="wrap cd-grid">
+        <div class="ph cd-photo" id="cd-photo" data-eager></div>
+        <div class="cd-head">
+          <p class="cl-tags" id="cd-tags"></p>
+          <h1 id="cd-name"></h1>
+          <div class="cd-price" id="cd-price"></div>
+          <dl class="cl-spec cd-spec" id="cd-spec"></dl>
+          <div class="hero-actions">
+            <button class="btn solid" type="button" data-open-book data-loc="course-detail-{ID}">このコースを予約</button>
+            <a class="btn" href="#conditions">ご予約の条件を見る</a>
+          </div>
+          <p class="note" id="cd-photo-note"></p>
+        </div>
+      </div>
+    </section>
+
+    <nav class="cd-toc" aria-label="このページの内容">
+      <div class="wrap"><a href="#price">料金</a><a href="#menu">料理</a><a href="#drink">飲み放題</a><a href="#conditions">ご予約の条件</a></div>
+    </nav>
+
+    <div class="wrap cd-body">
+      <section class="cd-sec" id="price" aria-labelledby="price-h">
+        <h2 id="price-h">料金</h2>
+        <div class="cmp-scroll plain"><table class="cd-table" id="cd-price-table"></table></div>
+        <p class="note" id="cd-price-note"></p>
+      </section>
+
+      <section class="cd-sec" id="menu" aria-labelledby="menu-h">
+        <h2 id="menu-h">料理内容</h2>
+        <ol class="flowlist" id="cd-menu"></ol>
+        <p class="note" id="cd-menu-note"></p>
+      </section>
+
+      <section class="cd-sec" id="drink" aria-labelledby="drink-h">
+        <h2 id="drink-h">飲み放題</h2>
+        <div id="cd-drink"></div>
+      </section>
+
+      <section class="cd-sec" id="conditions" aria-labelledby="cond-h">
+        <h2 id="cond-h">ご予約の条件</h2>
+        <table class="spec" id="cd-cond"></table>
+        <div id="cd-extra"></div>
+      </section>
+
+      <section class="cd-sec cd-cta" aria-label="予約">
+        <button class="btn solid" type="button" data-open-book data-loc="course-detail-bottom-{ID}">このコースで空席を確認</button>
+        <p class="note">お電話でも承ります　<a href="" data-tel data-track="tel_click" data-loc="course-detail"></a>（17:00〜）</p>
+      </section>
+    </div>
+
+    <section class="blk alt" aria-labelledby="rel-h">
+      <div class="wrap">
+        <div class="sec-head"><span class="en big">Other Courses</span><h2 id="rel-h">ほかのコースと比べる</h2></div>
+        <div class="cl-list cl-grid" id="cd-related"></div>
+        <div class="sec-foot"><a class="btn" href="course.html">コース一覧に戻る</a></div>
+      </div>
+    </section>
+  </article>

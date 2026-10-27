@@ -56,7 +56,7 @@ const SITE = {
     { id: "bhire", range: "貸切", unit: "", title: "会社イベント・大型パーティー", chip: "フロア・店舗貸切",
       seats: ["着席最大104名・立食最大130名", "他のお客様を気にせずイベントを開催", "マイク・プロジェクター（完全貸切は音響も）", "180分制（受付30分・コース2時間・撤退30分）"],
       photoKey: "marble-day", kind: "hire", cta: "貸切料金を確認",
-      points: ["着席最大104名・立食最大130名", "マイク・プロジェクター（完全貸切は音響も）"], anchor: "#party-hire", detail: "party.html#hire" }
+      points: ["着席最大104名・立食最大130名", "マイク・プロジェクター（完全貸切は音響も）"], anchor: "hire.html", detail: "hire.html" }
   ],
   hours: [
     { day: "月〜土・祝前日", time: "18:00 — 翌5:00", note: "料理L.O. 翌4:00 ／ ドリンクL.O. 翌4:30", verified: true },
@@ -70,15 +70,26 @@ const SITE = {
     { size: "〜40", unit: "名", title: "半個室・大理石テーブル", photo: "大理石ロングテーブル", photoKey: "marble", items: ["20名掛けの大理石テーブル×2", "カーテンで仕切って半個室に", "歓送迎会・団体宴会に"], cta: "宴会を予約", book: true, verified: true },
     { size: "130", unit: "名まで", title: "貸切パーティー", photo: "貸切パーティー", photoKey: "floor", items: ["着席最大104名・立食最大130名", "最低保証料金制（月・曜日で変動）", "マイク・プロジェクター利用可"], cta: "貸切料金を見る", href: "party.html#hire", book: false, verified: true }
   ],
+  /* コース一覧のカテゴリ（食べログ型の絞り込み）。cat はコースの cat と対応 */
+  courseCats: [
+    { id: "banquet", label: "通常宴会" },
+    { id: "seasonal", label: "季節限定" },
+    { id: "anniversary", label: "記念日" },
+    { id: "afterparty", label: "二次会" }
+  ],
+  /* コース写真について：コース専用の写真がまだ無いため、料理・店内の写真をイメージとして使用（photoKey を差し替えれば変わる） */
+  coursePhotoNote: "写真は料理・店内のイメージです。",
+  /* 飲み放題の内容（コース共通の説明。サイト既存の表記） */
+  drinkFlow: "生ビールやワイン、カクテルを含む飲み放題",
   /* dec: 12月の内容（null = 12月の販売は要確認）／ decOnly: 12月だけ表示 */
   courses: [
-    { id: "standard", en: "Standard", ja: "STANDARDコース", note: "日〜木限定", price: 4000, was: 5000, items: 7, drink: "120分", menu: "牛ハラミのグリル、おすすめパスタ ほか", people: "3〜99名", time: "18:00〜翌3:00", dec: null, decNote: "12月は販売なし", verified: true },
-    { id: "recommended", en: "Recommended", ja: "おすすめコース", price: 4500, was: 5500, items: 9, drink: "120分", menu: "季節のピザ、牛すじのトマトパスタ、牛ハラミの肉料理 ほか", people: "2〜99名", time: "18:00〜翌3:00", dec: { price: 5000, drink: "120分" }, verified: true },
-    { id: "gradeup", en: "Grade Up", ja: "GRADEUPコース", price: 5000, was: 6000, items: 10, drink: "150分", menu: "自家製ローストビーフ、牛リブロースのグリル、シェフのおすすめパスタ ほか", people: "2〜99名", time: "18:00〜翌3:00", dec: { price: 6000, drink: "120分" }, featured: true, badge: "POPULAR", verified: true },
-    { id: "premium", en: "Premium", ja: "PREMIUMコース", price: 6000, was: 7000, items: 10, drink: "180分", menu: "黒毛和牛イチボのグリル、生ウニのクリームパスタ ほか", people: "2〜99名", time: "18:00〜翌1:00", dec: { price: 7000, drink: "150分" }, verified: true },
-    { id: "anniversary", en: "Anniversary", ja: "ANNIVERSARYコース", price: 7000, was: null, items: 12, drink: "150分", menu: "テーブルアートの前菜、自家製ローストビーフ、和牛イチボのグリル、季節のピザ、メッセージ付きデザートプレート ほか", people: "2〜99名", time: "18:00〜翌3:00", dec: { price: 7000, drink: "150分" }, verified: true },
-    { id: "afterparty", en: "After Party", ja: "二次会コース", note: "22:00〜", price: 3300, was: null, items: 4, drink: "120分", menu: "二次会向けの軽めの料理", people: "2〜99名", time: "22:00〜翌1:00", dec: { price: 3300, drink: "120分" }, verified: true },
-    { id: "xmas", en: "Christmas", ja: "X'masコース", note: "12月限定", decOnly: true, price: 11000, was: null, items: 10, drink: "なし", menu: "和牛タン、旬の寒ブリ ほか", people: "2〜10名", time: "17:30〜翌3:00", verified: true }
+    { id: "standard", cat: "banquet", photoKey: "ajillo", en: "Standard", ja: "STANDARDコース", note: "日〜木限定", price: 4000, was: 5000, items: 7, drink: "120分", menu: "牛ハラミのグリル、おすすめパスタ ほか", people: "3〜99名", time: "18:00〜翌3:00", dec: null, decNote: "12月は販売なし", verified: true },
+    { id: "recommended", cat: "banquet", photoKey: "pizza", en: "Recommended", ja: "おすすめコース", price: 4500, was: 5500, items: 9, drink: "120分", menu: "季節のピザ、牛すじのトマトパスタ、牛ハラミの肉料理 ほか", people: "2〜99名", time: "18:00〜翌3:00", dec: { price: 5000, drink: "120分" }, verified: true },
+    { id: "gradeup", cat: "banquet", photoKey: "meat", en: "Grade Up", ja: "GRADEUPコース", price: 5000, was: 6000, items: 10, drink: "150分", menu: "自家製ローストビーフ、牛リブロースのグリル、シェフのおすすめパスタ ほか", people: "2〜99名", time: "18:00〜翌3:00", dec: { price: 6000, drink: "120分" }, featured: true, badge: "POPULAR", verified: true },
+    { id: "premium", cat: "banquet", photoKey: "burrata", en: "Premium", ja: "PREMIUMコース", price: 6000, was: 7000, items: 10, drink: "180分", menu: "黒毛和牛イチボのグリル、生ウニのクリームパスタ ほか", people: "2〜99名", time: "18:00〜翌1:00", dec: { price: 7000, drink: "150分" }, verified: true },
+    { id: "anniversary", cat: "anniversary", photoKey: "tableart", en: "Anniversary", ja: "ANNIVERSARYコース", price: 7000, was: null, items: 12, drink: "150分", menu: "テーブルアートの前菜、自家製ローストビーフ、和牛イチボのグリル、季節のピザ、メッセージ付きデザートプレート ほか", people: "2〜99名", time: "18:00〜翌3:00", dec: { price: 7000, drink: "150分" }, verified: true },
+    { id: "afterparty", cat: "afterparty", photoKey: "counter", en: "After Party", ja: "二次会コース", note: "22:00〜", price: 3300, was: null, items: 4, drink: "120分", menu: "二次会向けの軽めの料理", people: "2〜99名", time: "22:00〜翌1:00", dec: { price: 3300, drink: "120分" }, verified: true },
+    { id: "xmas", cat: "seasonal", photoKey: "semi-chandelier", en: "Christmas", ja: "X'masコース", note: "12月限定", decOnly: true, price: 11000, was: null, items: 10, drink: "なし", menu: "和牛タン、旬の寒ブリ ほか", people: "2〜10名", time: "17:30〜翌3:00", verified: true }
   ],
   /* 料理メニュー（食べログ掲載の店舗メニューより。価格は税込）。note: "おすすめ" など */
   menu: [

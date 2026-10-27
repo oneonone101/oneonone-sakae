@@ -6,11 +6,12 @@ const seatDetail = {
   "カップルシート（カウンター）": { desc: "光る大理石のバーカウンターに、ゆったりしたソファーチェアを並べたお席です。ふたり並んで座れるので、カップルシートとしてご案内しています。", use: "デート、誕生日、記念日、食後の一杯" },
   "カップルシート": { desc: "重厚なソファーに並んで座る2名席。", use: "デート、誕生日、記念日" }
 };
+const seatId = { "メインフロア": "seat-floor", "大理石ロングテーブル": "seat-marble", "半個室": "seat-semi", "完全個室": "seat-room", "カップルシート（カウンター）": "seat-counter" };
 document.getElementById("seat-list").innerHTML = SITE.spaces.map((s, i) => {
   const d = seatDetail[s.name] || {};
-  return `<article class="room">
+  return `<article class="room"${seatId[s.name] ? ` id="${seatId[s.name]}"` : ""}>
     <div class="ph" data-photo="${esc(s.photoKey || "")}" role="img" aria-label="${esc(s.photo)}" style="--lx:${25 + i * 13}%;--ly:${18 + i * 9}%"></div>
-    <div style="display:grid;gap:16px">
+    <div class="room-body">
       <div class="head"><h2 style="font-size:24px">${esc(s.name)}</h2><span class="note">${esc(s.cap)}</span></div>
       <p class="lead">${esc(d.desc || "")}</p>
       <table class="spec">

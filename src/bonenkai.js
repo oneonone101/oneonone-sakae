@@ -16,7 +16,7 @@ renderBanquet(document.getElementById("banquet"), { loc: "bonenkai", focus: "dec
 
 /* 12月のコース */
 const decList = coursesFor("dec").filter(c => !c.decOnly && !["afterparty", "anniversary"].includes(c.id));
-document.getElementById("dec-cards").innerHTML = decList.map(c => courseCard(c, { loc: "bonenkai-course" })).join("");
+document.getElementById("dec-cards").innerHTML = decList.map(c => courseListCard(c, { loc: "bonenkai-course" })).join("");
 const offList = SITE.courses.filter(c => !c.dec && !c.decOnly);
 document.getElementById("dec-off").textContent = offList.length ? `${offList.map(c => c.ja).join("・")}は12月の販売はありません（1〜11月の${offList.map(c => c.note).filter(Boolean).join("・")}のみ）。` : "";
 

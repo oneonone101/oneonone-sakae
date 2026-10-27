@@ -8,7 +8,7 @@ for head in sorted((ROOT / "src").glob("*.head.html")):
     main = (ROOT / "src" / f"{page}.main.html").read_text(encoding="utf-8")
     qa = []
     for m in re.finditer(r"<details[^>]*>\s*<summary>(.*?)</summary>\s*<p>(.*?)</p>\s*</details>", main, re.S):
-        clean = lambda s: html.unescape(re.sub(r"<[^>]+>", "", s)).strip()
+        clean = lambda s: html.unescape(re.sub(r"<[^>]+>", "", re.sub(r'<span class="(?:pv-only|chk)">.*?</span>', "", s, flags=re.S))).strip()
         qa.append({"@type": "Question", "name": clean(m.group(1)),
                    "acceptedAnswer": {"@type": "Answer", "text": clean(m.group(2))}})
     if not qa:

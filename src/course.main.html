@@ -1,19 +1,24 @@
   <section class="p-hero">
-    <div class="wrap" style="padding-block:36px 8px;display:grid;gap:18px">
+    <div class="wrap p-head">
       <p class="eyebrow">Course &amp; Free Flow</p>
-      <h1><span class="nw">栄の宴会コース・</span><span class="nw">飲み放題プラン</span></h1>
-      <p class="lead">宴会コースには、生ビールやワイン、カクテルを含む飲み放題が付いています（12月限定のX'masコースは飲み放題なし）。人数やご予算、時間帯に合わせてお選びください。コース利用時はテーブルチャージがかかりません。<a class="textlink" href="bonenkai.html">忘年会のご案内</a></p>
-      <div class="seg season-seg" role="radiogroup" aria-label="表示する時期">
-        <input type="radio" name="period" id="p-dec" value="dec"><label for="p-dec">12月（忘年会）</label>
-        <input type="radio" name="period" id="p-normal" value="normal"><label for="p-normal">1〜11月</label>
-      </div>
+      <h1><span class="nw">コース一覧・</span><span class="nw">飲み放題プラン</span></h1>
+      <p class="lead">料金・品数・飲み放題の時間を並べて比べられます。12月限定のX'masコースを除き、すべて飲み放題付きです。コース利用時はテーブルチャージがかかりません。</p>
     </div>
   </section>
 
-  <section class="blk" style="padding-top:40px" aria-label="コース一覧">
+  <section class="blk tight" aria-label="コース一覧">
     <div class="wrap">
-      <p class="note" id="period-note" style="margin-bottom:20px"></p>
-      <div class="courses" id="courses"></div>
+      <div class="filter" id="filter">
+        <div class="chips" role="group" aria-label="カテゴリで絞り込む" id="cat-chips"></div>
+        <div class="seg season-seg" role="radiogroup" aria-label="表示する時期">
+          <input type="radio" name="period" id="p-dec" value="dec"><label for="p-dec">12月（忘年会）</label>
+          <input type="radio" name="period" id="p-normal" value="normal"><label for="p-normal">1〜11月</label>
+        </div>
+      </div>
+      <p class="note result-note" id="period-note" aria-live="polite"></p>
+      <div class="cl-list cl-grid" id="courses"></div>
+      <div class="empty" id="empty" hidden></div>
+      <p class="note" style="margin-top:16px">価格はすべて税込・1名様あたり。表示価格はグルメサイト掲載時点の割引後価格です（取り消し線は通常価格）。「人数」はネット予約で受け付けている人数です。<span id="photo-note"></span></p>
     </div>
   </section>
 
@@ -24,7 +29,7 @@
         <h2 id="cmp-title">コースを比較する</h2>
       </div>
       <div class="cmp-scroll"><table class="cmp" id="cmp"></table></div>
-      <p class="note" style="margin-top:14px">価格はすべて税込です。表示価格はグルメサイト掲載時点の内容で、時期により変わります。「ネット予約の人数」は予約サイトで受け付けている人数です。大人数のご予約は、<a href="party.html#reserve">相談フォーム</a>やお電話でも承ります。</p>
+      <p class="note" style="margin-top:14px">価格はすべて税込です。表示価格はグルメサイト掲載時点の内容で、時期により変わります。「ネット予約の人数」は予約サイトで受け付けている人数です。大人数のご予約は、<a href="party.html">宴会・団体のページ</a>やお電話でも承ります。</p>
     </div>
   </section>
 
@@ -37,7 +42,7 @@
       <div class="organizer" style="margin-top:0">
         <div><span class="k">PARTY</span><h3>会社の宴会・忘年会</h3><p>迷ったらGRADEUPコース。1〜11月の日〜木ならSTANDARDコースで予算を抑えられます（12月は販売なし）。40名以上の大型宴会もコースでご相談いただけます（<a href="party.html#party-50">大人数の宴会</a>）。</p></div>
         <div><span class="k">ANNIVERSARY</span><h3>誕生日・記念日</h3><p>テーブルアートとメッセージプレート付きのANNIVERSARYコース。<a href="anniversary.html">演出の詳細</a></p></div>
-        <div><span class="k">AFTER PARTY</span><h3>二次会</h3><p>22時からの二次会コース。全4品・飲み放題120分で¥3,300。</p></div>
+        <div><span class="k">AFTER PARTY</span><h3>二次会</h3><p>22時からの二次会コース。全4品・飲み放題120分で¥3,300。<a href="afterparty.html">二次会のご案内</a></p></div>
       </div>
     </div>
   </section>
@@ -55,7 +60,7 @@
       </div>
       <div class="sec-foot">
         <button class="btn solid" type="button" data-open-book data-loc="course-bottom">空席を確認して予約</button>
-        <a class="btn" href="party.html#reserve" data-track="group_inquiry_click" data-loc="course-bottom">団体・貸切を相談する</a>
+        <a class="btn" href="party.html" data-loc="course-bottom">宴会・貸切のご案内</a>
       </div>
     </div>
   </section>

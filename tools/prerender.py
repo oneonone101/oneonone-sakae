@@ -12,8 +12,13 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 SITE_URL = "https://oneonone-sakae.jp"
 GA_ID = "G-KW46DR5678"  # 例 "G-XXXXXXXXXX"。Google アナリティクス作成後に入れる
-PAGES = ["index", "bonenkai", "party", "anniversary", "course", "space", "food", "access", "privacy"]
-PRIORITY = {"index": "1.0", "bonenkai": "0.9", "party": "0.9", "anniversary": "0.8", "course": "0.8", "privacy": "0.3"}
+BASE_PAGES = ["index", "bonenkai", "party", "hire", "afterparty", "anniversary", "course", "space", "food", "access", "privacy"]
+PRIORITY = {"index": "1.0", "bonenkai": "0.9", "party": "0.9", "hire": "0.9", "anniversary": "0.8", "course": "0.8", "afterparty": "0.7", "privacy": "0.3"}
+
+
+def all_pages():
+    """基本ページ＋コース詳細ページ（build.py が data.js から作る course-*.html）"""
+    return BASE_PAGES + sorted(f.stem for f in ROOT.glob("course-*.html"))
 HOME_TITLE = "栄の宴会・個室・貸切・誕生日ディナー｜肉ビストロ ONE on ONE（名古屋・錦）"
 
 HOME_HEAD = f"""<link rel="canonical" href="{SITE_URL}/">
@@ -31,7 +36,9 @@ GA_SNIPPET = f"""<script async src="https://www.googletagmanager.com/gtag/js?id=
 
 
 def wrap_home(src: str) -> str:
-    """index.html はプレビュー用に head/body を省いているので、本番用に包む"""
+    """（旧形式）head/body を省いた index.html を本番用に包む。build.py が作る現在の index.html はそのまま使う"""
+    if src.lstrip().lower().startswith("<!doctype"):
+        return src
     head, body = src.split('<div class="previewbar"', 1)
     head = head.replace("<title>ONE on ONE 栄</title>", f"<title>{HOME_TITLE}</title>")
     head = head.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', "")
@@ -42,7 +49,7 @@ def wrap_home(src: str) -> str:
 
 
 CLEANUP_JS = """() => {
-  document.querySelectorAll('.previewbar, [data-preview], .chk').forEach(n => n.remove());
+  document.querySelectorAll('.previewbar, [data-preview], .chk, .pv-only').forEach(n => n.remove());
   document.body.classList.remove('show-chk');
   document.documentElement.classList.add('is-live');
   document.querySelectorAll('.mapcard .ph').forEach(ph => {
@@ -54,7 +61,7 @@ CLEANUP_JS = """() => {
   });
   document.querySelectorAll('a[href]').forEach(a => {
     const h = a.getAttribute('href');
-    const m = h.match(/^([a-z]+)\\.html(#.*)?$/);
+    const m = h.match(/^([a-z0-9-]+)\\.html(#.*)?$/);
     if (m) a.setAttribute('href', (m[1] === 'index' ? '/' : '/' + m[1]) + (m[2] || ''));
   });
 }"""
@@ -103,6 +110,7 @@ def main():
     for img in (ROOT / "photos").glob("*.jpg"):
         shutil.copy(img, DIST / "photos" / img.name)
     shutil.copytree(ROOT / "photos", tmp / "photos", ignore=shutil.ignore_patterns("incoming"))
+    PAGES = all_pages()
     for p in PAGES:
         src = (ROOT / f"{p}.html").read_text("utf-8")
         (tmp / f"{p}.html").write_text(wrap_home(src) if p == "index" else src, "utf-8")

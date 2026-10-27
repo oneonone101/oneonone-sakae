@@ -35,8 +35,14 @@ if (SITE.season.active) {
 $("#toggle-chk") && $("#toggle-chk").addEventListener("change", e => document.body.classList.toggle("show-chk", e.target.checked));
 
 const menuBtn = $("#menu-btn"), drawer = $("#drawer");
-menuBtn.addEventListener("click", () => { const open = drawer.hidden; drawer.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open)); menuBtn.textContent = open ? "CLOSE" : "MENU"; });
-drawer.addEventListener("click", e => { if (e.target.closest("a")) { drawer.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); menuBtn.textContent = "MENU"; } });
+const setMenu = open => { drawer.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open)); const l = menuBtn.querySelector(".lbl"); if (l) l.textContent = open ? "CLOSE" : "MENU"; document.body.classList.toggle("menu-open", open); };
+menuBtn.addEventListener("click", () => setMenu(drawer.hidden));
+drawer.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !drawer.hidden) setMenu(false); });
+
+/* 入力中（スマホのキーボード表示中）は下部の予約バーを隠して、入力欄を覆わないようにする */
+document.addEventListener("focusin", e => { if (e.target.matches("input:not([type=radio]):not([type=checkbox]), select, textarea")) document.body.classList.add("typing"); });
+document.addEventListener("focusout", () => document.body.classList.remove("typing"));
 
 const sheet = $("#sheet");
 document.addEventListener("click", e => {
@@ -46,7 +52,7 @@ document.addEventListener("click", e => {
   track("reserve_open", { location: b.dataset.loc || "" });
   const month = b.dataset.month || window.BOOK_MONTH;
   const sm = $("#sheet-month"); if (sm) sm.hidden = String(month) !== "12";
-  const sf = $("#sheet-form"); if (sf && document.querySelector("form.inq")) sf.setAttribute("href", "#reserve");
+  const sf = $("#sheet-form"); if (sf && document.querySelector("form.inq")) { sf.setAttribute("href", "#reserve"); sf.textContent = "団体・貸切は相談フォームへ"; sf.dataset.track = "group_inquiry_click"; }
   sheet.hidden = false;
   sheet.querySelector("a").focus();
 });
@@ -216,7 +222,7 @@ function renderBanquet(el, opts) {
     const bookLink = `<button class="textlink" type="button" data-open-book data-loc="${loc}-${b.id}">ネット予約で空席を確認</button>`;
     const talk = (text, solid) => `<a class="${solid ? "btn solid" : "textlink"}" href="${form}" data-hire="${isHire ? "希望する" : "希望しない"}" data-track="group_inquiry_click" data-loc="${loc}-${b.id}">${esc(text)}</a>`;
     let cta;
-    if (isHire) cta = `<a class="btn solid" href="${opts.hireHref || "party.html#hire"}" data-track="hire_price_click" data-loc="${loc}-${b.id}">${esc(b.cta)}</a>${talk("貸切を相談する", false)}`;
+    if (isHire) cta = `<a class="btn solid" href="${opts.hireHref || "hire.html#price"}" data-track="hire_price_click" data-loc="${loc}-${b.id}">${esc(b.cta)}</a>${talk("貸切を相談する", false)}`;
     else if (b.kind === "talk") cta = talk(b.cta, true) + bookLink;
     else cta = book(b.cta) + talk("電話・フォームで相談", false);
     return `<article class="bq bq-${b.kind}" id="${b.id}">
@@ -273,9 +279,44 @@ function courseCard(c, opts) {
     <button class="btn${c.featured ? " solid" : ""}" type="button" data-open-book data-loc="${opts.loc || "course"}-${esc(c.id)}">このコースで予約</button>
   </article>`;
 }
+/* ---------- コース一覧カード（食べログ型：写真・名前・料金・品数・飲み放題・人数を同じ位置に） ---------- */
+const catLabel = id => (SITE.courseCats.find(x => x.id === id) || {}).label || "";
+const courseHref = c => `course-${c.id}.html`;
+function courseOtherLine(c) {
+  if (c.period === "dec" && c.normalPrice) return (c.normalPrice !== c.price || c.normalDrink !== c.drink) ? `1〜11月は¥${yen(c.normalPrice)}・飲み放題${c.normalDrink}` : "1〜11月も同じ内容";
+  if (c.decOnly) return "12月のみの販売";
+  return decText(c);
+}
+function courseListCard(c, opts) {
+  opts = opts || {};
+  const H = opts.h || "h3";
+  const dec = c.period === "dec" && !c.decOnly;
+  const tags = [c.badge ? `<span class="t-hot">人気</span>` : "", `<span>${esc(catLabel(c.cat))}</span>`, c.note ? `<span class="t-note">${esc(c.note)}</span>` : ""].join("");
+  const other = courseOtherLine(c);
+  return `<article class="cl${c.featured ? " featured" : ""}" id="${esc(c.id)}" data-cat="${esc(c.cat)}">
+    <a class="cl-main" href="${courseHref(c)}" data-track="course_detail_click" data-loc="${opts.loc || "course"}-${esc(c.id)}">
+      <div class="ph" data-photo="${esc(c.photoKey || "")}"></div>
+      <div class="cl-body">
+        <p class="cl-tags">${tags}</p>
+        <${H} class="cl-name">${esc(c.ja)}</${H}>
+        <p class="cl-price">${dec ? `<span class="pk-dec">12月料金</span>` : ""}<strong>¥${yen(c.price)}</strong><small>税込／1名</small>${c.was ? `<s>¥${yen(c.was)}</s>` : ""}</p>
+      </div>
+    </a>
+    <dl class="cl-spec">
+      <div><dt>料理</dt><dd>${c.items}<small>品</small></dd></div>
+      <div><dt>飲み放題</dt><dd>${c.drink === "なし" ? "なし" : esc(c.drink)}</dd></div>
+      <div><dt>人数</dt><dd>${esc(c.people)}</dd></div>
+    </dl>
+    ${other ? `<p class="cl-other">${esc(other)}</p>` : ""}
+    <div class="cl-cta">
+      <a class="btn" href="${courseHref(c)}" data-track="course_detail_click" data-loc="${opts.loc || "course"}-${esc(c.id)}-btn">詳細を見る</a>
+      <button class="btn solid" type="button" data-open-book data-loc="${opts.loc || "course"}-${esc(c.id)}">予約する</button>
+    </div>
+  </article>`;
+}
 function bindPeriodToggle(name, render) {
   const radios = document.querySelectorAll(`input[name=${name}]`);
-  const initial = location.hash === "#december" ? "dec" : (SITE.season.priceFocus || "normal");
+  const initial = location.hash.includes("december") ? "dec" : (SITE.season.priceFocus || "normal");
   radios.forEach(r => { r.checked = r.value === initial; r.addEventListener("change", e => { render(e.target.value); track("course_period_view", { period: e.target.value }); }); });
   render(initial);
 }
@@ -284,7 +325,7 @@ function bindPeriodToggle(name, render) {
 function cleanLinks(root) {
   if (PREVIEW) return;
   (root || document).querySelectorAll("a[href]").forEach(a => {
-    const m = a.getAttribute("href").match(/^([a-z]+)\.html(#.*)?$/);
+    const m = a.getAttribute("href").match(/^([a-z0-9-]+)\.html(#.*)?$/);
     if (m) a.setAttribute("href", (m[1] === "index" ? "/" : "/" + m[1]) + (m[2] || ""));
   });
 }
