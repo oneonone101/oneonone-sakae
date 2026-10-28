@@ -700,3 +700,301 @@ body { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 @media (min-width: 760px) { .guide { grid-template-columns: repeat(2, minmax(0,1fr)); } .guide .guide-k { grid-column: 1 / -1; } }
 .field label i.opt { color: var(--muted); }
 .guide a span { word-break: auto-phrase; }
+
+/* =====================================================================
+   LIGHT REDESIGN（2026-10 試作）
+   アイボリーの背景・チャコールの文字・ゴールドは控えめに。
+   英字の飾り見出し、グラデーション、枠付きカード、バッジを減らし、
+   スマホ本文は16pxを基本にする。上の黒×ゴールドの指定をここで上書きする。
+   ===================================================================== */
+:root {
+  --ink: #fbf9f4;        /* ページ背景（アイボリー） */
+  --char: #f3efe6;       /* 区切りの背景 */
+  --umber: #ece6da;
+  --line: #ddd5c6;       /* 細い線 */
+  --gold: #9c7a3c;       /* アクセント（白地で読める濃さのゴールド） */
+  --champagne: #2a2724;  /* 強調文字＝濃いチャコール */
+  --fg: #2f2c29;         /* 本文 */
+  --muted: #5f5850;      /* 補足（白地でコントラスト4.5以上） */
+  --flag: #9a4b12;
+  --f-display: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --f-mincho: var(--f-display);
+  --f-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --f-label: var(--f-body);
+  color-scheme: light;
+}
+body { background: var(--ink); color: var(--fg); font-size: 16px; line-height: 1.9; letter-spacing: .03em; font-feature-settings: "palt" 0; }
+body::before { background: var(--ink); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; color: var(--champagne); letter-spacing: .04em; }
+.en { font-style: normal; }
+
+/* 英字の飾り・バッジ・装飾線をやめる */
+.sec-head .en.big, .eyebrow, .badge, .chip, .option .k, .menu-cat h3 .en, .logo span:last-child, .clock small { display: none !important; }
+.ph::after, .hero .ph::after { display: none; }
+.ph { background: var(--umber); }
+.reveal { animation: none; }
+
+/* 文字の大きさ：本文16px・補足14px */
+.lead { color: var(--fg); font-size: 16px; line-height: 1.9; max-width: 40em; }
+.note, .bq-note, .small-group, .disclaimer, .fine, .bq-sub, .opt-price small, .price-line small, .course .price span, .course .price s, .info td small, .hours-table td small, .spec td small, .charges p, .sim-out .tip, .ptable-note, .facts span, .field label { font-size: 14px; color: var(--muted); }
+p, li, dd, td, th { font-size: 16px; }
+.textlink, button.textlink { font-family: var(--f-body); font-size: 15px; letter-spacing: .04em; color: var(--champagne); border-bottom: 1px solid var(--gold); }
+.k, .sim-out .k, .channel .k, .organizer .k, .eqtypes .k { font-family: var(--f-body); font-size: 13px; letter-spacing: .06em; text-transform: none; color: var(--muted); }
+
+/* ボタン：主ボタンは濃いチャコール、もう一方は線のみ */
+.btn { min-height: 52px; font-family: var(--f-body); font-size: 15px; letter-spacing: .08em; color: var(--champagne); border: 1px solid var(--champagne); background: transparent; border-radius: 2px; }
+.btn:hover { background: var(--champagne); color: #fff; }
+.btn.solid { background: var(--champagne); color: #fff; border-color: var(--champagne); }
+.btn.solid:hover { background: #000; color: #fff; }
+.btn small { font-size: 11px; opacity: .7; }
+
+/* ヘッダー・季節の帯・メニュー */
+header.site { background: rgba(251,249,244,.96); border-bottom: 1px solid var(--line); }
+.logo .logo-mark { height: 24px; }
+nav.global a { font-family: var(--f-body); font-size: 14px; letter-spacing: .06em; color: var(--fg); opacity: 1; }
+nav.global a:hover, nav.global a[aria-current] { color: var(--gold); }
+.head-cta .btn { min-height: 40px; font-size: 13px; }
+.menu-btn { border: 1px solid var(--line); color: var(--fg); font-family: var(--f-body); font-size: 12px; letter-spacing: .04em; width: auto; padding: 0 12px; }
+.drawer { background: var(--ink); }
+.drawer .wrap { grid-template-columns: 1fr; padding-block: 4px 16px; }
+.drawer a { font-size: 16px; padding: 14px 4px; border-bottom: 1px solid var(--line); color: var(--fg); }
+.season { background: var(--char); border-bottom: 1px solid var(--line); }
+.season a { color: var(--fg); font-size: 14px; }
+.season .en { color: var(--fg); font-family: var(--f-display); font-size: 14px; }
+.season u { color: var(--gold); font-size: 13px; letter-spacing: .06em; }
+
+/* セクション */
+section.blk { padding-block: clamp(56px, 9vw, 104px); }
+section.alt { background: var(--char); }
+.sec-head { gap: 14px; margin-bottom: 32px; }
+.sec-head h2, .lx-h2 { font-size: clamp(24px, 3vw, 32px); line-height: 1.5; }
+.crumbs { font-family: var(--f-body); font-size: 13px; letter-spacing: .04em; }
+.crumbs a { color: var(--gold); }
+
+/* 線で区切るグリッド：枠は外し、細い区切り線だけに */
+.facts, .tiers, .organizer, .eq, .charges, .steps, .timeline { background: none; border: 0; gap: 0; }
+.facts { border-top: 1px solid var(--line); margin-top: 24px; }
+.facts div, .eq div, .organizer div, .charges div, .steps li, .tier { background: none; border-bottom: 1px solid var(--line); }
+.facts div { padding: 14px 4px; }
+.facts b { color: var(--champagne); font-family: var(--f-display); font-weight: 500; }
+.facts b small, .facts b small.pre { color: var(--muted); }
+.timeline div { border-right: 0; border-bottom: 1px solid var(--line); }
+.timeline div:nth-child(2) { background: none; }
+
+/* カード類：枠と背景をなくし、余白で区切る */
+.bq, .course, .channel, .option, .eqtypes div, .ptable, .sim, form.inq, .done, .decnote, .cmp-scroll, .fp-scroll { background: transparent; border: 0; box-shadow: none; }
+.bq .bq-body, .course, .option .body { padding-inline: 0; }
+.course { padding-block: 24px; border-top: 1px solid var(--line); }
+.course.featured { border-top: 2px solid var(--gold); }
+.course .name { font-family: var(--f-display); font-size: 22px; color: var(--champagne); }
+.course .name small { display: inline; margin-left: 8px; font-family: var(--f-body); font-size: 13px; color: var(--muted); }
+.course .price strong, .bq-price strong, .bq-size b, .opt-price, .price-line, .sim-out .total, .charges .yen, .minicourses .yen, .price-table td.num, .tier .size, .room .head .size, .clock, .tel { font-family: var(--f-display); font-weight: 500; color: var(--champagne); }
+.pk-dec, .mnote { background: none; color: var(--gold); border: 1px solid var(--gold); font-size: 12px; padding: 1px 8px; }
+.course dt, .spec th, .info th, .hours-table th, .pillars dt, .cmp thead th, .ptable thead th, .price-table thead th { font-family: var(--f-body); font-size: 14px; letter-spacing: .02em; color: var(--muted); font-weight: 500; text-transform: none; }
+.course dd, .faq details p, .pillars dd, .route, .eqtypes p, .tier ul, .bq ul, .decnote ul { color: var(--fg); font-size: 15px; }
+.cmp thead th, .ptable thead th, .price-table thead th { background: var(--char); }
+.ptable { border-top: 1px solid var(--line); }
+.ptable h3 { border-bottom: 1px solid var(--line); padding-inline: 4px; }
+.ptable tr.hit { background: #f2e8d2; }
+.decnote { border-left: 3px solid var(--gold); padding: 6px 0 6px 16px; background: none; }
+.decnote b { color: var(--champagne); }
+.bq-other { background: none; border-left: 2px solid var(--gold); color: var(--fg); font-size: 14px; }
+.kind-tag { color: var(--fg); border-color: var(--line); background: none; font-size: 12px; }
+.kind-tag.hire { color: #fff; background: var(--gold); border-color: var(--gold); }
+
+/* 人数別カード（短い版） */
+.bq-compact { border-top: 1px solid var(--line) !important; padding-top: 0; }
+.bq-compact .bq-body { padding: 16px 0 8px; }
+.bq-compact .bq-size b { font-size: 36px; }
+.bq-compact .bq-price .pk, .bq-price .pk { font-size: 14px; color: var(--muted); }
+.bq-compact .bq-price strong { font-size: 28px; }
+.bq-more { color: var(--champagne); font-size: 15px; border-bottom: 1px solid var(--gold); align-self: start; padding-bottom: 2px; }
+.bq-more::after { color: var(--gold); }
+
+/* 宴会ページ冒頭の選択肢：線で区切ったリスト */
+.guide { gap: 0; border-top: 1px solid var(--line); }
+.guide .guide-k { font-size: 14px; color: var(--muted); letter-spacing: .04em; padding: 12px 0 8px; }
+.guide a { background: none; border: 0; border-bottom: 1px solid var(--line); padding: 16px 36px 16px 0; }
+.guide a b { color: var(--champagne); font-family: var(--f-display); font-size: 17px; font-weight: 600; }
+.guide a span { color: var(--muted); font-size: 14px; }
+.guide a.g-hire { border-left: 0; }
+.guide a.g-form { background: none; border-color: var(--line); }
+.guide a.g-form b { color: var(--gold); }
+.guide a.g-form span { color: var(--muted); }
+.guide a.g-form::after, .guide a::after { color: var(--gold); right: 4px; }
+.guide a:hover { background: var(--char); }
+@media (min-width: 760px) { .guide { grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: 32px; } }
+
+/* フォーム前の確認リンク */
+.precheck { border: 0; border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; }
+.precheck p { color: var(--champagne); font-size: 15px; font-family: var(--f-display); }
+.precheck p small { font-family: var(--f-body); font-size: 13px; }
+.precheck a { font-size: 15px; color: var(--fg); border-color: var(--gold); }
+
+/* 予約チャンネル */
+.channel { border-top: 1px solid var(--line); padding: 20px 0; }
+.channel strong { font-family: var(--f-display); color: var(--champagne); }
+.channel p { font-size: 14px; color: var(--muted); }
+.tel { color: var(--champagne); font-size: 28px; }
+
+/* フォーム */
+form.inq { padding: 0; }
+.field input, .field select, .field textarea { background: #fff; color: var(--fg); border: 1px solid #c9bfae; border-radius: 2px; font-size: 16px; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--champagne); }
+.field label { color: var(--fg); font-weight: 500; }
+.field label i { color: var(--flag); }
+.field label i.opt { color: var(--muted); }
+.field .err { color: #b3261e; font-size: 14px; }
+.disclaimer { border-left: 2px solid var(--line); }
+.done { border-top: 2px solid var(--gold); }
+
+/* 料金シミュレーター */
+.sim { border-top: 2px solid var(--gold); }
+.sim-in, .sim-out { padding-inline: 0; }
+.sim-out { background: var(--char); padding: 20px; }
+.seg { border: 1px solid var(--line); background: #fff; }
+.seg label { color: var(--muted); font-size: 14px; }
+.seg input:checked + label { background: var(--champagne); color: #fff; box-shadow: none; }
+.sim-out .warn { color: var(--flag); }
+
+/* 座席配置図は地の色を明るく */
+.fp-scroll { background: #1d1814; }
+
+/* FAQ */
+.faq summary { font-family: var(--f-body); font-weight: 500; color: var(--champagne); font-size: 16px; }
+.faq summary::after { color: var(--gold); font-family: var(--f-body); }
+
+/* スマホの固定予約バー */
+.dock { background: rgba(251,249,244,.98); border-top: 1px solid var(--line); }
+.dock a { min-height: 54px; font-size: 14px; color: var(--fg); border-right: 1px solid var(--line); }
+.dock a span { display: none; }
+.dock a.primary { background: var(--champagne); color: #fff; }
+.sheet { background: rgba(0,0,0,.45); }
+.sheet-in { background: #fff; border-top: 0; }
+.sheet-in h3 { font-size: 18px; }
+.sheet-month { background: var(--char); border-left-color: var(--gold); color: var(--fg); font-size: 14px; }
+
+/* フッター */
+footer { background: var(--char); border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+footer nav a { font-family: var(--f-body); font-size: 14px; letter-spacing: .02em; color: var(--fg); }
+footer .logo-mark { height: 28px; }
+
+/* 下層ページの見出し部分 */
+.p-hero h1 { font-weight: 600; }
+.h1-sub { font-family: var(--f-body); color: var(--gold); letter-spacing: .06em; }
+.room .head .size small, .bq-size small { color: var(--muted); }
+
+/* =================== トップページ（lx-） =================== */
+.lx-hero { padding-bottom: 8px; }
+.lx-hero-ph { aspect-ratio: 16 / 10; max-height: 72vh; width: 100%; }
+.lx-hero-ph img { object-position: 50% 55%; }
+@media (min-width: 900px) { .lx-hero-ph { aspect-ratio: 21 / 9; } }
+.lx-hero-text { padding-block: 28px 8px; display: grid; gap: 14px; }
+.lx-kicker { font-size: 14px; color: var(--gold); letter-spacing: .1em; }
+.lx-hero h1 { font-size: clamp(26px, 5vw, 44px); line-height: 1.45; }
+.lx-catch { font-size: 16px; line-height: 1.9; color: var(--fg); }
+.lx-meta { font-size: 15px; color: var(--fg); display: grid; gap: 2px; }
+.lx-meta b { font-family: var(--f-display); font-weight: 600; font-size: 22px; color: var(--champagne); margin: 0 2px; }
+.lx-meta span { font-size: 14px; color: var(--muted); }
+.lx-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; max-width: 520px; }
+.lx-actions .btn { width: 100%; padding: 0 8px; }
+.lx-sec { padding-block: clamp(48px, 8vw, 96px); }
+.lx-tint { background: var(--char); }
+.lx-h2 { margin-bottom: 24px; }
+.lx-h3 { font-size: 19px; margin: 40px 0 14px; }
+.lx-lead { margin: -8px 0 24px; max-width: 40em; }
+.lx-cats { display: grid; gap: 32px; }
+@media (min-width: 760px) { .lx-cats { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 28px; } }
+.lx-cat { display: grid; gap: 10px; text-decoration: none; color: inherit; }
+.lx-cat .ph { aspect-ratio: 4 / 3; }
+.lx-cat h3 { font-size: 21px; margin-top: 6px; }
+.lx-cat p { font-size: 15px; color: var(--fg); line-height: 1.8; }
+.lx-more, .lx-link { justify-self: start; font-size: 15px; color: var(--champagne); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px; }
+.lx-more::after, .lx-link::after { content: " →"; color: var(--gold); }
+.lx-cat:hover h3 { color: var(--gold); }
+.lx-season { margin-top: 36px; padding: 14px 16px; border-left: 3px solid var(--gold); background: var(--char); }
+.lx-season a { color: var(--champagne); font-size: 15px; text-decoration: none; }
+.lx-season a::after { content: " →"; color: var(--gold); }
+.lx-dishes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+.lx-dish { margin: 0; display: grid; gap: 8px; }
+.lx-dish .ph { aspect-ratio: 1; }
+.lx-dish figcaption { display: grid; gap: 2px; }
+.lx-dish b { font-weight: 500; font-size: 14px; line-height: 1.6; color: var(--champagne); }
+.lx-dish span { font-size: 14px; color: var(--muted); }
+@media (max-width: 559px) { .lx-dishes { grid-template-columns: 1fr 1fr; } .lx-dish:nth-child(3) { display: none; } }
+.lx-courses { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.lx-courses a { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 18px 2px; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }
+.lx-c-name { font-family: var(--f-display); font-weight: 600; font-size: 18px; color: var(--champagne); }
+.lx-c-price { font-family: var(--f-display); font-weight: 500; font-size: 22px; color: var(--champagne); text-align: right; }
+.lx-c-spec { grid-column: 1 / -1; font-size: 15px; color: var(--fg); }
+.lx-c-menu { grid-column: 1 / -1; font-size: 14px; color: var(--muted); line-height: 1.7; }
+.lx-courses a:hover .lx-c-name { color: var(--gold); }
+@media (min-width: 900px) { .lx-courses { grid-template-columns: repeat(3, minmax(0,1fr)); column-gap: 32px; border-top: 0; } .lx-courses a { border-top: 1px solid var(--line); } }
+.lx-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.lx-links { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 24px; }
+.lx-spaces { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 14px; }
+.lx-spaces figure { margin: 0; display: grid; gap: 8px; }
+.lx-spaces figure:first-child { grid-column: 1 / -1; }
+.lx-spaces .ph { aspect-ratio: 4 / 3; }
+.lx-spaces figure:first-child .ph { aspect-ratio: 16 / 9; }
+.lx-spaces figcaption { display: grid; gap: 0; }
+.lx-spaces b { font-weight: 500; font-size: 15px; color: var(--champagne); }
+.lx-spaces span { font-size: 14px; color: var(--muted); }
+@media (min-width: 900px) { .lx-spaces { grid-template-columns: repeat(4, minmax(0,1fr)); } .lx-spaces figure:first-child { grid-column: span 2; grid-row: span 2; } .lx-spaces figure:first-child .ph { aspect-ratio: auto; height: 100%; } }
+.lx-access { display: grid; gap: 36px; }
+@media (min-width: 900px) { .lx-access { grid-template-columns: 6fr 5fr; gap: 64px; } }
+.lx-info { margin: 0; border-top: 1px solid var(--line); }
+.lx-info div { display: grid; grid-template-columns: 6.5em 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.lx-info dt { font-size: 14px; color: var(--muted); }
+.lx-info dd { margin: 0; font-size: 16px; color: var(--fg); }
+.lx-info dd small { display: block; font-size: 14px; color: var(--muted); }
+.lx-map { aspect-ratio: 16 / 10; margin-bottom: 12px; }
+.lx-reserve { margin-top: 28px; display: grid; gap: 10px; }
+.lx-reserve h3 { font-size: 20px; }
+.lx-reserve .btn { width: 100%; }
+.lx-reserve p { font-size: 15px; }
+.lx-tel { font-family: var(--f-display); font-size: 20px; color: var(--champagne); }
+.season .en { display: none; }
+.lx-meta { display: block; }
+.lx-meta small { font-size: 14px; color: var(--muted); margin-left: 4px; }
+.lx-meta span { display: block; margin-top: 4px; }
+@media (min-width: 900px) {
+  .lx-spaces figure:first-child { grid-template-rows: 1fr auto; }
+  .lx-spaces figure:first-child .ph { height: 100%; min-height: 280px; }
+}
+
+/* 宴会ページ：人数別の一覧表 */
+.size-table-wrap { border-top: 1px solid var(--line); }
+.size-table { width: 100%; border-collapse: collapse; }
+.size-table thead { display: none; }
+.size-table tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 18px 2px; border-bottom: 1px solid var(--line); }
+.size-table th { text-align: left; display: flex; align-items: center; gap: 10px; font-weight: 400; }
+.size-table th a { font-family: var(--f-display); font-weight: 600; font-size: 22px; color: var(--champagne); text-decoration: none; border-bottom: 1px solid var(--gold); }
+.size-table th .kind-tag { margin-left: 0; }
+.size-table .st-price { text-align: right; font-family: var(--f-display); font-size: 20px; color: var(--champagne); white-space: nowrap; }
+.size-table .st-price small { display: block; font-family: var(--f-body); font-size: 13px; color: var(--muted); }
+.size-table .st-seat { grid-column: 1 / -1; grid-row: 2; font-size: 15px; color: var(--fg); }
+@media (min-width: 760px) {
+  .size-table thead { display: table-header-group; }
+  .size-table tr { display: table-row; }
+  .size-table th, .size-table td { display: table-cell; padding: 18px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .size-table thead th { font-size: 14px; color: var(--muted); padding-block: 10px; }
+  .size-table .st-seat { grid-column: auto; }
+}
+.eqtypes .k { display: none; }
+.timeline b { font-size: 15px; } .timeline span { font-size: 13px; }
+.seg input:checked + label small { color: #e8e2d6; }
+.course .price .pk-dec, .pk-dec { color: var(--gold) !important; background: none; }
+.organizer .k, .channel .k { display: none; }
+.organizer div { padding: 18px 0; }
+@media (min-width: 1100px) { .ptables { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px 32px; } }
+@media (min-width: 760px) { .ptable th, .ptable td { font-size: 15px; } }
+@media (max-width: 759px) { .ptable th, .ptable td { font-size: 14px; padding-inline: 5px; } }
+@media (min-width: 900px) {
+  .lx-hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; min-height: min(640px, calc(100vh - 120px)); padding-bottom: 0; }
+  .lx-hero-ph { order: 2; aspect-ratio: auto; height: 100%; max-height: none; min-height: 480px; }
+  .lx-hero-text { order: 1; padding: 48px clamp(28px, 4vw, 64px) 48px max(24px, calc((100vw - 1100px) / 2)); max-width: none; margin: 0; }
+  .lx-hero h1 { font-size: clamp(30px, 3vw, 42px); }
+}

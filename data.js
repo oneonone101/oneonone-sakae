@@ -7,6 +7,7 @@ const SITE = {
   tel: "052-957-6646",
   /* 写真（photos/ フォルダ）。差し替えはファイルを置き換えるだけ。w,h は実寸 */
   photos: {
+    "course-spread": { src: "photos/course-spread.jpg", w: 1568, h: 1046, alt: "宴会コースの料理とワイン。ステーキ、生ウニのパスタ、ブラータ、ブルスケッタなどを並べたテーブル" },
     "floor": { src: "photos/floor.jpg", w: 1206, h: 791, alt: "シャンデリアと吊り下げのグリーンが彩るONE on ONEの店内全体。テーブル席と奥に光る大理石のテーブル" },
     "marble": { src: "photos/marble.jpg", w: 1206, h: 1503, alt: "クリスタルのペンダントライトの下に伸びる、光る大理石のロングテーブル" },
     "marble-day": { src: "photos/marble-day.jpg", w: 1134, h: 846, alt: "窓際に伸びる大理石のロングテーブル。宴会用にセットした様子" },

@@ -20,7 +20,18 @@ function lookup(dt) {
 }
 
 /* 人数別カード・料金の表示 */
-renderBanquet(document.getElementById("banquet"), { loc: "party", compact: true, inPage: true });
+/* 人数別の一覧表（人数・席・料金の目安・区分）。人数を押すと下の詳しい案内へ */
+(() => {
+  const P = banquetPrices(); const dec = SITE.season.priceFocus === "dec";
+  const seat = { b10: "完全個室 8・15名／半個室 12・16名／大理石テーブル 20名", b20: "大理石テーブル2卓（カーテンで仕切る半個室）", b40: "同じフロアに複数のテーブル", bhire: "フロア貸切・完全貸切（着席最大104名・立食最大130名）" };
+  const rows = SITE.banquet.map(b => {
+    const hire = b.kind === "hire";
+    const price = hire ? `¥${yen(dec ? P.hireDec : P.hireAll)}〜<small>${dec ? "12月の" : ""}最低保証</small>` : `¥${yen(dec ? P.dec : P.normal)}〜<small>${dec ? "12月・" : ""}1名</small>`;
+    return `<tr><th scope="row"><a href="${esc(b.anchor)}">${esc(b.range)}${b.unit === "" ? "" : esc(b.unit || "名")}</a><span class="kind-tag${hire ? " hire" : ""}">${hire ? "貸切" : "通常の宴会"}</span></th>
+      <td class="st-seat">${esc(seat[b.id] || "")}</td><td class="st-price">${price}</td></tr>`;
+  }).join("");
+  document.getElementById("size-table").innerHTML = `<thead><tr><th scope="col">人数</th><th scope="col">お席</th><th scope="col">料金の目安</th></tr></thead><tbody>${rows}</tbody>`;
+})();
 (() => {
   const P = banquetPrices();
   const dec = SITE.season.priceFocus === "dec";
@@ -64,20 +75,20 @@ function calc(ev) {
   const raw = sPeople.value.trim();
   const people = Math.max(0, Math.floor(Number(raw)) || 0);
   const room = document.querySelector("input[name=s-room]:checked").value === "yes";
-  if (!sDate.value) { out.innerHTML = `<p class="k">RESULT</p><p>日付を選ぶと料金が表示されます。</p>`; renderTables(); return; }
+  if (!sDate.value) { out.innerHTML = `<p class="k">試算結果</p><p>日付を選ぶと料金が表示されます。</p>`; renderTables(); return; }
   const [y, m, d] = sDate.value.split("-").map(Number);
   const dt = new Date(y, m - 1, d);
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  if (dt < today) { renderTables(); out.innerHTML = `<p class="k">RESULT</p><p>過去の日付です。今日以降の日付を選んでください。</p>`; return; }
-  if (H.closed({ m, d })) { renderTables(); out.innerHTML = `<p class="k">RESULT</p><p>12月31日〜1月4日は休業日です。別の日程をお選びください。</p>`; return; }
+  if (dt < today) { renderTables(); out.innerHTML = `<p class="k">試算結果</p><p>過去の日付です。今日以降の日付を選んでください。</p>`; return; }
+  if (H.closed({ m, d })) { renderTables(); out.innerHTML = `<p class="k">試算結果</p><p>12月31日〜1月4日は休業日です。別の日程をお選びください。</p>`; return; }
   const r = lookup(dt);
   renderTables(r);
-  if (!r) { out.innerHTML = `<p class="k">RESULT</p><p>この日程の貸切は個別にご相談ください。</p><a class="btn" href="#reserve">相談フォームへ</a>`; return; }
+  if (!r) { out.innerHTML = `<p class="k">試算結果</p><p>この日程の貸切は個別にご相談ください。</p><a class="btn" href="#reserve">相談フォームへ</a>`; return; }
   const base = room ? r.row.room : r.row.noRoom;
   const from = r.row.from ? "〜" : "";
   const nextDay = new Date(dt); nextDay.setDate(dt.getDate() + 1);
   const dayTags = ["日月火水木金土"[dt.getDay()], isHoliday(dt) ? "祝" : "", isHoliday(nextDay) ? "祝前日" : ""].filter(Boolean).join("・");
-  const head = `<p class="k">ESTIMATE · ${m}月${d}日（${dayTags}）· ${esc(r.row.days)}の料金</p>`;
+  const head = `<p class="k">${m}月${d}日（${dayTags}）・${esc(r.row.days)}の料金</p>`;
   if (people > 130) {
     out.innerHTML = `${head}<p class="total" style="font-size:28px">ご相談ください</p>
       <p class="warn">貸切でご案内できるのは立食130名までです。130名を超える場合は、相談フォームかお電話でご相談ください。</p>

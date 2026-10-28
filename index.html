@@ -5,7 +5,7 @@
 <link rel="preload" as="image" href="photos/floor.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -118,29 +118,29 @@
       <span>NISHIKI · SAKAE · NAGOYA</span>
     </a>
     <nav class="global" aria-label="グローバルナビゲーション">
-      <a href="bonenkai.html">YEAR-END</a>
-      <a href="party.html">PARTY</a>
-      <a href="anniversary.html">ANNIVERSARY</a>
-      <a href="course.html">COURSE</a>
-      <a href="space.html">SPACE</a>
-      <a href="food.html">FOOD</a>
-      <a href="access.html">ACCESS</a>
+      <a href="bonenkai.html">忘年会</a>
+      <a href="party.html">宴会・貸切</a>
+      <a href="anniversary.html">記念日</a>
+      <a href="course.html">コース</a>
+      <a href="space.html">店内・個室</a>
+      <a href="food.html">料理</a>
+      <a href="access.html">アクセス</a>
     </nav>
     <div class="head-cta">
       <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="header">団体・貸切相談</a>
       <button class="btn solid" type="button" data-open-book data-loc="header">ネット予約</button>
     </div>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">MENU</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">メニュー</button>
   </div>
   <div class="drawer" id="drawer" hidden>
     <div class="wrap">
-      <a href="bonenkai.html"><span>YEAR-END</span><small>忘年会・新年会</small></a>
-      <a href="party.html"><span>PARTY</span><small>宴会・貸切</small></a>
-      <a href="anniversary.html"><span>ANNIVERSARY</span><small>誕生日・記念日</small></a>
-      <a href="course.html"><span>COURSE</span><small>コース</small></a>
-      <a href="space.html"><span>SPACE</span><small>店内・個室</small></a>
-      <a href="food.html"><span>FOOD</span><small>料理</small></a>
-      <a href="access.html"><span>ACCESS</span><small>アクセス・料金</small></a>
+      <a href="bonenkai.html">忘年会・新年会</a>
+      <a href="party.html">宴会・貸切</a>
+      <a href="anniversary.html">誕生日・記念日</a>
+      <a href="course.html">コース</a>
+      <a href="space.html">店内・個室</a>
+      <a href="food.html">料理</a>
+      <a href="access.html">アクセス・料金</a>
     </div>
   </div>
 </header>
@@ -148,214 +148,94 @@
 <div class="season" id="season"></div>
 
 <main id="top">
-  <!-- 1. メインビジュアル -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="ph" data-photo="floor" data-eager role="img" aria-label="ONE on ONEの店内">
-      
-    </div>
-    <div class="hero-inner wrap">
-      <p class="eyebrow reveal">名古屋・栄　個室×肉ビストロ</p>
-      <h1 id="hero-title" class="hero-title reveal"><span class="nw">栄の個室・宴会・</span><span class="nw">貸切なら</span><br><span class="hero-logo">ONE on ONE</span></h1>
-      <p class="hero-catch reveal d2">特別な夜を、特別な空間で。</p>
-      <p class="hero-price reveal d2" id="hero-price"></p>
-      <p class="hero-access reveal d2">地下鉄「栄」駅 徒歩5分<span>｜</span>月〜土は翌5:00まで営業</p>
-      <div class="hero-actions reveal d3">
-        <button class="btn solid" type="button" data-open-book data-loc="hero">ネット予約 <small>24H</small></button>
-        <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="hero">団体・貸切相談</a>
+  <!-- 1. 写真＋キャッチコピー -->
+  <section class="lx-hero" aria-labelledby="hero-title">
+    <div class="ph lx-hero-ph" data-photo="floor" data-eager role="img" aria-label="ONE on ONEの店内"></div>
+    <div class="wrap lx-hero-text">
+      <p class="lx-kicker">名古屋・栄　個室×肉ビストロ</p>
+      <h1 id="hero-title"><span class="nw">栄の個室・宴会・</span><span class="nw">貸切なら</span><br>ONE on ONE</h1>
+      <p class="lx-catch">シャンデリアの下で、肉料理とワインを。<br>少人数の記念日から、最大130名の貸切まで。</p>
+      <p class="lx-meta" id="hero-price"></p>
+      <!-- 2. 主要な導線 -->
+      <div class="lx-actions">
+        <a class="btn solid" href="course.html" data-loc="hero">コースを見る</a>
+        <a class="btn" href="party.html" data-loc="hero">宴会・貸切を見る</a>
       </div>
     </div>
   </section>
 
-  <!-- 2. 人数から選ぶ宴会・貸切 -->
-  <section class="blk alt" id="party" aria-labelledby="party-title">
+  <!-- 3. 3つのカテゴリー -->
+  <section class="lx-sec" aria-labelledby="cat-title">
     <div class="wrap">
-      <div class="sec-head">
-        <span class="en big">Party</span>
-        <h2 id="party-title"><span class="nw">人数から選ぶ</span><span class="nw">宴会・貸切</span></h2>
-        <p class="lead">10名の部署宴会から最大130名の貸切まで。通常の宴会は飲み放題付きコース料金、貸切は日付ごとの最低保証料金制でご案内します。</p>
-      </div>
-      <div class="bq-grid" id="banquet"></div>
-      <div class="cta-row">
-        <button class="btn solid" type="button" data-open-book data-loc="home-party">ネット予約</button>
-        <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="home-party">団体・貸切相談</a>
-      </div>
-      <p class="small-group">2〜8名様は <a href="space.html">8名の完全個室・カップルシート</a>、誕生日・記念日は <a href="#anniversary">記念日のご案内</a> をご覧ください。</p>
-      <div class="sec-foot">
-        <a class="textlink" href="bonenkai.html">忘年会・新年会（12月の料金）</a>
-        <a class="textlink" href="party.html">宴会・貸切の詳しい案内</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. おすすめの宴会コース -->
-  <section class="blk" id="course" aria-labelledby="course-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="en big">Course</span>
-        <h2 id="course-title">飲み放題付きの宴会コース</h2>
-        <p class="lead">生ビールやワイン、カクテルを含む飲み放題付き。12月は料金と飲み放題時間が変わります。</p>
-        <div class="seg season-seg" role="radiogroup" aria-label="表示する時期">
-          <input type="radio" name="hperiod" id="hp-dec" value="dec"><label for="hp-dec">12月（忘年会）</label>
-          <input type="radio" name="hperiod" id="hp-normal" value="normal"><label for="hp-normal">1〜11月</label>
-        </div>
-        <p class="note" id="hperiod-note"></p>
-      </div>
-      <div class="courses courses-3" id="courses"></div>
-      <div class="sec-foot">
-        <a class="textlink" href="course.html">STANDARD・ANNIVERSARY・二次会など全コースを見る</a>
-      </div>
-      <p class="note" style="margin-top:16px">価格はすべて税込・1名様あたり。表示価格はグルメサイト掲載時点の割引後価格で、時期により変わります。コース利用時はテーブルチャージがかかりません。</p>
-    </div>
-  </section>
-
-  <!-- 4. 誕生日・記念日 -->
-  <section class="blk alt" id="anniversary" aria-labelledby="anniv-title">
-    <div class="wrap anniv">
-      <div class="anniv-photos">
-        <div class="ph" data-photo="plate" role="img" aria-label="メッセージ入りデザートプレート"></div>
-        <div class="ph" data-photo="tableart" role="img" aria-label="テーブルアートの演出" style="--lx:70%;--ly:30%"></div>
-        <div class="ph" data-photo="room-small" role="img" aria-label="個室での記念日ディナー" style="--lx:20%;--ly:60%"></div>
-      </div>
-      <div>
-        <div class="sec-head" style="margin-bottom:20px">
-          <span class="en big">Anniversary</span>
-          <h2 id="anniv-title"><span class="nw">誕生日・記念日は、</span><span class="nw">ふたりだけの個室で。</span></h2>
-          <p class="lead">メッセージ入りのデザートプレートやテーブルアートで、大切な人の一日を彩ります。</p>
-        </div>
-        <div class="anniv-list">
-          <div><h3>メッセージ入りデザートプレート　¥2,200</h3><p>当日のお電話でも、アラカルトのご利用でも承ります。</p></div>
-          <div><h3>テーブルアートのサプライズ　¥3,850</h3><p>テーブルいっぱいに描くデザートの演出（1卓・前日までにご予約）。</p></div>
-          <div><h3>ANNIVERSARYコース　¥7,000</h3><p>テーブルアートの前菜からメッセージ付きデザートプレートまで全12品・150分飲み放題付き。</p></div>
-        </div>
-        <div class="sec-foot">
-          <button class="btn solid" type="button" data-open-book data-loc="anniversary">記念日の席を予約する</button>
-          <a class="textlink" href="anniversary.html">誕生日・記念日の詳しい案内</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4b. 二次会 -->
-  <section class="after-strip" id="night" aria-labelledby="night-title">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">After Party</p>
-        <h2 id="night-title"><span class="nw">二次会・三次会も</span><span class="nw">翌朝5時まで</span></h2>
-      </div>
-      <ul>
-        <li><b>二次会コース ¥3,300</b><span>22時〜・全4品・120分飲み放題</span></li>
-        <li><b>カラオケ付き完全個室</b><span>8名・15名</span></li>
-        <li><b>月〜土・祝前日は翌5:00まで</b><span>日・祝は翌3:00まで</span></li>
-      </ul>
-      <div class="after-cta"><button class="btn solid" type="button" data-open-book data-loc="home-after">ネット予約</button><a class="textlink" href="course.html">二次会コースの詳細</a></div>
-    </div>
-  </section>
-
-  <!-- 5. 店内・個室・料理 -->
-  <section class="blk" id="space" aria-labelledby="space-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="en big">Space &amp; Food</span>
-        <h2 id="space-title"><span class="nw">ヴィンテージモダンの空間で、</span><span class="nw">肉料理とワインを。</span></h2>
-        <p class="lead">クリスタルのシャンデリア、ゴールドに光る大理石のカウンター。錦三丁目のビル2階に、少し背筋が伸びる夜の空間をつくりました。厳選した牛肉のグリルを中心に、ワインやシャンパン、バーテンダーのカクテルとともにお過ごしください。</p>
-      </div>
-      <h3 class="sub-h">店内・個室・貸切スペース</h3>
-      <div class="space-grid" id="spaces"></div>
-      <h3 class="sub-h" id="food">料理</h3>
-      <div class="food-strip" id="dishes"></div>
-      <div class="sec-foot">
-        <a class="textlink" href="space.html">お席の詳しい案内</a>
-        <a class="textlink" href="food.html">料理・ドリンクメニュー</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. アクセス・営業時間 -->
-  <section class="blk alt" id="access" aria-labelledby="access-title">
-    <div class="wrap access">
-      <div>
-        <div class="sec-head" style="margin-bottom:24px">
-          <span class="en big">Access</span>
-          <h2 id="access-title">アクセス・営業時間</h2>
-        </div>
-        <table class="hours-table" id="hours"></table>
-        <table class="info" id="info" style="margin-top:28px"></table>
-        <p class="note" style="margin-top:14px">テーブルチャージ・個室料金は <a href="access.html">アクセス・料金のページ</a> をご覧ください。</p>
-      </div>
-      <div class="mapcard">
-        <div class="ph" role="img" aria-label="店舗周辺の地図" style="--lx:50%;--ly:50%"></div>
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E4%B8%AD%E5%8C%BA%E9%8C%A63-10-21" target="_blank" rel="noopener" data-track="map_click">Googleマップで開く</a>
-        <h3 style="margin-top:12px">栄駅からの道順</h3>
-        <ol class="route" data-unverified>
-          <li>地下鉄「栄駅」から地上へ<span class="chk">出口番号 要確認</span></li>
-          <li>錦通を西へ、錦三丁目方面へ徒歩約5分</li>
-          <li>プロシーム錦の2階へ（エレベーター）</li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. ご予約・お問い合わせ -->
-  <section class="blk" id="reserve" aria-labelledby="reserve-title">
-    <div class="wrap reserve">
-      <div class="channels">
-        <div class="sec-head" style="margin-bottom:8px">
-          <span class="en big">Reserve</span>
-          <h2 id="reserve-title">ご予約・お問い合わせ</h2>
-        </div>
-        <a class="channel" href="" data-book="hotpepper" target="_blank" rel="noopener" data-track="reserve_click" data-loc="reserve">
-          <span class="k">ONLINE · 24H</span><strong>ホットペッパーで予約</strong><p>空席確認とコース予約。ポイントも使えます。</p>
+      <h2 id="cat-title" class="lx-h2">ご利用シーンから探す</h2>
+      <div class="lx-cats">
+        <a class="lx-cat" href="course.html">
+          <div class="ph" data-photo="course-spread"></div>
+          <h3>料理・コース</h3>
+          <p>厳選した牛肉のグリルを中心に、飲み放題付きの宴会コースもご用意しています。</p>
+          <span class="lx-more">コースと料理を見る</span>
         </a>
-        <a class="channel" href="" data-book="tabelog" target="_blank" rel="noopener" data-track="reserve_click" data-loc="reserve">
-          <span class="k">ONLINE · 24H</span><strong>食べログで予約</strong><p>空席確認とコース予約。</p>
+        <a class="lx-cat" href="party.html">
+          <div class="ph" data-photo="marble-day"></div>
+          <h3>宴会・貸切</h3>
+          <p>10名の部署宴会から、40名以上の団体宴会、最大130名の貸切まで。</p>
+          <span class="lx-more">人数・料金・席を見る</span>
         </a>
-        <div class="channel">
-          <span class="k">TEL · 17:00 —</span>
-          <a class="tel" href="" data-tel data-track="tel_click" data-loc="reserve"></a>
-          <p>当日のご予約、バースデープレートのご依頼もお電話で承ります。</p>
-        </div>
+        <a class="lx-cat" href="anniversary.html">
+          <div class="ph" data-photo="tableart"></div>
+          <h3>個室・記念日</h3>
+          <p>扉付きの完全個室と、メッセージ入りのデザートプレートでお祝いを。</p>
+          <span class="lx-more">記念日のご案内を見る</span>
+        </a>
       </div>
+    </div>
+  </section>
 
+  <!-- 4. 人気の料理・コース -->
+  <section class="lx-sec lx-tint" id="course" aria-labelledby="course-title">
+    <div class="wrap">
+      <h2 id="course-title" class="lx-h2">人気の料理とおすすめコース</h2>
+      <div class="lx-dishes" id="dishes"></div>
+      <h3 class="lx-h3">飲み放題付きの宴会コース</h3>
+      <div class="seg season-seg" role="radiogroup" aria-label="表示する時期">
+        <input type="radio" name="hperiod" id="hp-dec" value="dec"><label for="hp-dec">12月（忘年会）</label>
+        <input type="radio" name="hperiod" id="hp-normal" value="normal"><label for="hp-normal">1〜11月</label>
+      </div>
+      <ul class="lx-courses" id="courses"></ul>
+      <p class="lx-note">価格は税込・1名様あたり。グルメサイト掲載時点の割引後価格で、時期により変わります。</p>
+      <div class="lx-links">
+        <a class="lx-link" href="course.html">全コースの内容と料金</a>
+        <a class="lx-link" href="food.html">料理・ドリンクメニュー</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 店内・席 -->
+  <section class="lx-sec" id="space" aria-labelledby="space-title">
+    <div class="wrap">
+      <h2 id="space-title" class="lx-h2">店内とお席</h2>
+      <p class="lx-lead">クリスタルのシャンデリアと、ゴールドに光る大理石。錦三丁目のビル2階に、ヴィンテージモダンの空間が広がります。</p>
+      <div class="lx-spaces" id="spaces"></div>
+      <div class="lx-links"><a class="lx-link" href="space.html">お席の詳しいご案内</a></div>
+    </div>
+  </section>
+
+  <!-- 6. 店舗情報・アクセス -->
+  <section class="lx-sec lx-tint" id="access" aria-labelledby="access-title">
+    <div class="wrap lx-access">
       <div>
-        <nav class="precheck" aria-label="ご相談前にプランを確認する">
-          <p>ご相談前にプランを確認する<small>入力した内容は保存されます</small></p>
-          <a href="party.html#party-30">団体宴会の座席・コース料金</a>
-          <a href="party.html#party-hire">貸切の条件・設備</a>
-          <a href="party.html#hire">貸切料金シミュレーター</a>
-        </nav>
-        <form class="inq" id="inq" novalidate>
-          <div>
-            <p class="eyebrow">Group &amp; Private Hire</p>
-            <h3 style="font-size:22px;margin-top:10px">団体・貸切のご相談フォーム</h3>
-            <p class="note" style="margin-top:6px">10名以上の宴会、貸切、二次会のご相談はこちらから。店舗から折り返しご連絡します。</p>
-          </div>
-          <div class="hp" aria-hidden="true"><label for="f-company">会社名（入力不要）</label><input id="f-company" name="company" tabindex="-1" autocomplete="off"></div>
-          <div class="fgrid">
-            <div class="field"><label for="f-name">お名前<i>必須</i></label><input id="f-name" name="name" autocomplete="name" required><span class="err" id="e-name"></span></div>
-            <div class="field"><label for="f-tel">電話番号<i>必須</i></label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required><span class="err" id="e-tel"></span></div>
-            <div class="field full"><label for="f-mail">メールアドレス<i class="opt">任意</i></label><input id="f-mail" name="email" type="email" autocomplete="email" inputmode="email"><span class="err" id="e-mail"></span></div>
-            <div class="field"><label for="f-date">希望日<i>必須</i></label><input id="f-date" name="date" type="date" required><span class="err" id="e-date"></span></div>
-            <div class="field"><label for="f-time">希望時間</label>
-              <select id="f-time" name="time"><option value="">選択してください</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30以降</option><option>未定</option></select></div>
-            <div class="field"><label for="f-people">予定人数<i>必須</i></label><input id="f-people" name="people" type="number" min="1" max="200" inputmode="numeric" placeholder="例：45" required><span class="err" id="e-people"></span></div>
-            <div class="field"><label for="f-budget">ご予算（1名あたり）</label>
-              <select id="f-budget" name="budget"><option value="">選択してください</option><option>〜4,000円</option><option>4,000〜5,000円</option><option>5,000〜6,000円</option><option>6,000円〜</option><option>相談したい</option></select></div>
-            <div class="field full"><label for="f-purpose">ご利用目的</label>
-              <select id="f-purpose" name="purpose"><option value="">選択してください</option><option>忘年会・新年会</option><option>歓送迎会</option><option>部署・会社の宴会</option><option>貸切パーティー</option><option>結婚式二次会</option><option>企業イベント</option><option>同窓会</option><option>その他</option></select></div>
-            <div class="field full"><label for="f-hire">貸切の希望</label>
-              <select id="f-hire" name="hire"><option value="">選択してください</option><option>希望しない</option><option>希望する</option><option>未定・相談したい</option></select>
-              <span class="note">通常の宴会は飲み放題付きコース料金、貸切は最低保証料金制でご案内します。</span></div>
-            <div class="field full"><label for="f-msg">ご要望・ご相談内容</label><textarea id="f-msg" name="message" placeholder="例：プロジェクターを使いたい／立食希望／予算内でのコース提案など"></textarea></div>
-          </div>
-          <p class="disclaimer">このフォームはご相談の受付です。送信した時点では予約は確定しません。店舗から折り返しご連絡し、日時・人数・料金をご確認いただいた時点で確定となります。ご入力いただいた情報は<a href="privacy.html">プライバシーポリシー</a>に沿って、ご連絡のためにのみ使用します。</p>
-          <button class="btn solid" type="submit" style="width:100%">相談内容を送信する</button>
-        </form>
-        <div class="done" id="done" hidden tabindex="-1">
-          <span class="en">Thank you</span>
-          <h3>ご相談内容を受け付けました</h3>
-          <p class="note">店舗より折り返しご連絡いたします。この時点ではまだ予約は確定していません。お急ぎの場合はお電話でもご相談いただけます。</p>
-          <p class="note" data-preview style="color:var(--flag)">プレビュー版のため、実際には送信されていません。本番サイトではサーバー経由で店舗にメールが届き、お客様に控えメールが送られます。</p>
-          <button class="btn" type="button" id="again">フォームに戻る</button>
+        <h2 id="access-title" class="lx-h2">店舗情報・アクセス</h2>
+        <dl class="lx-info" id="info"></dl>
+        <div class="lx-links"><a class="lx-link" href="access.html">アクセス・料金・チャージ</a></div>
+      </div>
+      <div>
+        <div class="ph lx-map" data-photo="counter" role="img" aria-label="店内のカウンター"></div>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=%E6%84%9B%E7%9F%A5%E7%9C%8C%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82%E4%B8%AD%E5%8C%BA%E9%8C%A63-10-21" target="_blank" rel="noopener" data-track="map_click" style="width:100%">Googleマップで開く</a>
+        <div class="lx-reserve" id="reserve">
+          <h3>ご予約</h3>
+          <button class="btn solid" type="button" data-open-book data-loc="home-reserve">ネット予約（24時間）</button>
+          <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="home-reserve">団体・貸切のご相談</a>
+          <p>お電話　<a class="lx-tel" href="" data-tel data-track="tel_click" data-loc="home-reserve"></a>（17:00〜）</p>
         </div>
       </div>
     </div>
@@ -366,7 +246,7 @@
   <div class="wrap">
     <a class="logo" href="#top"><img class="logo-mark" src="logo.svg" alt="ONE on ONE" width="150" height="30"><span>個室×肉ビストロ · 名古屋 栄</span></a>
     <nav aria-label="フッターナビゲーション">
-      <a href="bonenkai.html">YEAR-END</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a><a href="#reserve">RESERVE</a><a href="privacy.html">PRIVACY</a>
+      <a href="bonenkai.html">忘年会</a><a href="party.html">宴会・貸切</a><a href="anniversary.html">記念日</a><a href="course.html">コース</a><a href="space.html">店内・個室</a><a href="food.html">料理</a><a href="access.html">アクセス</a><a href="party.html#reserve">団体・貸切のご相談</a><a href="privacy.html">プライバシーポリシー</a>
     </nav>
     <p>ONE on ONE（ワンオンワン）／ 愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ TEL <span data-tel-text></span> ／ 地下鉄栄駅 徒歩5分<br>月〜土・祝前日 18:00〜翌5:00、日・祝 18:00〜翌3:00 ／ 20歳未満の方は禁煙席のみご案内しています。</p>
     <p>© ONE on ONE</p>
@@ -398,32 +278,31 @@
 <script src="common.js"></script>
 <script>
 /* HOME page sections */
-renderBanquet($("#banquet"), { loc: "home", compact: true });
 (() => {
   const P = banquetPrices(); const dec = SITE.season.priceFocus === "dec";
-  $("#hero-price").innerHTML = dec
-    ? `<span>飲み放題付き宴会コース</span><b>¥${yen(P.dec)}〜</b><small>12月・1名税込</small>`
-    : `<span>飲み放題付き宴会コース</span><b>¥${yen(P.normal)}〜</b><small>1名税込${P.normalNote ? "・" + esc(P.normalNote) : ""}</small>`;
+  $("#hero-price").innerHTML = (dec ? `飲み放題付き宴会コース <b>¥${yen(P.dec)}〜</b><small>12月・1名</small>` : `飲み放題付き宴会コース <b>¥${yen(P.normal)}〜</b><small>1名</small>`) + `<span>地下鉄「栄」駅 徒歩5分・月〜土は翌5:00まで</span>`;
 })();
 const HOME_COURSES = ["recommended", "gradeup", "premium"];
 bindPeriodToggle("hperiod", period => {
-  $("#hperiod-note").textContent = period === "dec" ? "12月（忘年会シーズン）の料金です。" : "1月〜11月の料金です。";
-  $("#courses").innerHTML = coursesFor(period).filter(c => HOME_COURSES.includes(c.id)).map(c => courseCard(c, { loc: "home-course", compact: true })).join("");
+  $("#courses").innerHTML = coursesFor(period).filter(c => HOME_COURSES.includes(c.id)).map(c => `
+    <li><a href="course.html#${esc(c.id)}">
+      <span class="lx-c-name">${esc(c.ja)}</span>
+      <span class="lx-c-price">¥${yen(c.price)}</span>
+      <span class="lx-c-spec">全${c.items}品・飲み放題${esc(c.drink)}${period === "dec" ? "（12月）" : ""}</span>
+      <span class="lx-c-menu">${esc(c.menu)}</span>
+    </a></li>`).join("");
 });
-
-$("#spaces").innerHTML = SITE.spaces.map((s, i) => `
-  <figure${s.verified === false ? " data-unverified" : ""}>
-    <div class="ph" data-photo="${esc(s.photoKey || "")}" role="img" aria-label="${esc(s.photo)}" style="--lx:${20 + i * 17}%;--ly:${15 + i * 10}%"></div>
-    <figcaption><b>${esc(s.name)}</b><span>${esc(s.cap)}${chk(s, "人数 要確認")}</span></figcaption>
+$("#dishes").innerHTML = SITE.dishes.filter(d => d.price).slice(0, 3).map(d => `
+  <figure class="lx-dish">
+    <div class="ph" data-photo="${esc(d.photoKey || "")}" role="img" aria-label="${esc(d.name)}"></div>
+    <figcaption><b>${esc(d.name)}</b><span>${priceText(d)}</span></figcaption>
   </figure>`).join("");
-
-$("#dishes").innerHTML = SITE.dishes.slice(0, 3).map((d, i) => `
-  <article class="dish">
-    <div class="ph" data-photo="${esc(d.photoKey || "")}" role="img" aria-label="${esc(d.name)}" style="--lx:${50 + (i % 2 ? -18 : 18)}%;--ly:40%;--rx:50%;--ry:85%"></div>
-    <h4>${esc(d.name)}</h4>
-  </article>`).join("");
-
-$("#hours").innerHTML = SITE.hours.map(h => `<tr${h.verified === false ? " data-unverified" : ""}><th scope="row">${esc(h.day)}</th><td>${esc(h.time)}${chk(h)}<small>${esc(h.note)}</small></td></tr>`).join("");
-$("#info").innerHTML = SITE.info.filter(r => !["定休日"].includes(r.k)).map(r => `<tr${r.verified === false ? " data-unverified" : ""}><th scope="row">${esc(r.k)}</th><td>${esc(r.v)}${chk(r)}${r.s ? `<small>${esc(r.s)}</small>` : ""}</td></tr>`).join("");
-
+$("#spaces").innerHTML = SITE.spaces.map(s => `
+  <figure>
+    <div class="ph" data-photo="${esc(s.photoKey || "")}" role="img" aria-label="${esc(s.photo)}"></div>
+    <figcaption><b>${esc(s.name)}</b><span>${esc(s.cap)}</span></figcaption>
+  </figure>`).join("");
+const hoursRows = SITE.hours.map(h => `<div><dt>${esc(h.day)}</dt><dd>${esc(h.time)}${h.note ? `<small>${esc(h.note)}</small>` : ""}</dd></div>`).join("");
+$("#info").innerHTML = SITE.info.filter(r => ["住所", "アクセス", "電話", "お支払い"].includes(r.k)).map(r => `<div><dt>${esc(r.k)}</dt><dd>${esc(r.v)}${r.s ? `<small>${esc(r.s)}</small>` : ""}</dd></div>`).join("") + hoursRows;
+fillPhotos();
 </script>

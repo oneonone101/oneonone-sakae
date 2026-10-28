@@ -28,15 +28,15 @@ document.querySelectorAll("[data-tel-link]").forEach(a => a.href = telHref);
 document.querySelectorAll("[data-tel-text]").forEach(n => n.textContent = SITE.tel);
 
 if (SITE.season.active) {
-  $("#season").innerHTML = `<a href="${esc(SITE.season.link)}" class="wrap"><span class="en">${esc(SITE.season.en)}</span><span>${SITE.season.text.split(/(?<=。)/).map(t => `<span class="nw">${esc(t)}</span>`).join("")}</span><u>DETAIL</u></a>`;
+  $("#season").innerHTML = `<a href="${esc(SITE.season.link)}" class="wrap"><span class="en">${esc(SITE.season.en)}</span><span>${SITE.season.text.split(/(?<=。)/).map(t => `<span class="nw">${esc(t)}</span>`).join("")}</span><u>詳しく見る</u></a>`;
 } else $("#season").hidden = true;
 
 /* ---------- UI ---------- */
 $("#toggle-chk") && $("#toggle-chk").addEventListener("change", e => document.body.classList.toggle("show-chk", e.target.checked));
 
 const menuBtn = $("#menu-btn"), drawer = $("#drawer");
-menuBtn.addEventListener("click", () => { const open = drawer.hidden; drawer.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open)); menuBtn.textContent = open ? "CLOSE" : "MENU"; });
-drawer.addEventListener("click", e => { if (e.target.closest("a")) { drawer.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); menuBtn.textContent = "MENU"; } });
+menuBtn.addEventListener("click", () => { const open = drawer.hidden; drawer.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open)); menuBtn.textContent = open ? "閉じる" : "メニュー"; });
+drawer.addEventListener("click", e => { if (e.target.closest("a")) { drawer.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); menuBtn.textContent = "メニュー"; } });
 
 const sheet = $("#sheet");
 document.addEventListener("click", e => {
@@ -260,15 +260,15 @@ function courseCard(c, opts) {
     : (!dec && decText(c) ? decText(c) : "");
   return `<article class="course${c.featured ? " featured" : ""}" id="${esc(c.id)}">
     ${c.badge ? `<span class="badge">${esc(c.badge)}</span>` : ""}
-    <${H} class="name">${esc(c.en)}<small>${esc(c.ja)}${c.note ? `（${esc(c.note)}）` : ""}</small></${H}>
+    <${H} class="name">${esc(c.ja)}${c.note ? `<small>${esc(c.note)}</small>` : ""}</${H}>
     <p class="price">${dec ? `<span class="pk-dec">12月料金</span>` : ""}<strong>¥${yen(c.price)}</strong>${c.was ? `<s>¥${yen(c.was)}</s>` : ""}<span>税込／1名</span></p>
     ${opts.compact ? `<p class="course-spec">全${c.items}品<span>／</span>${drink}</p><p class="course-menu">${esc(c.menu)}</p>` : `<dl>
-      <div><dt>ITEMS</dt><dd>全${c.items}品</dd></div>
-      <div><dt>DRINK</dt><dd>${drink}</dd></div>
-      <div><dt>MENU</dt><dd>${esc(c.menu)}</dd></div>
-      <div><dt>WEB</dt><dd>ネット予約 ${esc(c.people)}</dd></div>
-      ${opts.showTime ? `<div><dt>START</dt><dd>${esc(c.time)} のご入店</dd></div>` : ""}
-      ${otherLine ? `<div><dt>${dec ? "OTHER" : "DEC"}</dt><dd>${otherLine}</dd></div>` : ""}
+      <div><dt>品数</dt><dd>全${c.items}品</dd></div>
+      <div><dt>飲み放題</dt><dd>${drink}</dd></div>
+      <div><dt>主な料理</dt><dd>${esc(c.menu)}</dd></div>
+      <div><dt>ネット予約</dt><dd>ネット予約 ${esc(c.people)}</dd></div>
+      ${opts.showTime ? `<div><dt>入店</dt><dd>${esc(c.time)} のご入店</dd></div>` : ""}
+      ${otherLine ? `<div><dt>${dec ? "1〜11月" : "12月"}</dt><dd>${otherLine}</dd></div>` : ""}
     </dl>`}
     <button class="btn${c.featured ? " solid" : ""}" type="button" data-open-book data-loc="${opts.loc || "course"}-${esc(c.id)}">このコースで予約</button>
   </article>`;

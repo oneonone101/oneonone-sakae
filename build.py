@@ -17,6 +17,8 @@ NAV = [
     ("access", "access.html", "ACCESS", "アクセス・料金"),
 ]
 
+NAV_SHORT = {'YEAR-END': '忘年会', 'PARTY': '宴会・貸切', 'ANNIVERSARY': '記念日', 'COURSE': 'コース', 'SPACE': '店内・個室', 'FOOD': '料理', 'ACCESS': 'アクセス'}
+
 BOOK = ("#", "primary", "RESERVE", "ネット予約", 'data-open-book data-loc="dock"')
 DOCK_BOOK = [BOOK, ("party.html#guide", "", "GROUP", "団体・貸切相談", 'data-track="group_guide_click" data-loc="dock"')]
 DOCK_PARTY = [BOOK, ("#reserve", "", "FORM", "相談フォーム", 'data-track="group_inquiry_click" data-loc="dock"')]
@@ -50,7 +52,7 @@ PAGES = [
          desc="株式会社LCが運営するONE on ONE（名古屋・栄）の個人情報の取り扱いについて。団体・貸切相談フォームでお預かりする情報の利用目的、外部サービス、アクセス解析、お問い合わせ窓口。"),
 ]
 
-FONTS = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&family=Jost:wght@400;500&display=swap"
+FONTS = "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600&display=swap"
 
 
 def esc(s):
@@ -92,8 +94,8 @@ def build(p):
         main = main.replace("<!--FORM-->", form)
     js = (SRC / f"{slug}.js").read_text("utf-8")
     nav = "\n      ".join(
-        f'<a href="{href}"' + (' aria-current="page"' if key == slug else "") + f">{en}</a>" for key, href, en, ja in NAV)
-    drawer = "\n      ".join(f'<a href="{href}"><span>{en}</span><small>{ja}</small></a>' for key, href, en, ja in NAV)
+        f'<a href="{href}"' + (' aria-current="page"' if key == slug else "") + f">{NAV_SHORT[en]}</a>" for key, href, en, ja in NAV)
+    drawer = "\n      ".join(f'<a href="{href}">{ja}</a>' for key, href, en, ja in NAV)
     dock = "\n    ".join(
         f'<a href="{href}"' + (f' class="{cls}"' if cls else "") + f" {attrs}><span>{en}</span>{ja}</a>"
         for href, cls, en, ja, attrs in p["dock"])
@@ -144,7 +146,7 @@ def build(p):
       <a class="btn" href="party.html#guide" data-track="group_guide_click" data-loc="header">団体・貸切相談</a>
       <button class="btn solid" type="button" data-open-book data-loc="header">ネット予約</button>
     </div>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">MENU</button>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">メニュー</button>
   </div>
   <div class="drawer" id="drawer" hidden>
     <div class="wrap">
@@ -166,7 +168,7 @@ def build(p):
   <div class="wrap">
     <a class="logo" href="index.html"><img class="logo-mark" src="logo.svg" alt="ONE on ONE" width="150" height="30"><span>個室×肉ビストロ · 名古屋 栄</span></a>
     <nav aria-label="フッターナビゲーション">
-      <a href="index.html">HOME</a><a href="bonenkai.html">YEAR-END</a><a href="party.html">PARTY</a><a href="anniversary.html">ANNIVERSARY</a><a href="course.html">COURSE</a><a href="space.html">SPACE</a><a href="food.html">FOOD</a><a href="access.html">ACCESS</a><a href="privacy.html">PRIVACY</a>
+      <a href="index.html">ホーム</a><a href="bonenkai.html">忘年会・新年会</a><a href="party.html">宴会・貸切</a><a href="anniversary.html">誕生日・記念日</a><a href="course.html">コース</a><a href="space.html">店内・個室</a><a href="food.html">料理</a><a href="access.html">アクセス</a><a href="privacy.html">プライバシーポリシー</a>
     </nav>
     <p>ONE on ONE（ワンオンワン）／ 愛知県名古屋市中区錦3-10-21 プロシーム錦2F ／ TEL <span data-tel-text></span> ／ 地下鉄栄駅 徒歩5分<br>月〜土・祝前日 18:00〜翌5:00、日・祝 18:00〜翌3:00 ／ 20歳未満の方は禁煙席のみご案内しています。</p>
     <p>© ONE on ONE</p>
