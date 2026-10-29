@@ -115,8 +115,8 @@
     <div class="wrap grid">
       <div>
         <p class="eyebrow">Birthday &amp; Anniversary</p>
-        <h1 style="margin-top:18px"><span class="nw">栄の誕生日ディナー・</span><span class="nw">記念日に。</span><br>ふたりだけの個室で。</h1>
-        <p class="lead" style="margin-top:16px">メッセージ入りのデザートプレート、テーブルいっぱいに描くデザートアート。大理石カウンターのカップルシートや扉付きの個室で、大切な人の一日をお祝いください。</p>
+        <h1 style="margin-top:18px"><span class="nw">栄の誕生日ディナー・</span><span class="nw">記念日に。</span></h1>
+        <p class="lead" style="margin-top:16px">メッセージ入りのデザートプレートやテーブルアートをご用意しています。お席は大理石カウンターのカップルシートや、扉付きの個室から選べます。</p>
         <div class="hero-actions">
           <button class="btn solid" type="button" data-open-book data-loc="anniv-hero">記念日の席を予約する</button>
           <a class="btn" href="#plan">サプライズを選ぶ</a>
@@ -131,8 +131,8 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="en big">Surprise</span>
-        <h2 id="plan-title">お祝いの演出を選ぶ</h2>
-        <p class="lead">プレートだけ添える、テーブルアートで驚かせる、コースでまるごとお任せする。予算と相手に合わせてお選びください。</p>
+        <h2 id="plan-title">お祝いのプラン</h2>
+        <p class="lead">デザートプレート、テーブルアート、ANNIVERSARYコースの3つからお選びください。</p>
       </div>
       <div class="options" id="options"></div>
     </div>
@@ -145,7 +145,7 @@
         <p class="eyebrow">Anniversary Course</p>
         <h2 id="ac-title">ANNIVERSARYコース</h2>
         <p class="price-line"><span data-ac="price"></span><small>税込／1名　全<span data-ac="items"></span>品・飲み放題<span data-ac="drink"></span></small></p>
-        <p class="lead">テーブルアートの前菜で始まり、自家製ローストビーフや和牛イチボのグリル、季節のピザと続いて、最後にメッセージ付きのデザートプレートでお祝いします。生ビールやカクテルを含む飲み放題付きです。</p>
+        <p class="lead">テーブルアートの前菜、自家製ローストビーフ、和牛イチボのグリル、季節のピザ、メッセージ付きのデザートプレートなど。生ビールやカクテルを含む飲み放題付きです。</p>
         <ol class="flowlist" id="ac-menu"></ol>
         <p class="note" data-unverified>コースの全12品の内容<span class="chk">全品目 要提供</span>は時期により変わります。</p>
         <div><button class="btn solid" type="button" data-open-book data-loc="anniv-course">ANNIVERSARYコースを予約</button></div>
@@ -260,8 +260,8 @@ document.getElementById("ac-menu").innerHTML = ["テーブルアートの前菜"
 
 const options = [
   { en: "Dessert Plate", name: "メッセージ付きデザートプレート", price: SITE.plate.price, priceNote: "税込・アラカルトでも可", desc: "デザートとフルーツのプレートに、お名前やメッセージを添えてお席へ。", when: "当日のお電話でもOK", loc: "opt-plate", photo: "plate" },
-  { en: "Table Art", name: "テーブルアート", price: SITE.tableArt.price, priceNote: "1卓・税込", desc: "テーブルいっぱいにデザートで描く演出。写真にも残る、いちばん華やかなサプライズ。", when: "前日までに予約", loc: "opt-art", photo: "tableart" },
-  { en: "Anniversary Course", name: "ANNIVERSARYコース", price: ac.price, priceNote: "1名・税込・飲み放題付", desc: "テーブルアートの前菜からメッセージプレートまで、お祝いの演出がすべて入ったコース。", when: "ネット予約で選択", loc: "opt-course", featured: true, photo: "marble" }
+  { en: "Table Art", name: "テーブルアート", price: SITE.tableArt.price, priceNote: "1卓・税込", desc: "テーブルいっぱいにデザートで絵やメッセージを描きます。", when: "前日までに予約", loc: "opt-art", photo: "tableart" },
+  { en: "Anniversary Course", name: "ANNIVERSARYコース", price: ac.price, priceNote: "1名・税込・飲み放題付", desc: "テーブルアートの前菜とメッセージプレートが入ったコースです。", when: "ネット予約で選択", loc: "opt-course", featured: true, photo: "marble" }
 ];
 document.getElementById("options").innerHTML = options.map(o => `
   <article class="option${o.featured ? " featured" : ""}">

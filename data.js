@@ -180,7 +180,7 @@ const SITE = {
     { name: "ビール・カクテル・ソフトドリンク", price: "¥600〜", desc: "ギネス、ヒューガルデン、コロナなどの瓶ビール、定番カクテル、ノンアルコールのドリンク。" }
   ],
   spaces: [
-    { name: "メインフロア", cap: "着席最大104名・立食最大130名", photo: "ヴィンテージモダンのメインフロア", photoKey: "floor", verified: true },
+    { name: "メインフロア", cap: "着席最大104名・立食最大130名", photo: "メインフロア", photoKey: "floor", verified: true },
     { name: "大理石ロングテーブル", cap: "20名×2卓", photo: "ゴールドの大理石テーブル", photoKey: "marble-day", verified: true },
     { name: "半個室", cap: "12名・16名", photo: "グリーンの壁の半個室", photoKey: "semi-green", verified: true },
     { name: "完全個室", cap: "8名・15名（両室カラオケ完備）", photo: "扉付き個室", photoKey: "room-large", verified: true },

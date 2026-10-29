@@ -154,8 +154,12 @@
     <div class="wrap lx-hero-text">
       <p class="lx-kicker">名古屋・栄　個室×肉ビストロ</p>
       <h1 id="hero-title"><span class="nw">栄の個室・宴会・</span><span class="nw">貸切なら</span><br>ONE on ONE</h1>
-      <p class="lx-catch">シャンデリアの下で、肉料理とワインを。<br>少人数の記念日から、最大130名の貸切まで。</p>
-      <p class="lx-meta" id="hero-price"></p>
+      <p class="lx-catch">記念日のお食事から、宴会・貸切まで。<br>最大130名まで対応しています。</p>
+      <p class="lx-price">飲み放題付き宴会コース <b id="hero-price">¥5,000〜</b></p>
+      <ul class="lx-facts">
+        <li>地下鉄「栄」駅 徒歩5分</li>
+        <li>営業時間 18:00〜翌5:00</li>
+      </ul>
       <!-- 2. 主要な導線 -->
       <div class="lx-actions">
         <a class="btn solid" href="course.html" data-loc="hero">コースを見る</a>
@@ -172,7 +176,7 @@
         <a class="lx-cat" href="course.html">
           <div class="ph" data-photo="course-spread"></div>
           <h3>料理・コース</h3>
-          <p>厳選した牛肉のグリルを中心に、飲み放題付きの宴会コースもご用意しています。</p>
+          <p>牛肉のグリルが中心です。飲み放題付きの宴会コースもあります。</p>
           <span class="lx-more">コースと料理を見る</span>
         </a>
         <a class="lx-cat" href="party.html">
@@ -184,7 +188,7 @@
         <a class="lx-cat" href="anniversary.html">
           <div class="ph" data-photo="tableart"></div>
           <h3>個室・記念日</h3>
-          <p>扉付きの完全個室と、メッセージ入りのデザートプレートでお祝いを。</p>
+          <p>扉付きの完全個室と、メッセージ入りのデザートプレートがあります。</p>
           <span class="lx-more">記念日のご案内を見る</span>
         </a>
       </div>
@@ -214,7 +218,7 @@
   <section class="lx-sec" id="space" aria-labelledby="space-title">
     <div class="wrap">
       <h2 id="space-title" class="lx-h2">店内とお席</h2>
-      <p class="lx-lead">クリスタルのシャンデリアと、ゴールドに光る大理石。錦三丁目のビル2階に、ヴィンテージモダンの空間が広がります。</p>
+      <p class="lx-lead">カウンター席、個室・半個室、大理石テーブル、貸切フロアがあります。</p>
       <div class="lx-spaces" id="spaces"></div>
       <div class="lx-links"><a class="lx-link" href="space.html">お席の詳しいご案内</a></div>
     </div>
@@ -280,7 +284,7 @@
 /* HOME page sections */
 (() => {
   const P = banquetPrices(); const dec = SITE.season.priceFocus === "dec";
-  $("#hero-price").innerHTML = (dec ? `飲み放題付き宴会コース <b>¥${yen(P.dec)}〜</b><small>12月・1名</small>` : `飲み放題付き宴会コース <b>¥${yen(P.normal)}〜</b><small>1名</small>`) + `<span>地下鉄「栄」駅 徒歩5分・月〜土は翌5:00まで</span>`;
+  $("#hero-price").textContent = `¥${yen(dec ? P.dec : P.normal)}〜`;
 })();
 const HOME_COURSES = ["recommended", "gradeup", "premium"];
 bindPeriodToggle("hperiod", period => {

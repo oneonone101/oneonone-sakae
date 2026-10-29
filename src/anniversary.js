@@ -7,8 +7,8 @@ document.getElementById("ac-menu").innerHTML = ["テーブルアートの前菜"
 
 const options = [
   { en: "Dessert Plate", name: "メッセージ付きデザートプレート", price: SITE.plate.price, priceNote: "税込・アラカルトでも可", desc: "デザートとフルーツのプレートに、お名前やメッセージを添えてお席へ。", when: "当日のお電話でもOK", loc: "opt-plate", photo: "plate" },
-  { en: "Table Art", name: "テーブルアート", price: SITE.tableArt.price, priceNote: "1卓・税込", desc: "テーブルいっぱいにデザートで描く演出。写真にも残る、いちばん華やかなサプライズ。", when: "前日までに予約", loc: "opt-art", photo: "tableart" },
-  { en: "Anniversary Course", name: "ANNIVERSARYコース", price: ac.price, priceNote: "1名・税込・飲み放題付", desc: "テーブルアートの前菜からメッセージプレートまで、お祝いの演出がすべて入ったコース。", when: "ネット予約で選択", loc: "opt-course", featured: true, photo: "marble" }
+  { en: "Table Art", name: "テーブルアート", price: SITE.tableArt.price, priceNote: "1卓・税込", desc: "テーブルいっぱいにデザートで絵やメッセージを描きます。", when: "前日までに予約", loc: "opt-art", photo: "tableart" },
+  { en: "Anniversary Course", name: "ANNIVERSARYコース", price: ac.price, priceNote: "1名・税込・飲み放題付", desc: "テーブルアートの前菜とメッセージプレートが入ったコースです。", when: "ネット予約で選択", loc: "opt-course", featured: true, photo: "marble" }
 ];
 document.getElementById("options").innerHTML = options.map(o => `
   <article class="option${o.featured ? " featured" : ""}">
